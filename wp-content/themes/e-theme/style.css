@@ -1,0 +1,73 @@
+.wysiwyg-step h1,
+.wysiwyg-step h2,
+.wysiwyg-step h3,
+.wysiwyg-step h4,
+.wysiwyg-step h5,
+.wysiwyg-step h6 {
+  color: #ffffff;
+  /* text-white */
+  font-weight: 600;
+  /* font-semibold */
+  line-height: 1.1;
+  /* leading-[110%] */
+  font-size: 22px;
+  /* base: text-[22px] */
+}
+
+/* sm:text-[24px] */
+@media (min-width: 640px) {
+
+  .wysiwyg-step h1,
+  .wysiwyg-step h2,
+  .wysiwyg-step h3,
+  .wysiwyg-step h4,
+  .wysiwyg-step h5,
+  .wysiwyg-step h6 {
+    font-size: 24px;
+  }
+}
+
+/* md:text-[26px] */
+@media (min-width: 768px) {
+
+  .wysiwyg-step h1,
+  .wysiwyg-step h2,
+  .wysiwyg-step h3,
+  .wysiwyg-step h4,
+  .wysiwyg-step h5,
+  .wysiwyg-step h6 {
+    font-size: 26px;
+  }
+}
+
+/* lg:text-[28px] */
+@media (min-width: 1024px) {
+
+  .wysiwyg-step h1,
+  .wysiwyg-step h2,
+  .wysiwyg-step h3,
+  .wysiwyg-step h4,
+  .wysiwyg-step h5,
+  .wysiwyg-step h6 {
+    font-size: 28px;
+  }
+}
+
+
+.wp-singular #article-hero .swiper {
+  z-index: 0 !important;
+  position: absolute !important;
+}
+
+.wp-singular .video-container {
+  z-index: 0;
+}
+
+.wp-singular #article-hero .swiper::after,
+.wp-singular #article-hero .video-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.364);
+  z-index: 1;
+}

@@ -1,0 +1,17 @@
+{
+  "page": {
+    "title": "Articles",
+    "description": "Read our latest insights and articles"
+  },
+  "article": {
+    "readTime": "min read",
+    "author": "Author",
+    "backToArticles": "Back to Articles"
+  },
+  "articlesHero": {
+    "mainHeading": "Automation",
+    "subHeading1": "meets",
+    "subHeading2": "Intelligence",
+    "description": "Ideas, strategies and cases for digital employees. Less effort, more impact. Clear, practical, future-oriented."
+  }
+}

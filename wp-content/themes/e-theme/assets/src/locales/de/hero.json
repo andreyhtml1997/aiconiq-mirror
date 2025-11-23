@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "mainHeading": "Andere liefern Agenten.",
+    "weDeliver": "Wir liefern",
+    "digitalEmployees": "digitale Mitarbeiter",
+    "description": "Digitale Kollegen, die Ihr Unternehmen verstehen, mitdenken und mitarbeiten – für weniger Routine, mehr Innovation und echten Geschäftswert.",
+    "stats": {
+      "timeToMarket": {
+        "value": "Bis zu 9x",
+        "label": "Schnellere Time-to-Market"
+      },
+      "implementation": {
+        "value": "-40%",
+        "label": "Implementierungsdauer"
+      },
+      "projectCosts": {
+        "value": "-60%",
+        "label": "Projektkosten"
+      }
+    }
+  }
+}

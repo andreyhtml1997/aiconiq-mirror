@@ -1,0 +1,32 @@
+{
+  "security": {
+    "badge": "Trust and Data Security",
+    "title": "AICONIQ ist der Fort Knox für Ihr Wissen",
+    "description1": "DSGVO-konform, ISO-zertifiziert und 100 % datensouverän.",
+    "description2": "Wir verstehen Vertrauen nicht als Feature, sondern als Grundlage jeder Zusammenarbeit.",
+    "cards": [
+      {
+        "title": "AICONIQ ist der Fort Knox für Ihr Wissen",
+        "description": "AICONIQ erfüllt die Anforderungen der DSGVO und geht darüber hinaus. Alle Daten werden ausschließlich in zertifizierten europäischen Rechenzentren verarbeitet – mit End-to-End-Verschlüsselung, rollenbasiertem Zugriff und Zero-Trust-Architektur.",
+        "badge": "Das bedeutet:",
+        "highlight": "volle Transparenz, keine Schattenprozesse, keine unkontrollierten Schnittstellen."
+      },
+      {
+        "title": "Datensicherheit – geprüft, zertifiziert, resilient.",
+        "description": "Unsere Infrastruktur folgt den Standards der ISO 27001. Zugriffe, Logins und Datenflüsse werden kontinuierlich überwacht und dokumentiert. Jeder AICONIQ-Agent arbeitet innerhalb definierter Sicherheitsgrenzen – mit Guardrails, Logging und Impact Scoring, um Risiken frühzeitig zu erkennen und zu kontrollieren."
+      },
+      {
+        "title": "Unternehmenssouveränität – Ihre Daten gehören Ihnen",
+        "description": "AICONIQ wurde für Organisationen entwickelt, die ihr Wissen nicht aus der Hand geben wollen. Unternehmensdaten bleiben vollständig in Ihren Systemen. Nichts verlässt Ihre Umgebung ohne explizite Freigabe. Das Sicherheitskonzept folgt dem „Fort-Knox-Prinzip : Zugriff nur, wenn nötig – Kontrolle immer bei Ihnen."
+      },
+      {
+        "title": "Vertrauensarchitektur – nachvollziehbar, auditierbar, verantwortbar.",
+        "description": "Jede KI-Entscheidung, jeder Zugriff, jede Datenbewegung kann nachverfolgt und geprüft werden. Damit schaffen wir nicht nur Schutz, sondern auch Transparenz – und damit Vertrauen auf Augenhöhe. AICONIQ erfüllt die Anforderungen des EU AI Act in Bezug auf Governance, Dokumentation und Auditierbarkeit."
+      },
+      {
+        "title": "Beispiel aus der Praxis",
+        "description": "Nutzung von AICONIQ, um Produktwissen aus Entwicklung, Vertrieb und Service zu bündeln. Trotz sensibler Daten bleibt alles intern – AICONIQ läuft auf unternehmenseigenen Servern und trennt Wissen nach Rollen und Projekten."
+      }
+    ]
+  }
+}

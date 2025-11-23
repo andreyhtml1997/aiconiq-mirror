@@ -1,0 +1,24 @@
+{
+  "solutionsOverview": {
+    "title": "Fachkräftemangel? Wissenstransfer? Effizienz? AICONIQ liefert Antworten.",
+    "buttonLabel": "Anfrage senden",
+    "solutions": [
+      {
+        "title": "Wissen sichern",
+        "description": "Erfahrungswissen bleibt im Unternehmen"
+      },
+      {
+        "title": "Fachkräftemangel lösen",
+        "description": "Buddies übernehmen Routine"
+      },
+      {
+        "title": "Produktivität steigern",
+        "description": "Projekte laufen schneller, Entscheidungen fundierter"
+      },
+      {
+        "title": "Wissen messbar machen",
+        "description": "Echtzeit-KPIs & Dashboards"
+      }
+    ]
+  }
+}

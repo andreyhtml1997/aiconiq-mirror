@@ -1,0 +1,46 @@
+{
+  "autoVSteamWork": {
+    "badge": "Automatisierung Zusammenarbeit",
+    "middleWord": "vs",
+    "title": "AICONIQ – von Automatisierung zu echter unternehmerischer Intelligenz.",
+    "description": "AICONIQ erweitert menschliches Denken - es verbindet Wissen, Intution und Erfahrung zu Intelligentem Handeln",
+    "automation": {
+      "badge": "Automatisierung",
+      "heading": "Wo Prozesse laufen, entsteht Raum für strategisches Denken",
+      "description": "Weniger Zeit mit Suchen, Abstimmen, Nacharbeiten, mehr Zeit für das Wesentliche. AICONIQ automatisiert wiederkehrende Aufgaben und schafft reibungslose Abläufe über Teams und Systeme hinweg.",
+      "useCases": {
+        "title": "Typische Einsatzfelder",
+        "reporting": "Reporting & Dokumentation",
+        "dataMaintenance": "Datenpflege & Prozesssteuerung",
+        "meetingProtocols": "Meeting-Protokolle & Wissensarchivierung",
+        "scheduling": "Termin- & Aufgabenplanung"
+      },
+      "example": {
+        "title": "Praxis Beispiel",
+        "paragraph1": "Ihr Unternehmen nutzt AICONIQ, um wöchentlich 20 Stunden an manueller Datenaufbereitung zu sparen.",
+        "paragraph2": "Das System erkennt Muster in Berichten, fasst Ergebnisse automatisch zusammen und verteilt sie direkt an die richtigen Personen.",
+        "resultLabel": "DAS ERGEBNIS",
+        "resultValue": "40",
+        "resultDescription": "schnellere Abläufe – und mehr Kapazität im Tagesgeschäft."
+      }
+    },
+    "collaboration": {
+      "badge": "Zusammenarbeit",
+      "heading": "Aus individuellem Wissen wird kollektive Intelligenz",
+      "description": "Unsere digitalen Co-Worker unterstützen Teams dort, wo Erfahrung, Strategie und Urteilsvermögen gefragt sind. Sie bringen Wissen zusammen, analysieren Optionen und helfen, bessere Entscheidungen zu treffen – in Echtzeit.",
+      "useCases": {
+        "title": "Typische Einsatzfelder",
+        "strategy": "Strategie- und Produktentwicklung",
+        "decisionSupport": "Entscheidungsunterstützung im Management",
+        "innovation": "Ideenfindung & Innovationsprozesse",
+        "marketing": "Marketing & Kommunikation"
+      },
+      "example": {
+        "title": "Praxis Beispiel",
+        "paragraph": "Ihr Unternehmen nutzt AICONIQ, um Ideen für neue Service-Modelle zu entwickeln. Ihr Buddy verknüpft internes Erfahrungswissen mit Markt- und Kundendaten, zeigt Trends auf und schlägt passende Modelle vor. Das Team entscheidet schneller – auf Basis klarer Fakten statt Bauchgefühl.",
+        "conclusionTitle": "Ein System. Zwei Wirkungen. Ein Ziel.",
+        "conclusionText": "AICONIQ verbindet operative Entlastung mit strategischer Intelligenz. Routine verschwindet, Wissen wird nutzbar, Entscheidungen werden klarer. So entsteht eine Organisation, die nicht nur effizienter arbeitet a sondern auch klüger handelt."
+      }
+    }
+  }
+}

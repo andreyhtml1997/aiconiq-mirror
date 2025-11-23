@@ -1,0 +1,24 @@
+{
+  "positioning": {
+    "badge": "Positionierung",
+    "title": "Was AICONIQ anders macht",
+    "description": "AICONIQ verbindet künstliche mit unternehmerischer Intelligenz. Während andere KI Agenten Aufgaben ausführen, versteht AICONIQ, warum Menschen Entscheidungen treffen und integriert diese Logik in das System.",
+    "leftBlock": {
+      "badge": "Assistenten reagieren",
+      "title": "AICONIQ handelt.",
+      "description": "Die meisten KI-Systeme funktionieren reaktiv: Sie beantworten Fragen, erledigen einzelne Aufgaben oder liefern Textvorschläge. Nützlich a aber begrenzt. Denn sie verstehen weder den Kontext eines Unternehmens noch die Zusammenhänge, in denen Entscheidungen entstehen."
+    },
+    "rightBlock": {
+      "overlayText": "Geht einen Schritt weiter",
+      "description": "Unsere digitalen Co-Worker arbeiten mit dem Wissen, den Daten und den Abläufen Ihres Unternehmens und handeln, als wären sie Teil Ihres Teams. Sie erkennen Muster, lernen aus Erfahrung und unterstützen dort, wo Wissen in Wirkung übersetzt werden muss: im Tagesgeschäft."
+    },
+    "bottomBlock": {
+      "title": "So zeigt sich das im Alltag",
+      "badge": "Kompetenzen",
+      "description": "Wo andere Systeme nur explizite Daten und Regeln verarbeiten, kann AICONIQ auch mit implizitem, institutionellem Wissen umgehen – also dem, was in Erfahrung, Intuition und Unternehmenskultur steckt. Das System beobachtet, dokumentiert und lernt aus realen Entscheidungen. Inklusive der dahinterliegenden Denkprozesse.",
+      "resultLabel": "DAS ERGEBNIS",
+      "resultTitle": "Mehr Effizienz im Tagesgeschäft",
+      "resultDescription": "schnellere Entscheidungen und eine Organisation, die von ihrem eigenen Wissen profitiert."
+    }
+  }
+}

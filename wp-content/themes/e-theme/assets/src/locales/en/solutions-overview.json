@@ -1,0 +1,24 @@
+{
+  "solutionsOverview": {
+    "title": "Skilled labor shortage? Knowledge transfer? Efficiency? AICONIQ delivers answers.",
+    "buttonLabel": "Send request",
+    "solutions": [
+      {
+        "title": "Secure knowledge",
+        "description": "Experience knowledge stays in the company"
+      },
+      {
+        "title": "Solve skilled labor shortage",
+        "description": "Buddies take over routine tasks"
+      },
+      {
+        "title": "Increase productivity",
+        "description": "Projects run faster, decisions more informed"
+      },
+      {
+        "title": "Make knowledge measurable",
+        "description": "Real-time KPIs & dashboards"
+      }
+    ]
+  }
+}

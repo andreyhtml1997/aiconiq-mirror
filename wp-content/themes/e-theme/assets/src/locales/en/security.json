@@ -1,0 +1,32 @@
+{
+  "security": {
+    "badge": "Trust and Data Security",
+    "title": "AICONIQ is Fort Knox for your knowledge",
+    "description1": "GDPR-compliant, ISO-certified and 100% data sovereign.",
+    "description2": "We don't see trust as a feature, but as the foundation of every collaboration.",
+    "cards": [
+      {
+        "title": "AICONIQ is Fort Knox for your knowledge",
+        "description": "AICONIQ meets GDPR requirements and goes beyond. All data is processed exclusively in certified European data centers – with end-to-end encryption, role-based access and zero-trust architecture.",
+        "badge": "This means:",
+        "highlight": "full transparency, no shadow processes, no uncontrolled interfaces."
+      },
+      {
+        "title": "Data security – tested, certified, resilient.",
+        "description": "Our infrastructure follows ISO 27001 standards. Access, logins and data flows are continuously monitored and documented. Every AICONIQ agent operates within defined security boundaries – with guardrails, logging and impact scoring to identify and control risks early."
+      },
+      {
+        "title": "Corporate sovereignty – your data belongs to you",
+        "description": "AICONIQ was developed for organizations that don't want to give up their knowledge. Corporate data remains entirely within your systems. Nothing leaves your environment without explicit approval. The security concept follows the \"Fort Knox principle\": access only when necessary – control always with you."
+      },
+      {
+        "title": "Trust architecture – traceable, auditable, accountable.",
+        "description": "Every AI decision, every access, every data movement can be tracked and audited. This creates not only protection, but also transparency – and thus trust on equal terms. AICONIQ meets the requirements of the EU AI Act regarding governance, documentation and auditability."
+      },
+      {
+        "title": "Example from practice",
+        "description": "Using AICONIQ to consolidate product knowledge from development, sales and service. Despite sensitive data, everything remains internal – AICONIQ runs on company-owned servers and separates knowledge by roles and projects."
+      }
+    ]
+  }
+}

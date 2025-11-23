@@ -1,0 +1,17 @@
+{
+  "page": {
+    "title": "Artikel",
+    "description": "Lesen Sie unsere neuesten Erkenntnisse und Artikel"
+  },
+  "article": {
+    "readTime": "Min. Lesezeit",
+    "author": "Autor",
+    "backToArticles": "Zurück zu den Artikeln"
+  },
+  "articlesHero": {
+    "mainHeading": "Automatisierung",
+    "subHeading1": "trifft",
+    "subHeading2": "Intelligenz",
+    "description": "Ideen, Strategien und Cases für digitale Mitarbeiter. Weniger Aufwand, mehr Wirkung. Klar, praxisnah, zukunftsorientiert."
+  }
+}

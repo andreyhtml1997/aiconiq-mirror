@@ -1,0 +1,24 @@
+{
+  "knowledge": {
+    "badge": "Knowledge",
+    "title": "How AICONIQ works",
+    "steps": [
+      {
+        "title": "Capture knowledge",
+        "description": "Captures all relevant conversations, documents and data from your company and builds a neural organizational memory from it, the basis for intelligent decisions."
+      },
+      {
+        "title": "Process data",
+        "description": "AICONIQ processes data into a central, company-specific data space. Within it, knowledge, memory and reasoning systems work together to store, link and verify knowledge – dynamically, securely and transparently."
+      },
+      {
+        "title": "Implement data",
+        "description": "AICONIQ Buddies translate knowledge into action. They operate in all business areas – from consulting to implementation, from support to training. Input Buddies capture knowledge from conversations and processes, Output Buddies implement it in a targeted manner. This creates a system that not only understands what needs to be done, but also does it."
+      },
+      {
+        "title": "Manage data",
+        "description": "The dashboard makes knowledge visible and measures not only activity with specially developed quality metrics, but the actual quality of your Buddies and the impact of knowledge in the company."
+      }
+    ]
+  }
+}

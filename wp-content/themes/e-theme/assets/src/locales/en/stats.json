@@ -1,0 +1,36 @@
+{
+  "stats": {
+    "topStats": [
+      {
+        "value": "+60 %",
+        "description": "internal knowledge integrated into decision-making"
+      },
+      {
+        "value": "+35 %",
+        "description": "revenue potential through personalized, AI-based interaction"
+      },
+      {
+        "value": "–40 %",
+        "description": "effort through agent-controlled routine tasks"
+      },
+      {
+        "value": "+28 %",
+        "description": "up to +28% conversion rate through intelligent agent control"
+      }
+    ],
+    "bottomStats": [
+      {
+        "value": "9x",
+        "description": "up to 9x faster time-to-market"
+      },
+      {
+        "value": "–40 %",
+        "description": "implementation duration"
+      },
+      {
+        "value": "–60 %",
+        "description": "project costs"
+      }
+    ]
+  }
+}

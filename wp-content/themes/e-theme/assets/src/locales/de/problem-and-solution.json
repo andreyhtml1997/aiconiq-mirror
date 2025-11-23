@@ -1,0 +1,41 @@
+{
+  "problemAndSolution": {
+    "badge": "PROBLEM Lösung",
+    "middleWord": "UND",
+    "title": "Wir verkaufen keine KI. Wir liefern Umsetzung",
+    "description1": "In jedem Unternehmen steckt Wissen, das in Köpfen bleibt und mit Ihren Mitarbeitenden verschwindet. AICONIQ macht dieses Wissen sichtbar, nutzbar und messbar.",
+    "description2": "So entsteht eine digitale Workforce, die Routinen übernimmt, Wissen validiert und Ihr Team stärkt.",
+    "accuracyText": "AICONIQ is 30% more accurate at Advice / Consult than Standard LLM.",
+    "chatButtonLabel": "Sprich mit mir",
+    "howItWorks": "So funktioniert AICONIQ",
+    "cards": {
+      "chatgpt": {
+        "label": "ChatGPT",
+        "features": [
+          "LLM Knowledge",
+          "Explicit"
+        ],
+        "qualityLabel": "QUALITY OF ADVICE / CONSULT",
+        "qualityValue": "54%"
+      },
+      "rag": {
+        "label": "RAG",
+        "features": [
+          "Corporate Knowledge / Domain Knowledge",
+          "Explicit + Implicit"
+        ],
+        "qualityLabel": "QUALITY OF ADVICE / CONSULT",
+        "qualityValue": "59%"
+      },
+      "aiconiq": {
+        "label": "AICONIQ",
+        "features": [
+          "Experimental Knowledge Employee / Expert and Conversational Knowledge",
+          "Explicit + Implicit + Tacit"
+        ],
+        "qualityLabel": "QUALITY OF ADVICE / CONSULT",
+        "qualityValue": "93%"
+      }
+    }
+  }
+}

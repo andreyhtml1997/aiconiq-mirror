@@ -1,0 +1,24 @@
+{
+  "positioning": {
+    "badge": "Positioning",
+    "title": "What AICONIQ does differently",
+    "description": "AICONIQ combines artificial intelligence with entrepreneurial intelligence. While other AI agents execute tasks, AICONIQ understands why people make decisions and integrates this logic into the system.",
+    "leftBlock": {
+      "badge": "Assistants react",
+      "title": "AICONIQ acts.",
+      "description": "Most AI systems work reactively: They answer questions, complete individual tasks or provide text suggestions. Useful, but limited. Because they understand neither the context of a company nor the connections in which decisions are made."
+    },
+    "rightBlock": {
+      "overlayText": "Goes one step further",
+      "description": "Our digital co-workers work with the knowledge, data and processes of your company and act as if they were part of your team. They recognize patterns, learn from experience and support where knowledge needs to be translated into impact: in day-to-day business."
+    },
+    "bottomBlock": {
+      "title": "How this shows in everyday life",
+      "badge": "Competencies",
+      "description": "Where other systems only process explicit data and rules, AICONIQ can also handle implicit, institutional knowledge – that is, what lies in experience, intuition and corporate culture. The system observes, documents and learns from real decisions. Including the underlying thought processes.",
+      "resultLabel": "THE RESULT",
+      "resultTitle": "More efficiency in day-to-day business",
+      "resultDescription": "faster decisions and an organization that benefits from its own knowledge."
+    }
+  }
+}

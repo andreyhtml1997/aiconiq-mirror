@@ -1,0 +1,46 @@
+{
+  "autoVSteamWork": {
+    "badge": "Automation Collaboration",
+    "middleWord": "vs",
+    "title": "AICONIQ – from automation to real entrepreneurial intelligence.",
+    "description": "AICONIQ expands human thinking - it connects knowledge, intuition and experience into intelligent action",
+    "automation": {
+      "badge": "Automation",
+      "heading": "Where processes run, space emerges for strategic thinking",
+      "description": "Less time searching, coordinating, reworking, more time for what matters. AICONIQ automates recurring tasks and creates seamless workflows across teams and systems.",
+      "useCases": {
+        "title": "Typical Use Cases",
+        "reporting": "Reporting & Documentation",
+        "dataMaintenance": "Data Maintenance & Process Control",
+        "meetingProtocols": "Meeting Protocols & Knowledge Archiving",
+        "scheduling": "Appointment & Task Planning"
+      },
+      "example": {
+        "title": "Practical Example",
+        "paragraph1": "Your company uses AICONIQ to save 20 hours of manual data preparation per week.",
+        "paragraph2": "The system recognizes patterns in reports, automatically summarizes results and distributes them directly to the right people.",
+        "resultLabel": "THE RESULT",
+        "resultValue": "40",
+        "resultDescription": "faster workflows – and more capacity in day-to-day business."
+      }
+    },
+    "collaboration": {
+      "badge": "Collaboration",
+      "heading": "From individual knowledge to collective intelligence",
+      "description": "Our digital co-workers support teams where experience, strategy and judgment are needed. They bring knowledge together, analyze options and help make better decisions – in real time.",
+      "useCases": {
+        "title": "Typical Use Cases",
+        "strategy": "Strategy & Product Development",
+        "decisionSupport": "Management Decision Support",
+        "innovation": "Ideation & Innovation Processes",
+        "marketing": "Marketing & Communication"
+      },
+      "example": {
+        "title": "Practical Example",
+        "paragraph": "Your company uses AICONIQ to develop ideas for new service models. Your Buddy links internal experience with market and customer data, identifies trends and suggests suitable models. The team decides faster – based on clear facts instead of gut feeling.",
+        "conclusionTitle": "One system. Two effects. One goal.",
+        "conclusionText": "AICONIQ combines operational relief with strategic intelligence. Routine disappears, knowledge becomes usable, decisions become clearer. This creates an organization that not only works more efficiently but also acts smarter."
+      }
+    }
+  }
+}
