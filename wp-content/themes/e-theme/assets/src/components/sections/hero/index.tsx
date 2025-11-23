@@ -6,7 +6,7 @@ import HeroHeadline from "./HeroHeadline";
 
 import heroVideo from "../../../assets/hero/f570a274.mp4";
 import ChatButton from "../../ui/ChatButton";
-import MediaControls from "../../ui/MediaControls";
+// import MediaControls from "../../ui/MediaControls";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -15,23 +15,23 @@ const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
-  const handlePlayPause = (playing: boolean) => {
-    if (videoRef.current) {
-      if (playing) {
-        videoRef.current.play();
-      } else {
-        videoRef.current.pause();
-      }
-      setIsPlaying(playing);
-    }
-  };
+  // const handlePlayPause = (playing: boolean) => {
+  //   if (videoRef.current) {
+  //     if (playing) {
+  //       videoRef.current.play();
+  //     } else {
+  //       videoRef.current.pause();
+  //     }
+  //     setIsPlaying(playing);
+  //   }
+  // };
 
-  const handleVolumeToggle = (muted: boolean) => {
-    if (videoRef.current) {
-      videoRef.current.muted = muted;
-      setIsMuted(muted);
-    }
-  };
+  // const handleVolumeToggle = (muted: boolean) => {
+  //   if (videoRef.current) {
+  //     videoRef.current.muted = muted;
+  //     setIsMuted(muted);
+  //   }
+  // };
 
   return (
     <section
