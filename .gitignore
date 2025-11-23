@@ -1,23 +1,33 @@
-/*
-!.gitignore
-!wp-content/
+# /*
+# !.gitignore
+# # !wp-content/
  
-# Ignore everything in the "wp-content" directory, except the "plugins"
-# and "themes" directories.
-wp-content/*
-!wp-content/plugins/all-in-one-wp-migration
-!wp-content/plugins/all-in-one-wp-migration-unlimited-extension
-!wp-content/themes/e-theme/
-wp-content/themes/e-theme/.vscode
-wp-content/themes/e-theme/assets/node_modules
-wp-content/themes/e-theme/assets/dist
+# # Ignore everything in the "wp-content" directory, except the "plugins"
+# # and "themes" directories.
+# # wp-content/*
+# !wp-content/plugins/all-in-one-wp-migration
+# !wp-content/plugins/all-in-one-wp-migration-unlimited-extension
+# !wp-content/themes/e-theme/
+# wp-content/themes/e-theme/.vscode
+# wp-content/themes/e-theme/assets/node_modules
+# wp-content/themes/e-theme/assets/dist
 
-# Ignore everything in the "plugins" directory, except the plugins you
-# specify (see the commented-out examples for hints on how to do this.)
-# wp-content/plugins/*
-# !wp-content/plugins/my-directory-plugin/
- 
-# Ignore everything in the "themes" directory, except the themes you
-# specify (see the commented-out example for a hint on how to do this.)
-# wp-content/themes/*
-# !wp-content/themes/my-theme/
+
+# Ignore everything in wp-content
+wp-content/*
+wp-admin/*
+wp-includes/*
+
+# Allow plugins
+!wp-content/plugins/
+!wp-content/plugins/all-in-one-wp-migration/
+!wp-content/plugins/all-in-one-wp-migration-unlimited-extension/
+
+# Allow theme
+!wp-content/themes/
+!wp-content/themes/e-theme/
+
+# Ignore these inside the theme
+wp-content/themes/e-theme/.vscode/
+wp-content/themes/e-theme/assets/node_modules/
+wp-content/themes/e-theme/assets/dist/
