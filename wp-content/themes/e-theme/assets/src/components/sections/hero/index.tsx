@@ -111,10 +111,10 @@ const Hero = () => {
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 xs:gap-6 sm:gap-7 lg:gap-8">
                 <div className="flex gap-2 xs:gap-3 sm:gap-4 ">
                   <ChatButton onClick={() => console.log("Chat clicked")} />
-                  <MediaControls
+                  {/* <MediaControls
                     onPlayPause={handlePlayPause}
                     onVolumeToggle={handleVolumeToggle}
-                  />
+                  /> */}
                 </div>
                 <div
                   className="w-full lg:max-w-[806px] flex flex-wrap justify-start lg:justify-end"
