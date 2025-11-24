@@ -1,8 +1,7 @@
+'use client';
+
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-import leftGradient from "../../assets/button-ellipses/left-gradient.svg";
-import topBlur from "../../assets/button-ellipses/top-bluir.svg";
 
 interface SectionBadgeProps {
   badge: string;
@@ -25,7 +24,7 @@ const SectionBadge = ({ badge, middleWord }: SectionBadgeProps) => {
     >
       <div className="px-6 z-10 py-2 overflow-hidden gradient-border-mask-badge relative w-full text-center rounded-full !flex items-center justify-center gap-1">
         <img
-          src={leftGradient}
+          src="/assets/button-ellipses/left-gradient.svg"
           alt=""
           className="absolute left-[-1px] h-full w-auto"
         />
@@ -56,7 +55,7 @@ const SectionBadge = ({ badge, middleWord }: SectionBadgeProps) => {
           </span>
         )}
         <motion.img
-          src={topBlur}
+          src="/assets/button-ellipses/top-bluir.svg"
           alt=""
           className="absolute top-0 left-0 h-auto"
           initial={{ opacity: 0, width: "0%" }}

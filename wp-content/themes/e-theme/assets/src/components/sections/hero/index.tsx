@@ -1,19 +1,23 @@
+"use client";
+
 import { useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import logo from "../../../assets/logo.svg";
+import { useTranslations } from "next-intl";
 import Navigation from "./navigation";
 import HeroHeadline from "./HeroHeadline";
-
-import heroVideo from "../../../assets/hero/f570a274.mp4";
 import ChatButton from "../../ui/ChatButton";
+import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 // import MediaControls from "../../ui/MediaControls";
 
 const Hero = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const videoRef = useRef<HTMLVideoElement>(null);
   //@ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPlaying, setIsPlaying] = useState(false);
+  //@ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMuted, setIsMuted] = useState(true);
+  const openModal = useVoiceAgentModalStore((state) => state.openModal);
 
   // const handlePlayPause = (playing: boolean) => {
   //   if (videoRef.current) {
@@ -47,10 +51,10 @@ const Hero = () => {
             className="absolute inset-0 w-full h-full  object-cover rounded-t-[20px] sm:rounded-b-none xs:rounded-t-[30px] sm:rounded-t-[35px] md:rounded-t-[40px] lg:rounded-t-[47px]"
             loop
             muted={isMuted}
-            autoPlay="True"
+            autoPlay
             playsInline
           >
-            <source src={heroVideo} type="video/mp4" />
+            <source src="/assets/hero/f570a274.mp4" type="video/mp4" />
           </video>
 
           {/* Gradient overlay */}
@@ -63,7 +67,7 @@ const Hero = () => {
 
           <div className="flex flex-row p-3 xs:p-4 sm:p-5 md:p-6 lg:p-[28px] items-start sm:items-center w-full justify-between relative z-10 gap-3 xs:gap-4 sm:gap-0">
             <img
-              src={logo}
+              src="/assets/logo.svg"
               className="w-full"
               style={{ maxWidth: "clamp(120px, 20vw, 193px)" }}
               alt=""
@@ -110,7 +114,7 @@ const Hero = () => {
 
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 xs:gap-6 sm:gap-7 lg:gap-8">
                 <div className="flex gap-2 xs:gap-3 sm:gap-4 ">
-                  <ChatButton onClick={() => console.log("Chat clicked")} />
+                  <ChatButton onClick={openModal} />
                   {/* <MediaControls
                     onPlayPause={handlePlayPause}
                     onVolumeToggle={handleVolumeToggle}

@@ -1,10 +1,10 @@
+'use client'
 import { useState } from "react";
-
-import card4First from "../../../../assets/knowledge-img/charts/card-4-first.webp";
-
-import reviewGraph from "../../../../assets/knowledge-img/review-graph.webp";
-import card4Second from "../../../../assets/knowledge-img/charts/card-4-second.webp";
 import { motion } from "framer-motion";
+
+const card4First = '/assets/knowledge-img/charts/card-4-first.webp'
+const reviewGraph = '/assets/knowledge-img/review-graph.webp'
+const card4Second = '/assets/knowledge-img/charts/card-4-second.webp'
 
 const Card4 = () => {
   const [isHovered, setIsHovered] = useState(false);

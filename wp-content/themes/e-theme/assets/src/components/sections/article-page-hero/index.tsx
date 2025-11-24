@@ -1,3 +1,4 @@
+'use client'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 //@ts-ignore
@@ -5,12 +6,13 @@ import "swiper/css";
 //@ts-ignore
 import "swiper/css/effect-fade";
 
-import logo from "../../../assets/logo.svg";
 import Navigation from "../hero/navigation";
 import LangSwitcher from "../../ui/LangSwitcher";
 import ChatButton from "../../ui/ChatButton";
 import BadgeIcon from "../../ui/BadgeIcon";
-import image from "../../../assets/icons/image.svg";
+
+const logo = '/assets/logo.svg'
+const image = '/assets/icons/image.svg'
 
 interface ArticlePageHeroProps {
   title?: string;

@@ -1,25 +1,26 @@
-import { useTranslation } from "react-i18next";
-import AICONIQLabel from "../../assets/footer/AICONIQ.svg";
-import AICONIQLogo from "../../assets/footer/aiconiq-logo-purple.svg";
-import Navigation from "../sections/hero/navigation";
+'use client'
+
+import React from 'react'
+import { useTranslations } from 'next-intl'
+import Navigation from '../sections/hero/navigation'
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const t = useTranslations()
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const socialLinks = [
-    { name: "Linkedin", url: "https://linkedin.com" },
-    { name: "X", url: "https://x.com" },
-  ];
+    { name: 'Linkedin', url: 'https://linkedin.com' },
+    { name: 'X', url: 'https://x.com' },
+  ]
 
   const footerLinks = [
-    { name: t("footer.footerLinks.impressum"), url: "/impressum" },
-    { name: t("footer.footerLinks.terms"), url: "/nutzungsbedingungen" },
-    { name: t("footer.footerLinks.status"), url: "/systemstatus" },
-  ];
+    { name: t('footer.footerLinks.impressum'), url: '/impressum' },
+    { name: t('footer.footerLinks.terms'), url: '/nutzungsbedingungen' },
+    { name: t('footer.footerLinks.status'), url: '/systemstatus' },
+  ]
 
   return (
     <footer className="w-full pt-12 sm:pt-16 md:pt-20 lg:pt-[96px] px-4 sm:px-6 md:px-8 pb-8 sm:pb-10 md:pb-12">
@@ -27,9 +28,9 @@ const Footer = () => {
         <div className="flex flex-col gap-12 sm:gap-16 md:gap-20 lg:gap-[163px] w-full">
           <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8">
             <img
-              src={AICONIQLogo}
+              src="/assets/footer/aiconiq-logo-purple.svg"
               className="w-full"
-              style={{ maxWidth: "clamp(180px, 30vw, 263px)" }}
+              style={{ maxWidth: 'clamp(180px, 30vw, 263px)' }}
               alt=""
             />
             <Navigation />
@@ -40,15 +41,15 @@ const Footer = () => {
               onClick={scrollToTop}
               className="rounded-full border border-[#272725] flex items-center justify-center relative overflow-hidden group transition-all duration-300 hover:bg-[#D8008D] hover:border-[#D8008D] mx-auto lg:mx-0"
               style={{
-                width: "clamp(200px, 40vw, 302px)",
-                height: "clamp(200px, 40vw, 302px)",
+                width: 'clamp(200px, 40vw, 302px)',
+                height: 'clamp(200px, 40vw, 302px)',
               }}
             >
               <div
                 className="relative"
                 style={{
-                  width: "clamp(80px, 15vw, 108px)",
-                  height: "clamp(90px, 18vw, 121px)",
+                  width: 'clamp(80px, 15vw, 108px)',
+                  height: 'clamp(90px, 18vw, 121px)',
                 }}
               >
                 {/* First arrow - visible by default, moves up and disappears on hover */}
@@ -67,90 +68,88 @@ const Footer = () => {
                 <a
                   href="mailto:contact@aiconiq.io"
                   className="text-[#FFFFFF8F] leading-[160%] transition-colors duration-300 hover:text-[#D8008D]"
-                  style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                  style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
                   contact@aiconiq.io
                 </a>
                 <p
                   className="max-w-full sm:max-w-[328px] w-full text-[#FFFFFF8F] leading-[160%]"
-                  style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                  style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
-                  {t("footer.description")}
+                  {t('footer.description')}
                 </p>
               </div>
 
               <div className="w-full flex flex-col gap-2">
                 <span
                   className="text-[#D8008D] leading-[160%]"
-                  style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                  style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
-                  {t("footer.social")}
+                  {t('footer.social')}
                 </span>
                 <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-[28px]">
                   {socialLinks.map((link, index) => (
-                    <>
+                    <React.Fragment key={link.name}>
                       <a
-                        key={link.name}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-[#FFFFFF8F] leading-[150%] transition-colors duration-300 hover:text-[#D8008D]"
-                        style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                        style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                       >
                         {link.name}
                       </a>
                       {index < socialLinks.length - 1 && (
                         <span
                           className="text-[#72716D] leading-[150%]"
-                          style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                          style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                         >
                           /
                         </span>
                       )}
-                    </>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
               <div className="w-full flex flex-col gap-2">
                 <span
                   className="text-[#D8008D] leading-[160%]"
-                  style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                  style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
-                  {t("footer.links")}
+                  {t('footer.links')}
                 </span>
                 <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-[28px]">
                   {footerLinks.map((link, index) => (
-                    <>
+                    <React.Fragment key={link.name}>
                       <a
-                        key={link.name}
                         href={link.url}
                         className="text-[#FFFFFF8F] leading-[150%] transition-colors duration-300 hover:text-[#D8008D]"
-                        style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                        style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                       >
                         {link.name}
                       </a>
                       {index < footerLinks.length - 1 && (
                         <span
                           className="text-[#72716D] leading-[150%]"
-                          style={{ fontSize: "clamp(14px, 1.5vw, 16px)" }}
+                          style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                         >
                           /
                         </span>
                       )}
-                    </>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <img src={AICONIQLabel} className="w-full" alt="" />
+        <img src="/assets/footer/AICONIQ.svg" className="w-full" alt="" />
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
 
 const ArrowUpIcon = () => {
   return (
@@ -169,5 +168,5 @@ const ArrowUpIcon = () => {
         fill="#CAC9C4"
       />
     </svg>
-  );
-};
+  )
+}

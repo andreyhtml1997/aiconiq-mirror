@@ -1,12 +1,14 @@
-import { useTranslation } from "react-i18next";
-import ctabanner from "../../../assets/ctabanner.webp";
+'use client';
+
+import { useTranslations } from "next-intl";
 import ChatButton from "../../ui/ChatButton";
 
-import avatar from "../../../assets/lead-img/avatar.webp";
-import bg from "../../../assets/lead-img/bg.webp";
+const ctabanner = '/assets/ctabanner.webp'
+const avatar = '/assets/lead-img/avatar.webp'
+const bg = '/assets/lead-img/bg.webp'
 
 const LeadCapture = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <section
       id="contact"

@@ -1,47 +1,48 @@
-import { useTranslation } from "react-i18next";
-import gradientbg from "../../../assets/stats/gradientbg.webp";
+'use client'
+
+import { useTranslations } from 'next-intl'
 
 const Stats = () => {
-  const { t } = useTranslation();
+  const t = useTranslations()
 
   const topStats = [
     {
-      value: t("stats.topStats.0.value"),
-      description: t("stats.topStats.0.description"),
+      value: t('stats.topStats.0.value'),
+      description: t('stats.topStats.0.description'),
     },
     {
-      value: t("stats.topStats.1.value"),
-      description: t("stats.topStats.1.description"),
+      value: t('stats.topStats.1.value'),
+      description: t('stats.topStats.1.description'),
     },
     {
-      value: t("stats.topStats.2.value"),
-      description: t("stats.topStats.2.description"),
+      value: t('stats.topStats.2.value'),
+      description: t('stats.topStats.2.description'),
     },
     {
-      value: t("stats.topStats.3.value"),
-      description: t("stats.topStats.3.description"),
+      value: t('stats.topStats.3.value'),
+      description: t('stats.topStats.3.description'),
     },
-  ];
+  ]
 
   const bottomStats = [
     {
-      value: t("stats.bottomStats.0.value"),
-      description: t("stats.bottomStats.0.description"),
+      value: t('stats.bottomStats.0.value'),
+      description: t('stats.bottomStats.0.description'),
     },
     {
-      value: t("stats.bottomStats.1.value"),
-      description: t("stats.bottomStats.1.description"),
+      value: t('stats.bottomStats.1.value'),
+      description: t('stats.bottomStats.1.description'),
     },
     {
-      value: t("stats.bottomStats.2.value"),
-      description: t("stats.bottomStats.2.description"),
+      value: t('stats.bottomStats.2.value'),
+      description: t('stats.bottomStats.2.description'),
     },
-  ];
+  ]
 
   return (
     <section className="w-full relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
       <div className="absolute top-1/2 w-full h-full left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <img src={gradientbg} className="w-full h-full object-fill" alt="" />
+        <img src="/assets/stats/gradientbg.webp" className="w-full h-full object-fill" alt="" />
       </div>
       <div className="max-w-[1440px] w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-10 relative z-10">
         <div className="flex flex-col gap-10 sm:gap-12 md:gap-14 lg:gap-16 xl:gap-[56px] items-center">
@@ -76,11 +77,11 @@ const Stats = () => {
                   className="text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[160%] opacity-70"
                   style={{
                     background:
-                      "linear-gradient(181deg, #FFFFFF 61.8%, #F4DCEC 96.62%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    color: "transparent",
+                      'linear-gradient(181deg, #FFFFFF 61.8%, #F4DCEC 96.62%)',
+                    WebkitBackgroundClip: 'text',
+                    backgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    color: 'transparent',
                   }}
                 >
                   {stat.description}
@@ -98,7 +99,7 @@ const Stats = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Stats;
+export default Stats

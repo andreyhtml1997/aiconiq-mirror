@@ -1,18 +1,11 @@
-import { useTranslation } from "react-i18next";
+"use client";
+
+import { useTranslations } from "next-intl";
 import SectionHeader from "../../ui/SectionHeader";
-
-import checkIcon from "../../../assets/problem/check.svg";
-
-import icon1 from "../../../assets/auto/icon1.webp";
-
-import lines from "../../../assets/lines.svg";
 import ChatButton from "../../ui/ChatButton";
 
-import heroEllipse from "../../../assets/hero/hero-ellipse.webp";
-import heroLines from "../../../assets/hero/hero-lines.svg";
-
 const AutoVSteamWork = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 flex flex-col gap-12 sm:gap-16 md:gap-20 lg:gap-[100px] px-4 sm:px-6 md:px-8">
       <div
@@ -20,13 +13,13 @@ const AutoVSteamWork = () => {
         style={{ minHeight: "clamp(120px, 20vw, 250px)" }}
       >
         <img
-          src={heroLines}
+          src="/assets/hero/hero-lines.svg"
           alt=""
           className="absolute top-1/2 w-full left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           style={{ maxWidth: "clamp(250px, 40vw, 450px)" }}
         />
         <img
-          src={heroEllipse}
+          src="/assets/hero/hero-ellipse.webp"
           alt=""
           className="w-full relative z-10"
           style={{ maxWidth: "clamp(150px, 25vw, 250px)" }}
@@ -81,7 +74,7 @@ const AutoVSteamWork = () => {
               <div className="flex flex-col gap-3 sm:gap-4">
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -91,7 +84,7 @@ const AutoVSteamWork = () => {
                 </div>
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -101,7 +94,7 @@ const AutoVSteamWork = () => {
                 </div>
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -111,7 +104,7 @@ const AutoVSteamWork = () => {
                 </div>
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -153,13 +146,13 @@ const AutoVSteamWork = () => {
                 }}
               >
                 <img
-                  src={lines}
+                  src="/assets/lines.svg"
                   className="absolute top-0 right-0 hidden sm:block"
                   alt=""
                 />
                 <div className="flex flex-col gap-3 sm:gap-4">
                   <img
-                    src={icon1}
+                    src="/assets/auto/icon1.webp"
                     alt=""
                     className="max-w-[60px] sm:max-w-[75px] w-full"
                   />
@@ -204,7 +197,7 @@ const AutoVSteamWork = () => {
               <div className="flex flex-col gap-3 sm:gap-4">
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -214,7 +207,7 @@ const AutoVSteamWork = () => {
                 </div>
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -224,7 +217,7 @@ const AutoVSteamWork = () => {
                 </div>
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -234,7 +227,7 @@ const AutoVSteamWork = () => {
                 </div>
                 <div className="pl-2 flex gap-3 items-start">
                   <img
-                    src={checkIcon}
+                    src="/assets/problem/check.svg"
                     alt=""
                     className="w-[20px] sm:w-[24px] flex-shrink-0 mt-0.5"
                   />
@@ -274,7 +267,7 @@ const AutoVSteamWork = () => {
                 }}
               >
                 <img
-                  src={lines}
+                  src="/assets/lines.svg"
                   className="absolute top-0 right-0 hidden sm:block"
                   alt=""
                 />
@@ -322,9 +315,9 @@ const HrLine = () => {
           y2="0.500122"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" stop-opacity="0.16" />
-          <stop offset="0.519231" stop-color="#FF21B2" />
-          <stop offset="1" stop-color="white" stop-opacity="0.16" />
+          <stop stopColor="white" stopOpacity="0.16" />
+          <stop offset="0.519231" stopColor="#FF21B2" />
+          <stop offset="1" stopColor="white" stopOpacity="0.16" />
         </linearGradient>
       </defs>
     </svg>

@@ -1,12 +1,12 @@
-import { useTranslation } from "react-i18next";
-import logo from "../../../assets/logo.svg";
+'use client';
+
+import { useTranslations } from "next-intl";
 import Navigation from "../hero/navigation";
 import LangSwitcher from "../../ui/LangSwitcher";
-import heroImage from "../../../assets/hero/article-hero.webp";
 import HeroHeadline from "./HeroHeadline";
 
 const ArticlesHero = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <section
@@ -18,7 +18,7 @@ const ArticlesHero = () => {
         <div className="w-full rounded-[20px] xs:rounded-[30px] sm:rounded-b-none sm:rounded-[35px] bg-black md:rounded-[40px] lg:rounded-[47px] !flex flex-col justify-between relative overflow-hidden">
           {/* Background Image */}
           <img
-            src={heroImage}
+            src="/assets/hero/article-hero.webp"
             className="absolute inset-0 w-full h-full object-cover rounded-[20px] sm:rounded-b-none xs:rounded-[30px] sm:rounded-[35px] md:rounded-[40px] lg:rounded-[47px]"
             alt=""
           />
@@ -33,7 +33,7 @@ const ArticlesHero = () => {
 
           <div className="flex flex-row p-3 xs:p-4 sm:p-5 md:p-6 lg:p-[28px] items-start sm:items-center w-full justify-between relative z-10 gap-3 xs:gap-4 sm:gap-0">
             <img
-              src={logo}
+              src="/assets/logo.svg"
               className="w-full"
               style={{ maxWidth: "clamp(120px, 20vw, 193px)" }}
               alt=""

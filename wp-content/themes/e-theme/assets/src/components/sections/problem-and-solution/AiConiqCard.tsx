@@ -1,9 +1,9 @@
-import img3 from "../../../assets/problem/3.webp";
+'use client'
 
-import checkIcon from "../../../assets/problem/check.svg";
-import linesIcon from "../../../assets/problem/lines.svg";
-
-import aiconiqIcon from "../../../assets/problem/aicoin1.webp";
+const img3 = '/assets/problem/3.webp'
+const checkIcon = '/assets/problem/check.svg'
+const linesIcon = '/assets/problem/lines.svg'
+const aiconiqIcon = '/assets/problem/aicoin1.webp'
 
 export const AiConiqCard = () => {
   return (

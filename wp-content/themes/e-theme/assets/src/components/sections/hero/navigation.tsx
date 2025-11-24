@@ -1,7 +1,9 @@
+'use client';
+
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslations } from "next-intl";
 import LangSwitcher from "../../ui/LangSwitcher";
-            
+
 interface NavItem {
   id: string;
   translationKey: string;
@@ -15,7 +17,7 @@ const navItems: NavItem[] = [
 ];
 
 const Navigation = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const [activeItem, setActiveItem] = useState("home");
 
   const handleNavClick = (itemId: string) => {

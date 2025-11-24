@@ -1,13 +1,16 @@
-import { useTranslation } from "react-i18next";
+'use client';
+
+import { useTranslations } from "next-intl";
 import BadgeIcon from "../../ui/BadgeIcon";
-import lines from "../../../assets/lines.svg";
+
+const lines = '/assets/lines.svg'
 
 interface LeftBlockProps {
   icon: string;
 }
 
 const LeftBlock = ({ icon }: LeftBlockProps) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className="flex relative lg:absolute lg:top-[-31px] lg:left-[0] flex-col z-[20] bg-[#141112] max-w-full lg:max-w-[618px] rounded-[12px] min-h-[350px] sm:min-h-[400px] lg:h-[458px] justify-between w-full p-4 sm:p-5 md:p-6 lg:p-8">
       <BadgeIcon icon={icon} />

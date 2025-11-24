@@ -1,4 +1,6 @@
-import { useTranslation } from "react-i18next";
+"use client";
+
+import { useTranslations } from "next-intl";
 
 interface ChatButtonProps {
   onClick?: () => void;
@@ -7,7 +9,7 @@ interface ChatButtonProps {
 }
 
 const ChatButton = ({ onClick, className = "", label }: ChatButtonProps) => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   const buttonLabel = label || t("chatButton.label");
 
   return (
@@ -103,8 +105,8 @@ export const PinIcon = () => {
           y2="8"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#CC5DB8" />
-          <stop offset="1" stop-color="#C250B7" />
+          <stop stopColor="#CC5DB8" />
+          <stop offset="1" stopColor="#C250B7" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_249_8913"
@@ -114,10 +116,10 @@ export const PinIcon = () => {
           y2="8"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#F1EBE0" />
-          <stop offset="0.324089" stop-color="#C547AE" />
-          <stop offset="0.772485" stop-color="#AB318D" />
-          <stop offset="1" stop-color="#CF8AB8" />
+          <stop stopColor="#F1EBE0" />
+          <stop offset="0.324089" stopColor="#C547AE" />
+          <stop offset="0.772485" stopColor="#AB318D" />
+          <stop offset="1" stopColor="#CF8AB8" />
         </linearGradient>
       </defs>
     </svg>

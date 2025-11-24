@@ -1,12 +1,15 @@
-import { useTranslation } from "react-i18next";
-import viewImg from "../../../assets/make-impact-img/view-img.webp";
-import viewBehindImg from "../../../assets/make-impact-img/view-behind.webp";
-import SectionHeader from "../../ui/SectionHeader";
-import gradientline from "../../../assets/gradientline.svg";
-import bluredBGPink from "../../../assets/blured-bg-pink.webp";
+'use client'
+
+import { useTranslations } from 'next-intl'
+import SectionHeader from '../../ui/SectionHeader'
+
+const viewImg = '/assets/make-impact-img/view-img.webp'
+const viewBehindImg = '/assets/make-impact-img/view-behind.webp'
+const gradientline = '/assets/gradientline.svg'
+const bluredBGPink = '/assets/blured-bg-pink.webp'
 
 const MakeImpact = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <section className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-[114px] pb-3 sm:pb-4 md:pb-5">
       <div className="max-w-[1280px] w-full relative mx-auto flex flex-col gap-10 sm:gap-12 md:gap-16 lg:gap-20 items-center justify-center px-4 sm:px-6 md:px-8">

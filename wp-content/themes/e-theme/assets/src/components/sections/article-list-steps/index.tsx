@@ -1,7 +1,9 @@
+'use client'
 import { useState } from "react";
 import { PinIcon } from "../../ui/ChatButton";
 import SectionBadge from "../../ui/SectionBadge";
-import lines from "../../../assets/lines-article.webp";
+
+const lines = '/assets/lines-article.webp'
 
 interface Step {
   id: number;

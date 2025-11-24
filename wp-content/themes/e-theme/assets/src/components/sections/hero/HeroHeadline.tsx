@@ -1,23 +1,22 @@
-import { useTranslation } from "react-i18next";
-import avatar1 from "../../../assets/hero/avatar/avatar1.webp";
-import avatar2 from "../../../assets/hero/avatar/avatar2.webp";
-import avatar3 from "../../../assets/hero/avatar/avatar3.webp";
+'use client';
+
+import { useTranslations } from "next-intl";
 
 const HeroHeadline = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className="flex flex-row items-center gap-2 xs:gap-3 sm:gap-1 w-full">
       {/* Avatars section */}
       <div className="flex gap-1 xs:gap-2 sm:gap-[12px] md:gap-[16px]">
         <div className="w-[50px] h-[50px] xs:w-[60px] xs:h-[60px] sm:w-[65px] sm:h-[65px] md:w-[75px] md:h-[75px] lg:w-[83px] lg:h-[83px] rounded-full border-[2px] xs:border-[3px] sm:border-[3px] md:border-[4px] lg:border-[5px] border-[#000] overflow-hidden">
-          <img src={avatar1} alt="" className="w-full h-full object-cover" />
+          <img src="/assets/hero/avatar/avatar1.webp" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="w-[50px] h-[50px] xs:w-[60px] xs:h-[60px] sm:w-[65px] sm:h-[65px] md:w-[75px] md:h-[75px] lg:w-[83px] lg:h-[83px] rounded-full ml-[-25px] xs:ml-[-30px] sm:ml-[-32px] md:ml-[-38px] lg:ml-[-45px] border-[2px] xs:border-[3px] sm:border-[3px] md:border-[4px] lg:border-[5px] border-[#000] overflow-hidden">
-          <img src={avatar2} alt="" className="w-full h-full object-cover" />
+          <img src="/assets/hero/avatar/avatar2.webp" alt="" className="w-full h-full object-cover" />
         </div>
         <div className="w-[50px] h-[50px] xs:w-[60px] xs:h-[60px] sm:w-[65px] sm:h-[65px] md:w-[75px] md:h-[75px] lg:w-[83px] lg:h-[83px] rounded-full ml-[-25px] xs:ml-[-30px] sm:ml-[-32px] md:ml-[-38px] lg:ml-[-45px] bg-[#000] p-[2px] xs:p-1 avatar3-shadow overflow-hidden">
           <img
-            src={avatar3}
+            src="/assets/hero/avatar/avatar3.webp"
             alt=""
             className="avatar-border w-full h-full object-cover"
           />

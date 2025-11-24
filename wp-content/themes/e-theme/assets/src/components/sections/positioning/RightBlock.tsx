@@ -1,9 +1,12 @@
-import { useTranslation } from "react-i18next";
+'use client';
+
+import { useTranslations } from "next-intl";
 import BadgeIcon from "../../ui/BadgeIcon";
-import aiBlured from "../../../assets/ai-blured.webp";
-import avatar from "../../../assets/positioning-img/avatar.webp";
-import lines from "../../../assets/lines.svg";
-import stars from "../../../assets/icons/stars.svg";
+
+const aiBlured = '/assets/ai-blured.webp'
+const avatar = '/assets/positioning-img/avatar.webp'
+const lines = '/assets/lines.svg'
+const stars = '/assets/icons/stars.svg'
 
 const rightBlockStyles = {
   background:
@@ -11,7 +14,7 @@ const rightBlockStyles = {
 };
 
 const RightBlock = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div
       style={rightBlockStyles}

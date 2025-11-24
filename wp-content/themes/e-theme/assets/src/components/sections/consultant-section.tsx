@@ -1,16 +1,18 @@
-import { useTranslation } from "react-i18next";
+'use client';
+
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import consultlogo from "../../assets/consultant/consult-logo.webp";
 // import symbolimg from "../../assets/consultant/Symbol.svg";
 import ChatButton from "../ui/ChatButton";
 
-import backLogo from "../../assets/consultant/back-logo.svg";
-import ava1 from "../../assets/consultant/ava1.webp";
-import ava2 from "../../assets/consultant/ava2.webp";
-import ava3 from "../../assets/consultant/ava3.webp";
+const consultlogo = '/assets/consultant/consult-logo.webp'
+const backLogo = '/assets/consultant/back-logo.svg'
+const ava1 = '/assets/consultant/ava1.webp'
+const ava2 = '/assets/consultant/ava2.webp'
+const ava3 = '/assets/consultant/ava3.webp'
 
 const ConsultantSection = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
 
   return (
     <section className="py-10 sm:py-12 md:py-14 lg:py-16 xl:py-[140px]">

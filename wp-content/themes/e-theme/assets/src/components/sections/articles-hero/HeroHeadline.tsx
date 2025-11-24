@@ -1,12 +1,11 @@
 import BadgeIcon from "../../ui/BadgeIcon";
-import papers from "../../../assets/icons/papers.svg";
 
 const HeroHeadline = () => {
   return (
     <div className="flex flex-row items-center gap-2 xs:gap-3 sm:gap-1 w-full">
       {/* Avatars section */}
       <div className="flex gap-1 xs:gap-2 sm:gap-[12px] md:gap-[16px]">
-        <BadgeIcon icon={papers} hideBoxShadow={true} />
+        <BadgeIcon icon="/assets/icons/papers.svg" hideBoxShadow={true} />
       </div>
 
       {/* Headline section with button */}

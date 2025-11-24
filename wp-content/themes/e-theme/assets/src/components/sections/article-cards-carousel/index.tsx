@@ -1,3 +1,5 @@
+'use client';
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 //@ts-ignore
@@ -9,8 +11,6 @@ import "swiper/css/pagination";
 
 import ChatButton from "../../ui/ChatButton";
 import ArticleCard from "../articles-list/ArticleCard";
-
-import lines from "../../../assets/lines-article.webp";
 
 interface Article {
   id: number;
@@ -38,7 +38,7 @@ const ArticleCardsCarousel = ({ articles }: ArticleCardsCarouselProps) => {
   return (
     <div className="px-3 xs:px-4 sm:px-6 rounded-[8px] bg-[#141112] py-12 sm:py-16 md:py-20 lg:py-[112px] overflow-hidden relative">
       <img
-        src={lines}
+        src="/assets/lines-article.webp"
         className="absolute top-1/2 left-0 w-full max-w-[450px] -translate-y-1/2"
         alt=""
       />

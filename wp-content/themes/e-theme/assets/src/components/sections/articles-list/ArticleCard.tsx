@@ -1,10 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 import ChatButton from "../../ui/ChatButton";
-import lines from "../../../assets/lines.svg";
-import articleEllipse from "../../../assets/aricle-ellipse.webp";
 import BadgeIcon from "../../ui/BadgeIcon";
-import image from "../../../assets/icons/image.svg";
 
 // Типы для hero-медиа
 type HeroSliderItem = {
@@ -61,7 +61,7 @@ const ArticleCard = ({
 
   return (
     <Link
-      to={`/${currentLang}/articles/${slug}`}
+      href={`/${currentLang}/articles/${slug}`}
       className={`bg-[#141112] overflow-hidden rounded-[10px] xs:rounded-[12px] sm:rounded-[14px] md:rounded-[16px] flex flex-col gap-3 xs:gap-4 sm:gap-5 border border-[#FF21B214] p-1.5 xs:p-2 relative h-full transition-all duration-300 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 ${
         className || ""
       }`}
@@ -96,18 +96,18 @@ const ArticleCard = ({
 
         {/* Fallback: если нет ни видео, ни картинок — старая иконка */}
         {!hasVideo && !firstSlide && (
-          <BadgeIcon icon={image} />
+          <BadgeIcon icon="/assets/icons/image.svg" />
         )}
       </div>
 
       {/* Декор */}
       <img
-        src={lines}
+        src="/assets/lines.svg"
         className="absolute right-0 w-full bottom-1/3 max-w-[350px] hidden md:block z-10 opacity-60 xs:opacity-80 sm:opacity-100 pointer-events-none"
         alt=""
       />
       <img
-        src={articleEllipse}
+        src="/assets/aricle-ellipse.webp"
         className="absolute top-0 right-0 hidden md:block opacity-60 xs:opacity-80 sm:opacity-100 pointer-events-none"
         alt=""
       />

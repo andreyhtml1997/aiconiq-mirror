@@ -1,5 +1,7 @@
+'use client'
 import { motion } from "framer-motion";
-import avatars from "../../../../assets/knowledge-img/avatars.webp";
+
+const avatars = '/assets/knowledge-img/avatars.webp'
 
 const Card3 = () => {
   return (

@@ -1,7 +1,8 @@
+'use client';
+
 import SectionHeader from "../../ui/SectionHeader";
 import ChatButton from "../../ui/ChatButton";
 import ArticleCard from "./ArticleCard";
-import lines from "../../../assets/lines-article.webp";
 
 
 
@@ -38,12 +39,12 @@ const ArticlesList = ({ articles }: ArticlesListProps) => {
   return (
     <section className="max-w-[1278px] w-full mx-auto flex flex-col py-12 sm:py-16 relative md:py-20 lg:py-[112px] gap-8 sm:gap-10 md:gap-12 items-center justify-center px-4 sm:px-6 md:px-8">
       <img
-        src={lines}
+        src="/assets/lines-article.webp"
         className="absolute top-1/3 -left-1/2 w-full max-w-[550px] -translate-y-1/2"
         alt=""
       />
       <img
-        src={lines}
+        src="/assets/lines-article.webp"
         className="absolute bottom-0 -right-1/3 w-full max-w-[450px] -translate-y-1/2"
         alt=""
       />

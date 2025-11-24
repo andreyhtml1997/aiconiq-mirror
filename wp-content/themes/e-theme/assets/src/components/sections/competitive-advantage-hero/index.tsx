@@ -1,10 +1,13 @@
-import { useTranslation } from "react-i18next";
-import logoCon from "../../../assets/logo-con.webp";
-import bannerCon from "../../../assets/banner-con.webp";
+'use client';
+
+import { useTranslations } from "next-intl";
 import ChatButton from "../../ui/ChatButton";
 
+const logoCon = '/assets/logo-con.webp'
+const bannerCon = '/assets/banner-con.webp'
+
 const CompetitiveAdvantageHero = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <section className="py-12 sm:pb-16 md:pb-20 lg:pb-24 xl:pb-[80px] px-4">
       <div className="max-w-[1280px] w-full mx-auto rounded-[12px] sm:rounded-[14px] md:rounded-[16px] competitive-advantage-hero py-8 sm:py-10 md:py-12 lg:py-[58px] px-6 sm:px-8 md:px-12 lg:px-16 xl:pl-[104px] relative overflow-hidden">

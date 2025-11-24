@@ -1,6 +1,8 @@
-import topimg from "../../../../assets/knowledge-img/charts/top.svg";
-import middleimg from "../../../../assets/knowledge-img/charts/middle.svg";
-import bottomimg from "../../../../assets/knowledge-img/charts/bottom.svg";
+'use client'
+
+const topimg = '/assets/knowledge-img/charts/top.svg'
+const middleimg = '/assets/knowledge-img/charts/middle.svg'
+const bottomimg = '/assets/knowledge-img/charts/bottom.svg'
 
 export const Card1 = () => {
   return (

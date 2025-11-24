@@ -1,8 +1,9 @@
+'use client'
 import { motion } from "framer-motion";
 import Path1, { Path2, Path3 } from "../../../ui/paths";
 
-import hightlight from "../../../../assets/knowledge-img/charts/hightlight.webp";
-import hightlight2 from "../../../../assets/knowledge-img/charts/hightlight2.webp";
+const hightlight = '/assets/knowledge-img/charts/hightlight.webp'
+const hightlight2 = '/assets/knowledge-img/charts/hightlight2.webp'
 
 const Card2 = () => {
   return (
@@ -101,14 +102,14 @@ const Animate1 = () => {
             hover: { stroke: "#D8008D" },
           }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          stroke-width="0.961207"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="0.961207"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M158.349 37.5347L158.349 73.0993"
           stroke=""
-          stroke-width="0.961207"
+          strokeWidth="0.961207"
         />
         <Path1 />
         <rect
@@ -153,14 +154,14 @@ const Animate1 = () => {
             hover: { stroke: "#D8008D" },
           }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          stroke-width="0.961207"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="0.961207"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M294.84 174.535L294.84 210.099"
           stroke="#2B1F27"
-          stroke-width="0.961207"
+          strokeWidth="0.961207"
         />
         <Path2 />
         <rect
@@ -205,14 +206,14 @@ const Animate1 = () => {
             hover: { stroke: "#D8008D" },
           }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-          stroke-width="0.961207"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="0.961207"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M158.349 297.534L158.349 333.099"
           stroke="#2B1F27"
-          stroke-width="0.961207"
+          strokeWidth="0.961207"
         />
         <Path3 />
       </g>
@@ -224,9 +225,9 @@ const Animate1 = () => {
           width="594.969"
           height="460.4"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"

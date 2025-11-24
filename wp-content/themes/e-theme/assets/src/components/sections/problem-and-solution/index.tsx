@@ -1,20 +1,20 @@
-import { useTranslation } from "react-i18next";
+'use client';
+
+import { useTranslations } from "next-intl";
 import SectionHeader from "../../ui/SectionHeader";
-
-import img1 from "../../../assets/problem/1.webp";
-import img2 from "../../../assets/problem/2.webp";
-
-import checkIcon from "../../../assets/problem/check.svg";
-import linesIcon from "../../../assets/problem/lines.svg";
-
-import chatgptIcon from "../../../assets/problem/chatgpt.svg";
-import ragIcon from "../../../assets/problem/rag.svg";
-import ellipsisIconBottom from "../../../assets/problem/ellisepbottom.webp";
 import ChatButton from "../../ui/ChatButton";
 import { AiConiqCard } from "./AiConiqCard";
 
+const img1 = '/assets/problem/1.webp'
+const img2 = '/assets/problem/2.webp'
+const checkIcon = '/assets/problem/check.svg'
+const linesIcon = '/assets/problem/lines.svg'
+const chatgptIcon = '/assets/problem/chatgpt.svg'
+const ragIcon = '/assets/problem/rag.svg'
+const ellipsisIconBottom = '/assets/problem/ellisepbottom.webp'
+
 const ProblemAndSolution = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <section
       id="solutions"

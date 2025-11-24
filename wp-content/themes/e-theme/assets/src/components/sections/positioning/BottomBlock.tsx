@@ -1,9 +1,12 @@
-import { useTranslation } from "react-i18next";
-import lines from "../../../assets/lines.svg";
+'use client';
 
-import bottomEllipse from "../../../assets/bottom-ellipse.webp";
+import { useTranslations } from "next-intl";
+
+const lines = '/assets/lines.svg'
+const bottomEllipse = '/assets/bottom-ellipse.webp'
+
 const BottomBlock = () => {
-  const { t } = useTranslation();
+  const t = useTranslations();
   return (
     <div className="bg-[#160B12] rounded-[12px] p-2 flex flex-col gap-3 sm:gap-4">
       <div className="p-3 sm:p-4 md:p-5 lg:p-4 flex flex-col gap-3 sm:gap-4">

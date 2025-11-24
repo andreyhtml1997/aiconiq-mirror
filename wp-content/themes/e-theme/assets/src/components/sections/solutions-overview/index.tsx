@@ -1,35 +1,52 @@
-import { useTranslation } from "react-i18next";
-import ChatButton from "../../ui/ChatButton";
+'use client'
 
-import icon1 from "../../../assets/solutions-icons/1.svg";
-import icon2 from "../../../assets/solutions-icons/2.svg";
-import icon3 from "../../../assets/solutions-icons/3.svg";
-import icon4 from "../../../assets/solutions-icons/4.svg";
+import { useTranslations } from 'next-intl'
+import ChatButton from '../../ui/ChatButton'
 
 const SolutionsOverview = () => {
-  const { t } = useTranslation();
+  const t = useTranslations()
 
-  const icons = [icon1, icon2, icon3, icon4];
+  const icons = [
+    '/assets/solutions-icons/1.svg',
+    '/assets/solutions-icons/2.svg',
+    '/assets/solutions-icons/3.svg',
+    '/assets/solutions-icons/4.svg',
+  ]
 
-  const solutionsData = t("solutionsOverview.solutions", {
-    returnObjects: true
-  }) as Array<{ title: string; description: string }>;
-
-  const solutions = solutionsData.map((solution, index) => ({
-    icon: icons[index],
-    ...solution,
-  }));
+  // Manually build the array from translation keys
+  const solutions = [
+    {
+      icon: icons[0],
+      title: t('solutionsOverview.solutions.0.title'),
+      description: t('solutionsOverview.solutions.0.description'),
+    },
+    {
+      icon: icons[1],
+      title: t('solutionsOverview.solutions.1.title'),
+      description: t('solutionsOverview.solutions.1.description'),
+    },
+    {
+      icon: icons[2],
+      title: t('solutionsOverview.solutions.2.title'),
+      description: t('solutionsOverview.solutions.2.description'),
+    },
+    {
+      icon: icons[3],
+      title: t('solutionsOverview.solutions.3.title'),
+      description: t('solutionsOverview.solutions.3.description'),
+    },
+  ]
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-[130px]">
       <div className="max-w-[1280px] w-full mx-auto flex flex-col gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 sm:gap-8 lg:gap-12">
           <h2 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] gradient-text leading-[120%] max-w-full lg:max-w-[1036px] w-full">
-            {t("solutionsOverview.title")}
+            {t('solutionsOverview.title')}
           </h2>
           <ChatButton
-            label={t("solutionsOverview.buttonLabel")}
-            onClick={() => console.log("Chat clicked")}
+            label={t('solutionsOverview.buttonLabel')}
+            onClick={() => console.log('Chat clicked')}
           />
         </div>
         <div className="w-full border-t border-[#D9D9D9]/[24%]"></div>
@@ -44,7 +61,7 @@ const SolutionsOverview = () => {
                 className="absolute inset-0 rounded-[12px] sm:rounded-[14px] md:rounded-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background:
-                    "linear-gradient(95deg, rgba(118, 22, 85, 0.24) -4.88%, rgba(230, 54, 169, 0.24) 74.86%, rgba(254, 109, 203, 0.24) 94.48%)",
+                    'linear-gradient(95deg, rgba(118, 22, 85, 0.24) -4.88%, rgba(230, 54, 169, 0.24) 74.86%, rgba(254, 109, 203, 0.24) 94.48%)',
                 }}
               />
 
@@ -53,9 +70,9 @@ const SolutionsOverview = () => {
                 <div
                   className="w-[244px] h-[130px] rounded-[24px]"
                   style={{
-                    background: "rgba(202, 10, 135, 0.64)",
-                    filter: "blur(45px)",
-                    mixBlendMode: "screen",
+                    background: 'rgba(202, 10, 135, 0.64)',
+                    filter: 'blur(45px)',
+                    mixBlendMode: 'screen',
                   }}
                 />
               </div>
@@ -76,7 +93,7 @@ const SolutionsOverview = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default SolutionsOverview;
+export default SolutionsOverview
