@@ -69,6 +69,12 @@ export async function generateStaticParams() {
   const locales = ['en', 'de']
   const params: Array<{ lang: string; slug: string }> = []
 
+  // Skip fetching during build if restUrl is relative (no WordPress backend available)
+  if (restUrl.startsWith('/')) {
+    console.log('Skipping article generation - relative WP REST URL (no backend available at build time)')
+    return params
+  }
+
   for (const lang of locales) {
     try {
       const res = await fetch(

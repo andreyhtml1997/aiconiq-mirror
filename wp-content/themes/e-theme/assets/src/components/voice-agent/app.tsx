@@ -141,20 +141,6 @@ export function App({ appConfig, autoStart = false }: AppProps) {
   return (
     <>
       <main className="pt-[140px]">
-        {/* <MotionWelcome
-          key="welcome"
-          startButtonText={startButtonText}
-          onStartCall={() => setSessionStarted(true)}
-          disabled={sessionStarted}
-          initial={{ opacity: 1 }}
-          animate={{ opacity: sessionStarted ? 0 : 1 }}
-          transition={{
-            duration: 0.5,
-            ease: "linear",
-            delay: sessionStarted ? 0 : 0.5,
-          }}
-        /> */}
-
         <RoomContext.Provider value={room}>
           <RoomAudioRenderer />
           <StartAudio label="Start Audio" />

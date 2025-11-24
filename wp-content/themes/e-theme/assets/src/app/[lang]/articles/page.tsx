@@ -12,6 +12,12 @@ async function getArticles(lang: string): Promise<Article[]> {
   const restUrl = process.env.NEXT_PUBLIC_WP_REST_URL || '/wp-json/'
   const wpLang = lang === 'en' ? 'en' : 'de'
 
+  // Skip fetching during build if restUrl is relative (no WordPress backend available)
+  if (restUrl.startsWith('/')) {
+    console.log('Skipping articles fetch - relative WP REST URL (no backend available at build time)')
+    return []
+  }
+
   try {
     const res = await fetch(
       `${restUrl}wp/v2/article?per_page=20&_embed&lang=${wpLang}`,

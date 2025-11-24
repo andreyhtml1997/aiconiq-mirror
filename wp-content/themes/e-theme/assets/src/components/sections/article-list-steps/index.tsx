@@ -26,12 +26,12 @@ const ArticleListSteps = ({ tabs }: ArticleListStepsProps) => {
         }))
       : [];
 
+  const [activeStep, setActiveStep] = useState<number>(steps[0]?.id || 1);
+
   // если нет шагов — вообще не рендерим секцию
   if (!steps.length) {
     return null;
   }
-
-  const [activeStep, setActiveStep] = useState<number>(steps[0].id);
 
   const currentStep: Step =
     steps.find((step) => step.id === activeStep) || steps[0];
