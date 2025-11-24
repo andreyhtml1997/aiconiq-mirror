@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   // Output to 'dist' directory to match Vite setup
   distDir: 'dist',
 
+  // assetPrefix: 'https://anni.bestfewo.de' ,
+  assetPrefix: 'https://aiconiq.io' ,
   // Use App Router with SSR/ISR capabilities
   // Remove 'output: export' to enable server-side features
   // If you need static export only, uncomment the line below:
@@ -18,9 +20,9 @@ const nextConfig: NextConfig = {
   },
 
   // Asset prefix for WordPress theme integration (production only)
-  assetPrefix: process.env.NODE_ENV === 'production'
-    ? '' // Leave empty for now, can be configured later for WP
-    : '',
+  // assetPrefix: process.env.NODE_ENV === 'production'
+  //   ? '' // Leave empty for now, can be configured later for WP
+  //   : '',
 
   // Experimental features
   experimental: {

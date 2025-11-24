@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter, usePathname, useParams } from "next/navigation";
 import LangSwitcher from "../../ui/LangSwitcher";
 
 interface NavItem {
@@ -19,12 +20,26 @@ const navItems: NavItem[] = [
 const Navigation = () => {
   const t = useTranslations();
   const [activeItem, setActiveItem] = useState("home");
+  const pathname = usePathname();
+  const router = useRouter();
+  const params = useParams();
+  const lang = params.lang as string;
 
   const handleNavClick = (itemId: string) => {
     setActiveItem(itemId);
-    const element = document.getElementById(itemId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    
+    // Check if the current page is a subpage (not just "/" or "/[lang]")
+    const isSubpage = pathname !== `/${lang}` && (pathname !== '/' || !lang);
+    
+    if (isSubpage) {
+      // Navigate to the homepage with the section ID as a hash
+      router.push(`/${lang}#${itemId}`);
+    } else {
+      // On the homepage, use smooth scrolling
+      const element = document.getElementById(itemId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 

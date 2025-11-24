@@ -2,24 +2,28 @@
 
 import React from 'react'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import Navigation from '../sections/hero/navigation'
 
 const Footer = () => {
   const t = useTranslations()
+  const params = useParams()
+  const lang = params.lang as string
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const socialLinks = [
-    { name: 'Linkedin', url: 'https://linkedin.com' },
-    { name: 'X', url: 'https://x.com' },
+    { name: 'Linkedin', url: 'https://www.linkedin.com/company/aiconiq-group/posts/?feedView=all' },
+    // { name: 'X', url: 'https://x.com' },
   ]
 
   const footerLinks = [
-    { name: t('footer.footerLinks.impressum'), url: '/impressum' },
-    { name: t('footer.footerLinks.terms'), url: '/nutzungsbedingungen' },
-    { name: t('footer.footerLinks.status'), url: '/systemstatus' },
+    { name: t('footer.footerLinks.impressum'), url: `/${lang}/imprint` },
+    { name: t('footer.footerLinks.terms'), url: 'https://webdev.aiconiq.io/ds.pdf' },
+    // { name: t('footer.footerLinks.status'), url: '/systemstatus' },
   ]
 
   return (
@@ -121,13 +125,25 @@ const Footer = () => {
                 <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-[28px]">
                   {footerLinks.map((link, index) => (
                     <React.Fragment key={link.name}>
-                      <a
-                        href={link.url}
-                        className="text-[#FFFFFF8F] leading-[150%] transition-colors duration-300 hover:text-[#D8008D]"
-                        style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
-                      >
-                        {link.name}
-                      </a>
+                      {link.url.startsWith('http') ? (
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#FFFFFF8F] leading-[150%] transition-colors duration-300 hover:text-[#D8008D]"
+                          style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
+                        >
+                          {link.name}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.url}
+                          className="text-[#FFFFFF8F] leading-[150%] transition-colors duration-300 hover:text-[#D8008D]"
+                          style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
+                        >
+                          {link.name}
+                        </Link>
+                      )}
                       {index < footerLinks.length - 1 && (
                         <span
                           className="text-[#72716D] leading-[150%]"

@@ -36,7 +36,7 @@ export default {
     footerLinks: {
       impressum: "Impressum",
       terms: "Nutzungsbedingungen",
-      status: "Systemstatus",
+      // status: "Systemstatus",
     },
   },
   navigation: {
@@ -47,5 +47,8 @@ export default {
   },
   chatButton: {
     label: "Sprich mit mir",
+  },
+  imprint: {
+    title: "Impressum",
   },
 };
