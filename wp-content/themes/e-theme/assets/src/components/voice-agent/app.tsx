@@ -23,11 +23,18 @@ const MotionSessionView = motion.create(SessionView);
 interface AppProps {
   appConfig: AppConfig;
   autoStart?: boolean;
+  onStartCallRef?: React.MutableRefObject<(() => void) | null>;
+  onCallEnd?: () => void;
 }
 
-export function App({ appConfig, autoStart = false }: AppProps) {
+export function App({
+  appConfig,
+  autoStart = false,
+  onStartCallRef,
+  onCallEnd,
+}: AppProps) {
   const room = useMemo(() => new Room(), []);
-  const [sessionStarted, setSessionStarted] = useState(autoStart);
+  const [sessionStarted, setSessionStarted] = useState(false);
   const [avatarConnectionFailed, setAvatarConnectionFailed] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
   const [hasNoAvatarParam, setHasNoAvatarParam] = useState(false);
@@ -40,6 +47,7 @@ export function App({ appConfig, autoStart = false }: AppProps) {
       setAvatarConnectionFailed(false);
       setShowCalendly(false);
       refreshConnectionDetails();
+      onCallEnd?.();
     };
     const onMediaDevicesError = (error: Error) => {
       toastAlert({
@@ -50,8 +58,8 @@ export function App({ appConfig, autoStart = false }: AppProps) {
 
     const onDataReceived = (
       payload: Uint8Array,
-      _participant?: Participant,
-      _kind?: DataPacket_Kind
+      participant?: Participant,
+      kind?: DataPacket_Kind
     ) => {
       const decoder = new TextDecoder();
       const strData = decoder.decode(payload);
@@ -76,7 +84,7 @@ export function App({ appConfig, autoStart = false }: AppProps) {
       room.off(RoomEvent.MediaDevicesError, onMediaDevicesError);
       room.off(RoomEvent.DataReceived, onDataReceived);
     };
-  }, [room, refreshConnectionDetails]);
+  }, [room, refreshConnectionDetails, onCallEnd]);
   useEffect(() => {
     const currentUrl = new URL(window.location.href);
     const hasNoAvatarParam = currentUrl.searchParams.has("no_avatar");
@@ -102,9 +110,7 @@ export function App({ appConfig, autoStart = false }: AppProps) {
 
   useEffect(() => {
     let aborted = false;
-
     if (sessionStarted && room.state === "disconnected") {
-      console.log("Connecting to room...");
       Promise.all([
         room.localParticipant.setMicrophoneEnabled(true, undefined, {
           preConnectBuffer: appConfig.isPreConnectBufferEnabled,
@@ -117,12 +123,18 @@ export function App({ appConfig, autoStart = false }: AppProps) {
         ),
       ]).catch((error) => {
         if (aborted) {
-          toastAlert({
-            title: "There was an error connecting to the agent",
-            description: `${error.name}: ${error.message}`,
-          });
+          // Once the effect has cleaned up after itself, drop any errors
+          //
+          // These errors are likely caused by this effect rerunning rapidly,
+          // resulting in a previous run `disconnect` running in parallel with
+          // a current run `connect`
           return;
         }
+
+        toastAlert({
+          title: "There was an error connecting to the agent",
+          description: `${error.name}: ${error.message}`,
+        });
       });
     }
     return () => {
@@ -136,11 +148,33 @@ export function App({ appConfig, autoStart = false }: AppProps) {
     existingOrRefreshConnectionDetails,
   ]);
   const { startButtonText } = appConfig;
-  console.log("sessionStarted", sessionStarted);
+
+  // Expose startCall function via ref for parent components
+  const handleStartCall = () => setSessionStarted(true);
+
+  useEffect(() => {
+    if (onStartCallRef) {
+      onStartCallRef.current = handleStartCall;
+    }
+  }, [onStartCallRef]);
 
   return (
     <>
       <main className="pt-[140px]">
+        {/* <MotionWelcome
+          key="welcome"
+          startButtonText={startButtonText}
+          onStartCall={handleStartCall}
+          disabled={sessionStarted}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: sessionStarted ? 0 : 1 }}
+          transition={{
+            duration: 0.5,
+            ease: "linear",
+            delay: sessionStarted ? 0 : 0.5,
+          }}
+        /> */}
+
         <RoomContext.Provider value={room}>
           <RoomAudioRenderer />
           <StartAudio label="Start Audio" />

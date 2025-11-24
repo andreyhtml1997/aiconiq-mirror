@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { App } from "@/components/voice-agent/app";
 import type { AppConfig } from "@/lib/voice-agent/types";
+import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 
 // Voice Agent configuration
 const appConfig: AppConfig = {
@@ -20,9 +22,24 @@ const appConfig: AppConfig = {
 };
 
 export const VoiceAgentContent = () => {
+  const startButtonRef = useRef<(() => void) | null>(null);
+  const closeModal = useVoiceAgentModalStore((state) => state.closeModal);
+
+  // Auto-trigger the start when modal opens
+  useEffect(() => {
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      if (startButtonRef.current) {
+        startButtonRef.current();
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="h-full w-full ">
-      <App appConfig={appConfig} autoStart={true} />
+      <App appConfig={appConfig} onStartCallRef={startButtonRef} onCallEnd={closeModal} />
     </div>
   );
 };
