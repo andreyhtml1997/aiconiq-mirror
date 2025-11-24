@@ -116,7 +116,7 @@ export function AgentControlBar({
           <div className="flex h-8 w-full">
             <ChatInput onSend={handleSendMessage} disabled={isInputDisabled} className="w-full" />
           </div>
-          <hr className="border-bg2 my-3" />
+          <hr className="my-3 border-[#f3f3f1]" />
         </div>
       )}
 
@@ -141,13 +141,13 @@ export function AgentControlBar({
                   <span
                     className={cn([
                       'h-full w-0.5 origin-center rounded-2xl',
-                      'group-data-[state=on]/track:bg-fg1 group-data-[state=off]/track:bg-destructive-foreground',
-                      'data-lk-muted:bg-muted',
+                      'group-data-[state=on]/track:bg-[#3b3b3b] group-data-[state=off]/track:bg-white',
+                      'data-lk-muted:bg-[#f3f3f1]',
                     ])}
                   ></span>
                 </BarVisualizer>
               </TrackToggle>
-              <hr className="bg-separator1 peer-data-[state=off]/track:bg-separatorSerious relative z-10 -mr-px hidden h-4 w-px md:block" />
+              <hr className="relative z-10 -mr-px hidden h-4 w-px bg-[#dbdbd8] peer-data-[state=off]/track:bg-[#ffcdc7] md:block" />
               <DeviceSelect
                 size="sm"
                 kind="audioinput"
@@ -155,9 +155,9 @@ export function AgentControlBar({
                 onActiveDeviceChange={handleAudioDeviceChange}
                 className={cn([
                   'pl-2',
-                  'peer-data-[state=off]/track:text-destructive-foreground',
-                  'hover:text-fg1 focus:text-fg1',
-                  'hover:peer-data-[state=off]/track:text-destructive-foreground focus:peer-data-[state=off]/track:text-destructive-foreground',
+                  'peer-data-[state=off]/track:text-white',
+                  'hover:text-[#3b3b3b] focus:text-[#3b3b3b]',
+                  'hover:peer-data-[state=off]/track:text-white focus:peer-data-[state=off]/track:text-white',
                   'hidden rounded-l-none md:block',
                 ])}
               />
@@ -175,7 +175,7 @@ export function AgentControlBar({
                 onPressedChange={cameraToggle.toggle}
                 className="peer/track relative w-auto rounded-r-none pr-3 pl-3 disabled:opacity-100 md:border-r-0 md:pr-2"
               />
-              <hr className="bg-separator1 peer-data-[state=off]/track:bg-separatorSerious relative z-10 -mr-px hidden h-4 w-px md:block" />
+              <hr className="relative z-10 -mr-px hidden h-4 w-px bg-[#dbdbd8] peer-data-[state=off]/track:bg-[#ffcdc7] md:block" />
               <DeviceSelect
                 size="sm"
                 kind="videoinput"
@@ -183,9 +183,9 @@ export function AgentControlBar({
                 onActiveDeviceChange={handleVideoDeviceChange}
                 className={cn([
                   'pl-2',
-                  'peer-data-[state=off]/track:text-destructive-foreground',
-                  'hover:text-fg1 focus:text-fg1',
-                  'hover:peer-data-[state=off]/track:text-destructive-foreground focus:peer-data-[state=off]/track:text-destructive-foreground',
+                  'peer-data-[state=off]/track:text-white',
+                  'hover:text-[#3b3b3b] focus:text-[#3b3b3b]',
+                  'hover:peer-data-[state=off]/track:text-white focus:peer-data-[state=off]/track:text-white',
                   'rounded-l-none',
                 ])}
               />

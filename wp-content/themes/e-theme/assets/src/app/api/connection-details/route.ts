@@ -6,11 +6,13 @@ import {
 } from "livekit-server-sdk";
 import type { RoomConfiguration } from "@livekit/protocol";
 
+// NOTE: you are expected to define the following environment variables in `.env.local`:
 const API_KEY = process.env.LIVEKIT_API_KEY;
 const API_SECRET = process.env.LIVEKIT_API_SECRET;
 const LIVEKIT_URL = process.env.LIVEKIT_URL;
 const AGENT_NAME = process.env.LIVEKIT_AGENT_NAME ?? "aiconiq-agent";
 
+// don't cache the results
 export const revalidate = 0;
 
 export type ConnectionDetails = {

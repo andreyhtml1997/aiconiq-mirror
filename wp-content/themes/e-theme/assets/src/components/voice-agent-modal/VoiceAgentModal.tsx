@@ -42,6 +42,14 @@ export const VoiceAgentModal = () => {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isOpen, closeModal]);
 
+  // Handle click on modal backdrop to trigger start
+  const handleModalClick = (e: React.MouseEvent) => {
+    // Only trigger if clicking the modal content area, not the close button
+    if (e.target === e.currentTarget) {
+      return;
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -50,7 +58,8 @@ export const VoiceAgentModal = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+          onClick={handleModalClick}
         >
           {/* Modal Content */}
           <motion.div
@@ -63,7 +72,7 @@ export const VoiceAgentModal = () => {
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="fixed right-4 top-4 z-[10000] flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all duration-200 hover:bg-white/20 hover:scale-110"
+              className="fixed right-4 top-20 z-[10000] flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all duration-200 hover:bg-white/20 hover:scale-110"
               aria-label="Close modal"
             >
               <svg
