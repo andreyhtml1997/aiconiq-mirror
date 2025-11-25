@@ -21,11 +21,15 @@ const LeftBlock = ({ icon }: LeftBlockProps) => {
       />
 
       <div className="flex flex-col gap-3 sm:gap-4 items-start">
+        {t("positioning.leftBlock.badge") !== "" ? 
         <div className="py-1 !flex px-3 sm:px-4 rounded-full gradient-border-mask22 mb-3 sm:mb-4 bg-[#EB3CAE52]">
           <span className="gradient-text text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] leading-[160%]">
             {t("positioning.leftBlock.badge")}
           </span>
         </div>
+        :
+        ""
+        }
         <h3 className="text-[#FFFFFF] font-semibold text-[20px] sm:text-[22px] md:text-[24px] lg:text-[28px] leading-[110%] sm:leading-[100%]">
           {t("positioning.leftBlock.title")}
         </h3>
