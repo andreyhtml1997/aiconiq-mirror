@@ -1,0 +1,24 @@
+{
+  "positioning": {
+    "badge": "Positionierung",
+    "title": "AICONIQ USP: Brain & Buddies",
+    "description": "Ein einzelner Agent ist nicht skalierbar. Wir bauen ein Ökosystem.",
+    "leftBlock": {
+      "badge": "",
+      "title": "The Brain.",
+      "description": "Ihr zentrales Knowledge Management System. Eine dynamische Verknüpfung aus Vektor-Datenbanken (für Kontext) und Graph-Datenbanken (für logische Beziehungen). Es wächst mit jeder Interaktion."
+    },
+    "rightBlock": {
+      "overlayText": "Die Buddies",
+      "description": "Spezialisierte AI-Agenten, die auf dieses Gehirn zugreifen. Ob im Vertrieb, Support oder Operations – die Bodies sind die ausführenden Organe, das Brain ist die Quelle der Wahrheit."
+    },
+    "bottomBlock": {
+      "title": "So zeigt sich das im Alltag",
+      "badge": "Kompetenzen",
+      "description": "Wo andere Systeme nur explizite Daten und Regeln verarbeiten, kann AICONIQ auch mit implizitem, institutionellem Wissen umgehen – also dem, was in Erfahrung, Intuition und Unternehmenskultur steckt. Das System beobachtet, dokumentiert und lernt aus realen Entscheidungen. Inklusive der dahinterliegenden Denkprozesse.",
+      "resultLabel": "DAS ERGEBNIS",
+      "resultTitle": "Mehr Effizienz im Tagesgeschäft",
+      "resultDescription": "schnellere Entscheidungen und eine Organisation, die von ihrem eigenen Wissen profitiert."
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "stats": {
+    "topStats": [
+      {
+        "value": "+60 %",
+        "description": "internes Wissen eingebunden in Entscheidungsfindung"
+      },
+      {
+        "value": "+35 %",
+        "description": "Umsatzpotenzial durch personalisierte, KI-basierte Interaktion"
+      },
+      {
+        "value": "–40 %",
+        "description": "Aufwände durch agentengesteuerte Routinetätigkeiten"
+      },
+      {
+        "value": "+28 %",
+        "description": "bis zu +28 % Conversion Rate durch intelligente Agentensteuerung"
+      }
+    ],
+    "bottomStats": [
+      {
+        "value": "9x",
+        "description": "bis zu 9x schnellere Time-to-Market"
+      },
+      {
+        "value": "–40 %",
+        "description": "Implementierungsdauer"
+      },
+      {
+        "value": "–60 %",
+        "description": "Projektkosten"
+      }
+    ]
+  }
+}

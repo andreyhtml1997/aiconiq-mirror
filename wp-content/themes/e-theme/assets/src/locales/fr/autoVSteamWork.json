@@ -1,0 +1,46 @@
+{
+  "autoVSteamWork": {
+    "badge": "Automatisierung Zusammenarbeit",
+    "middleWord": "vs",
+    "title": "Die Architektur Ihrer Intelligenz: Corporate Brain & AI Buddies",
+    "description": "Wir verwandeln fragmentierte Daten in ein zentrales Wissensnetz (Brain), das hochspezialisierte Buddies (Agenten) autonom steuert",
+    "automation": {
+      "badge": "Buddies: Automatisierung",
+      "heading": "Digitale Arbeitskraft statt starrer Automation",
+      "description": "Unsere Bodies sind mehr als Skripte. Sie sind autonome Agenten, die auf das zentrale Wissen zugreifen, um komplexe Prozesse eigenständig zu steuern – über Abteilungsgrenzen hinweg.",
+      "useCases": {
+        "title": "Typische Einsatzfelder",
+        "reporting": "Autonomes Reporting & Analyse",
+        "dataMaintenance": "Daten-Bereinigung (Self-Healing Data)",
+        "meetingProtocols": "Meeting-Protokolle & Wissensarchivierung",
+        "scheduling": "Operative Entscheidungsfindung"
+      },
+      "example": {
+        "title": "Praxis Beispiel",
+        "paragraph1": "Ihr Unternehmen nutzt AICONIQ, um wöchentlich 20 Stunden an manueller Datenaufbereitung zu sparen.",
+        "paragraph2": "Das System erkennt Muster in Berichten, fasst Ergebnisse automatisch zusammen und verteilt sie direkt an die richtigen Personen.",
+        "resultLabel": "DAS ERGEBNIS",
+        "resultValue": "40",
+        "resultDescription": "schnellere Abläufe – und mehr Kapazität im Tagesgeschäft."
+      }
+    },
+    "collaboration": {
+      "badge": "Corporate Brain",
+      "heading": "Das zentrale Nervensystem Ihres Unternehmens",
+      "description": "Isolierte Daten sind wertlos. Das AICONIQ Brain verknüpft Vektor-Räume (Kontext) mit Graph-Datenbanken (Logik). Ein dynamisches Asset, das mit jeder Interaktion klüger wird.",
+      "useCases": {
+        "title": "Typische Einsatzfelder",
+        "strategy": "Strategie- und Produktentwicklung",
+        "decisionSupport": "Entscheidungsunterstützung im Management",
+        "innovation": "Ideenfindung & Innovationsprozesse",
+        "marketing": "Marketing & Kommunikation"
+      },
+      "example": {
+        "title": "Praxis Beispiel",
+        "paragraph": "Ihr Unternehmen nutzt AICONIQ, um Ideen für neue Service-Modelle zu entwickeln. Ihr Buddy verknüpft internes Erfahrungswissen mit Markt- und Kundendaten, zeigt Trends auf und schlägt passende Modelle vor. Das Team entscheidet schneller – auf Basis klarer Fakten statt Bauchgefühl.",
+        "conclusionTitle": "Ein System. Zwei Wirkungen. Ein Ziel.",
+        "conclusionText": "Buddies führen aus. Das Brain lernt. Diese Symbiose schafft einen Wettbewerbsvorteil, den Standard-KI nicht kopieren kann. Ihr Wissen bleibt sicher in Ihrer Infrastruktur."
+      }
+    }
+  }
+}

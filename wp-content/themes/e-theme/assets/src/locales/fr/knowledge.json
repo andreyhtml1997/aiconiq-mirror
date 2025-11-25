@@ -1,0 +1,24 @@
+{
+  "knowledge": {
+    "badge": "Wissen",
+    "title": "So funktioniert AICONIQ",
+    "steps": [
+      {
+        "title": "Wissen erfassen",
+        "description": "Erfasst alle relevanten Gespräche, Dokumente und Daten Ihres Unternehmens und baut daraus ein neuronales Organisationsgedächtnis, die Basis für intelligente Entscheidungen."
+      },
+      {
+        "title": "Daten verarbeiten",
+        "description": "AICONIQ verarbeitet Daten zu einem zentralen, unternehmensspezifischen Datenraum. Darin arbeiten Knowledge-, Memory- und Reasoning-Systeme zusammen, um Wissen zu speichern, zu verknüpfen und zu überprüfen – dynamisch, sicher und nachvollziehbar."
+      },
+      {
+        "title": "Daten umsetzen",
+        "description": "AICONIQ Buddies übersetzen Wissen in Handeln. Sie agieren in allen Unternehmensbereichen – von Beratung bis Umsetzung, von Support bis Schulung. Input-Buddies erfassen Wissen aus Gesprächen und Prozessen, Output-Buddies setzen es gezielt um. So entsteht ein System, das nicht nur versteht, was zu tun ist, sondern es auch tut."
+      },
+      {
+        "title": "Buddies aktivieren",
+        "description": "Wir deployen rollen-basierte Buddies (Agenten), die das Brain-Wissen nutzen, um komplexe Workflows in Ihrem Unternehmen zu automatisieren. Input-Buddies erfassen Wissen aus Gesprächen und Prozessen, Output-Buddies setzen es gezielt um. So entsteht ein System, das nicht nur versteht, was zu tun ist, sondern es auch tut."
+      }
+    ]
+  }
+}
