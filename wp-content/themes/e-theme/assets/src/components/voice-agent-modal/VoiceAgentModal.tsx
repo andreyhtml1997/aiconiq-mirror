@@ -4,11 +4,22 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 import { VoiceAgentContent } from "./VoiceAgentContent";
+import { setLogLevel } from '@livekit/components-core';
 
 export const VoiceAgentModal = () => {
   const isOpen = useVoiceAgentModalStore((state) => state.isOpen);
   const closeModal = useVoiceAgentModalStore((state) => state.closeModal);
 
+  useEffect(() => {
+    setLogLevel("silent");
+    const userChoices = {
+      videoEnabled: true,
+      audioEnabled: true,
+      videoDeviceId: "default",
+      audioDeviceId: "default",
+    };
+    localStorage.setItem("lk-user-choices", JSON.stringify(userChoices));
+  }, []);
   // Lock body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -58,7 +69,7 @@ export const VoiceAgentModal = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40"
+          className="fixed inset-0 flex items-center justify-center bg-black/40 z-20"
           onClick={handleModalClick}
         >
           {/* Modal Content */}

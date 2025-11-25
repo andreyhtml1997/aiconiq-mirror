@@ -5,6 +5,7 @@ import SectionHeader from "../../ui/SectionHeader";
 import ChatButton from "../../ui/ChatButton";
 import { AiConiqCard } from "./AiConiqCard";
 
+import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 const img1 = '/assets/problem/1.webp'
 const img2 = '/assets/problem/2.webp'
 const checkIcon = '/assets/problem/check.svg'
@@ -13,7 +14,9 @@ const chatgptIcon = '/assets/problem/chatgpt.svg'
 const ragIcon = '/assets/problem/rag.svg'
 const ellipsisIconBottom = '/assets/problem/ellisepbottom.webp'
 
+
 const ProblemAndSolution = () => {
+  const openModal = useVoiceAgentModalStore((state) => state.openModal);
   const t = useTranslations();
   return (
     <section
@@ -182,7 +185,7 @@ const ProblemAndSolution = () => {
           <div className="flex flex-col gap-8 sm:gap-10 md:gap-[57px] items-center justify-center">
             <ChatButton
               label={t("problemAndSolution.chatButtonLabel")}
-              onClick={() => console.log("Chat clicked")}
+              onClick={openModal}
             />
             <span className="text-[#FFFFFF8F] font-medium text-[14px] sm:text-[15px] md:text-[16px] leading-[160%]">
               {t("problemAndSolution.howItWorks")}

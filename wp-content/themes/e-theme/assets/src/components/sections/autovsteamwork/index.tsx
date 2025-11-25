@@ -4,7 +4,10 @@ import { useTranslations } from "next-intl";
 import SectionHeader from "../../ui/SectionHeader";
 import ChatButton from "../../ui/ChatButton";
 
+import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
+
 const AutoVSteamWork = () => {
+  const openModal = useVoiceAgentModalStore((state) => state.openModal);
   const t = useTranslations();
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 flex flex-col gap-12 sm:gap-16 md:gap-20 lg:gap-[100px] px-4 sm:px-6 md:px-8">
@@ -279,7 +282,7 @@ const AutoVSteamWork = () => {
                 <p className="text-[#FFFFFF8F] font-medium text-[14px] sm:text-[15px] md:text-[16px] leading-[160%]">
                   {t("autoVSteamWork.collaboration.example.conclusionText")}
                 </p>
-                <ChatButton onClick={() => console.log("Chat clicked")} />
+                <ChatButton onClick={openModal} />
               </div>
             </div>
           </div>

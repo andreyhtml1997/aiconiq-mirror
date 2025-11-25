@@ -123,7 +123,7 @@ export function AgentControlBar({
       <div className="flex flex-row justify-between gap-1">
         <div className="flex gap-1">
           {visibleControls.microphone && (
-            <div className="flex items-center gap-0">
+            <div className="flex items-center gap-0 bg-[#fff]" style={{borderRadius:'20px'}}>
               <TrackToggle
                 variant="primary"
                 source={Track.Source.Microphone}

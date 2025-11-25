@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { DataPacket_Kind, Participant, Room, RoomEvent } from "livekit-client";
+import { DataPacket_Kind, Participant, Room, RoomEvent
+  // ,setLogLevel 
+} from "livekit-client";
 import { motion } from "motion/react";
 import {
   RoomAudioRenderer,
@@ -16,6 +18,8 @@ import { Toaster } from "@/components/voice-agent/ui/sonner";
 import { Welcome } from "@/components/voice-agent/welcome";
 import useConnectionDetails from "@/hooks/voice-agent/useConnectionDetails";
 import type { AppConfig } from "@/lib/voice-agent/types";
+  
+
 
 const MotionWelcome = motion.create(Welcome);
 const MotionSessionView = motion.create(SessionView);
@@ -42,6 +46,15 @@ export function App({
     useConnectionDetails(appConfig);
 
   useEffect(() => {
+    // setLogLevel("silent");
+    // const userChoices = {
+    //   videoEnabled: true,
+    //   audioEnabled: true,
+    //   videoDeviceId: "default",
+    //   audioDeviceId: "default",
+    // };
+    // localStorage.setItem("lk-user-choices", JSON.stringify(userChoices));
+
     const onDisconnected = () => {
       setSessionStarted(false);
       setAvatarConnectionFailed(false);
