@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import ChatButton from "../../ui/ChatButton";
+import { useState } from "react";
+import { CalendlyInline } from "@/components/voice-agent/calendly-inline";
 
 const ctabanner = '/assets/ctabanner.webp'
 const avatar = '/assets/lead-img/avatar.webp'
@@ -9,11 +11,23 @@ const bg = '/assets/lead-img/bg.webp'
 
 const LeadCapture = () => {
   const t = useTranslations();
+  const [showCalendly, setShowCalendly] = useState(false);
   return (
     <section
       id="contact"
       className="flex flex-col max-w-[1920px] w-full mx-auto px-4 sm:px-6 md:px-8 lg:p-4 gap-4 sm:gap-3 md:gap-2"
     >
+      <CalendlyInline
+        isOpen={showCalendly}
+        onClose={() => setShowCalendly(false)}
+        calendlyUrl={
+          process.env.NEXT_PUBLIC_CALENDLY_URL ||
+          "https://calendly.com/your-calendly-url"
+        }
+        onEventScheduled={(eventData) => {
+          setShowCalendly(false);
+        }}
+      />
       <div className="w-full relative bg-[#1A1317] rounded-[8px] overflow-hidden">
         <div className="relative max-w-[1250px] w-full mx-auto py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-0">
           <img
@@ -36,7 +50,7 @@ const LeadCapture = () => {
 
               <ChatButton
                 label={t("leadCapture.topSection.button")}
-                onClick={() => console.log("Chat clicked")}
+                onClick={() => setShowCalendly(true)}
               />
             </div>
           </div>
@@ -69,7 +83,7 @@ const LeadCapture = () => {
             </h2>
             <ChatButton
               label={t("leadCapture.bottomSection.button")}
-              onClick={() => console.log("Chat clicked")}
+              onClick={() => setShowCalendly(true)}
             />
           </div>
         </div>

@@ -5,8 +5,11 @@ import SectionHeader from "../../ui/SectionHeader";
 import KnowledgeCard from "./KnowledgeCard";
 import ChatButton from "../../ui/ChatButton";
 
+import { useState } from "react";
+import { CalendlyInline } from "@/components/voice-agent/calendly-inline";
 const Knowledge = () => {
   const t = useTranslations();
+  const [showCalendly, setShowCalendly] = useState(false);
 
   const knowledgeSteps = [
     {
@@ -36,6 +39,17 @@ const Knowledge = () => {
       id="about"
       className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-[110px]"
     >
+      <CalendlyInline
+        isOpen={showCalendly}
+        onClose={() => setShowCalendly(false)}
+        calendlyUrl={
+          process.env.NEXT_PUBLIC_CALENDLY_URL ||
+          "https://calendly.com/your-calendly-url"
+        }
+        onEventScheduled={(eventData) => {
+          setShowCalendly(false);
+        }}
+      />
       <div className="max-w-[1200px] w-full mx-auto px-4 sm:px-6 md:px-8 flex flex-col gap-10 sm:gap-12 md:gap-14 lg:gap-[58px] items-center justify-center">
         <SectionHeader
           badge={t("knowledge.badge")}
@@ -56,7 +70,7 @@ const Knowledge = () => {
         </div>
         <ChatButton
           label={t("consultant.button")}
-          onClick={() => console.log("Chat clicked")}
+          onClick={() => setShowCalendly(true)}
         />
       </div>
     </section>

@@ -1,10 +1,13 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useState } from "react";
 import ChatButton from '../../ui/ChatButton'
+import { CalendlyInline } from "@/components/voice-agent/calendly-inline";
 
 const SolutionsOverview = () => {
   const t = useTranslations()
+  const [showCalendly, setShowCalendly] = useState(false);
 
   const icons = [
     '/assets/solutions-icons/1.svg',
@@ -39,6 +42,17 @@ const SolutionsOverview = () => {
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-[130px]">
+      <CalendlyInline
+        isOpen={showCalendly}
+        onClose={() => setShowCalendly(false)}
+        calendlyUrl={
+          process.env.NEXT_PUBLIC_CALENDLY_URL ||
+          "https://calendly.com/your-calendly-url"
+        }
+        onEventScheduled={(eventData) => {
+          setShowCalendly(false);
+        }}
+      />
       <div className="max-w-[1280px] w-full mx-auto flex flex-col gap-6 sm:gap-8 md:gap-10 px-4 sm:px-6 md:px-8">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 sm:gap-8 lg:gap-12">
           <h2 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] gradient-text leading-[120%] max-w-full lg:max-w-[1036px] w-full">
@@ -46,7 +60,7 @@ const SolutionsOverview = () => {
           </h2>
           <ChatButton
             label={t('solutionsOverview.buttonLabel')}
-            onClick={() => console.log('Chat clicked')}
+            onClick={() => setShowCalendly(true)}
           />
         </div>
         <div className="w-full border-t border-[#D9D9D9]/[24%]"></div>

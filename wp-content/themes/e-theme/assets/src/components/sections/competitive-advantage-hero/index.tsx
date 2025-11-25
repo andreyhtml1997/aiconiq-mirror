@@ -2,14 +2,28 @@
 
 import { useTranslations } from "next-intl";
 import ChatButton from "../../ui/ChatButton";
+import { useState } from "react";
+import { CalendlyInline } from "@/components/voice-agent/calendly-inline";
 
 const logoCon = '/assets/logo-con.webp'
 const bannerCon = '/assets/banner-con.webp'
 
 const CompetitiveAdvantageHero = () => {
   const t = useTranslations();
+  const [showCalendly, setShowCalendly] = useState(false);
   return (
     <section className="py-12 sm:pb-16 md:pb-20 lg:pb-24 xl:pb-[80px] px-4">
+      <CalendlyInline
+        isOpen={showCalendly}
+        onClose={() => setShowCalendly(false)}
+        calendlyUrl={
+          process.env.NEXT_PUBLIC_CALENDLY_URL ||
+          "https://calendly.com/your-calendly-url"
+        }
+        onEventScheduled={(eventData) => {
+          setShowCalendly(false);
+        }}
+      />
       <div className="max-w-[1280px] w-full mx-auto rounded-[12px] sm:rounded-[14px] md:rounded-[16px] competitive-advantage-hero py-8 sm:py-10 md:py-12 lg:py-[58px] px-6 sm:px-8 md:px-12 lg:px-16 xl:pl-[104px] relative overflow-hidden">
         <img
           src={bannerCon}
@@ -30,7 +44,7 @@ const CompetitiveAdvantageHero = () => {
           </p>
           <ChatButton
             label={t("competitiveAdvantageHero.buttonLabel")}
-            onClick={() => console.log("Chat clicked")}
+            onClick={() => setShowCalendly(true)}
           />
         </div>
       </div>

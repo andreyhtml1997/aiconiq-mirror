@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 // import symbolimg from "../../assets/consultant/Symbol.svg";
 import ChatButton from "../ui/ChatButton";
 
+import { useState } from "react";
+import { CalendlyInline } from "@/components/voice-agent/calendly-inline";
+
+
 const consultlogo = '/assets/consultant/consult-logo.webp'
 const backLogo = '/assets/consultant/back-logo.svg'
 const ava1 = '/assets/consultant/ava1.webp'
@@ -13,7 +17,8 @@ const ava3 = '/assets/consultant/ava3.webp'
 
 const ConsultantSection = () => {
   const t = useTranslations();
-
+  
+  const [showCalendly, setShowCalendly] = useState(false);
   return (
     <section className="py-10 sm:py-12 md:py-14 lg:py-16 xl:py-[140px]">
       <div className="max-w-[1279px] w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-[100px] px-4 sm:px-6 md:px-8">
@@ -91,10 +96,22 @@ const ConsultantSection = () => {
 
           <ChatButton
             label={t("consultant.button")}
-            onClick={() => console.log("Chat clicked")}
+            onClick={() => setShowCalendly(true)}
           />
         </div>
       </div>
+      
+      <CalendlyInline
+        isOpen={showCalendly}
+        onClose={() => setShowCalendly(false)}
+        calendlyUrl={
+          process.env.NEXT_PUBLIC_CALENDLY_URL ||
+          "https://calendly.com/your-calendly-url"
+        }
+        onEventScheduled={(eventData) => {
+          setShowCalendly(false);
+        }}
+      />
     </section>
   );
 };
