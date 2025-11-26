@@ -25,7 +25,7 @@ export default {
   ...makeImpact,
   ...articles,
   consultant: {
-    title: "Was wäre, wenn Ihr bester Berater nicht menschlich wäre?",
+    title: "Was wäre, wenn Ihr bester Berater kein Mensch wäre?",
     button: "Anfrage senden",
   },
   footer: {
@@ -42,7 +42,7 @@ export default {
   navigation: {
     home: "Home",
     solutions: "Lösungen",
-    about: "Über AICONIQ",
+    about: "aiconiq Tech",
     contact: "Kontakt",
   },
   chatButton: {

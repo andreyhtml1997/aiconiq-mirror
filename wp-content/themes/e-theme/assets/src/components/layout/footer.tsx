@@ -16,13 +16,13 @@ const Footer = () => {
   }
 
   const socialLinks = [
-    { name: 'Linkedin', url: 'https://www.linkedin.com/company/aiconiq-group/posts/?feedView=all' },
+    { name: 'Linkedin', url: 'https://www.linkedin.com/company/aiconiq-group/posts/' },
     // { name: 'X', url: 'https://x.com' },
   ]
 
   const footerLinks = [
     { name: t('footer.footerLinks.impressum'), url: `/${lang}/imprint` },
-    { name: t('footer.footerLinks.terms'), url: 'https://webdev.aiconiq.io/ds.pdf' },
+    { name: t('footer.footerLinks.terms'), url: 'https://aiconiq.io/ds.pdf' },
     // { name: t('footer.footerLinks.status'), url: '/systemstatus' },
   ]
 

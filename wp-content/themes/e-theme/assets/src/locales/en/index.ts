@@ -42,7 +42,7 @@ export default {
   navigation: {
     home: "Home",
     solutions: "Solutions",
-    about: "About AICONIQ",
+    about: "aiconiq Tech",
     contact: "Contact",
   },
   chatButton: {

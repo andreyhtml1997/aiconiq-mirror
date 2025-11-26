@@ -2,18 +2,18 @@
   "autoVSteamWork": {
     "badge": "Automatisierung Zusammenarbeit",
     "middleWord": "vs",
-    "title": "Die Architektur Ihrer Intelligenz: Corporate Brain & AI Buddies",
-    "description": "Wir verwandeln fragmentierte Daten in ein zentrales Wissensnetz (Brain), das hochspezialisierte Buddies (Agenten) autonom steuert",
+    "title": "AICONIQ – von Automatisierung zu echter unternehmerischer Intelligenz.",
+    "description": "AICONIQ erweitert menschliches Denken - es verbindet Wissen, Intution und Erfahrung zu Intelligentem Handeln",
     "automation": {
-      "badge": "Buddies: Automatisierung",
-      "heading": "Digitale Arbeitskraft statt starrer Automation",
-      "description": "Unsere Bodies sind mehr als Skripte. Sie sind autonome Agenten, die auf das zentrale Wissen zugreifen, um komplexe Prozesse eigenständig zu steuern – über Abteilungsgrenzen hinweg.",
+      "badge": "Automatisierung",
+      "heading": "Wo Prozesse laufen, entsteht Raum für strategisches Denken",
+      "description": "Weniger Zeit mit Suchen, Abstimmen, Nacharbeiten, mehr Zeit für das Wesentliche. AICONIQ automatisiert wiederkehrende Aufgaben und schafft reibungslose Abläufe über Teams und Systeme hinweg.",
       "useCases": {
         "title": "Typische Einsatzfelder",
-        "reporting": "Autonomes Reporting & Analyse",
-        "dataMaintenance": "Daten-Bereinigung (Self-Healing Data)",
+        "reporting": "Reporting & Dokumentation",
+        "dataMaintenance": "Datenpflege & Prozesssteuerung",
         "meetingProtocols": "Meeting-Protokolle & Wissensarchivierung",
-        "scheduling": "Operative Entscheidungsfindung"
+        "scheduling": "Termin- & Aufgabenplanung"
       },
       "example": {
         "title": "Praxis Beispiel",
@@ -25,9 +25,9 @@
       }
     },
     "collaboration": {
-      "badge": "Corporate Brain",
-      "heading": "Das zentrale Nervensystem Ihres Unternehmens",
-      "description": "Isolierte Daten sind wertlos. Das AICONIQ Brain verknüpft Vektor-Räume (Kontext) mit Graph-Datenbanken (Logik). Ein dynamisches Asset, das mit jeder Interaktion klüger wird.",
+      "badge": "Zusammenarbeit",
+      "heading": "Aus individuellem Wissen wird kollektive Intelligenz",
+      "description": "Unsere digitalen Co-Worker unterstützen Teams dort, wo Erfahrung, Strategie und Urteilsvermögen gefragt sind. Sie bringen Wissen zusammen, analysieren Optionen und helfen, bessere Entscheidungen zu treffen – in Echtzeit.",
       "useCases": {
         "title": "Typische Einsatzfelder",
         "strategy": "Strategie- und Produktentwicklung",
@@ -39,7 +39,7 @@
         "title": "Praxis Beispiel",
         "paragraph": "Ihr Unternehmen nutzt AICONIQ, um Ideen für neue Service-Modelle zu entwickeln. Ihr Buddy verknüpft internes Erfahrungswissen mit Markt- und Kundendaten, zeigt Trends auf und schlägt passende Modelle vor. Das Team entscheidet schneller – auf Basis klarer Fakten statt Bauchgefühl.",
         "conclusionTitle": "Ein System. Zwei Wirkungen. Ein Ziel.",
-        "conclusionText": "Buddies führen aus. Das Brain lernt. Diese Symbiose schafft einen Wettbewerbsvorteil, den Standard-KI nicht kopieren kann. Ihr Wissen bleibt sicher in Ihrer Infrastruktur."
+        "conclusionText": "AICONIQ verbindet operative Entlastung mit strategischer Intelligenz. Routine verschwindet, Wissen wird nutzbar, Entscheidungen werden klarer. So entsteht eine Organisation, die nicht nur effizienter arbeitet a sondern auch klüger handelt."
       }
     }
   }

@@ -1,16 +1,16 @@
 {
   "positioning": {
     "badge": "Positionierung",
-    "title": "AICONIQ USP: Brain & Buddies",
-    "description": "Ein einzelner Agent ist nicht skalierbar. Wir bauen ein Ökosystem.",
+    "title": "Was AICONIQ anders macht",
+    "description": "AICONIQ verbindet künstliche mit unternehmerischer Intelligenz. Während andere KI Agenten Aufgaben ausführen, versteht AICONIQ, warum Menschen Entscheidungen treffen und integriert diese Logik in das System.",
     "leftBlock": {
-      "badge": "",
-      "title": "The Brain.",
-      "description": "Ihr zentrales Knowledge Management System. Eine dynamische Verknüpfung aus Vektor-Datenbanken (für Kontext) und Graph-Datenbanken (für logische Beziehungen). Es wächst mit jeder Interaktion."
+      "badge": "Assistenten reagieren",
+      "title": "AICONIQ handelt.",
+      "description": "Die meisten KI-Systeme funktionieren reaktiv: Sie beantworten Fragen, erledigen einzelne Aufgaben oder liefern Textvorschläge. Nützlich a aber begrenzt. Denn sie verstehen weder den Kontext eines Unternehmens noch die Zusammenhänge, in denen Entscheidungen entstehen."
     },
     "rightBlock": {
-      "overlayText": "Die Buddies",
-      "description": "Spezialisierte AI-Agenten, die auf dieses Gehirn zugreifen. Ob im Vertrieb, Support oder Operations – die Bodies sind die ausführenden Organe, das Brain ist die Quelle der Wahrheit."
+      "overlayText": "Geht einen Schritt weiter",
+      "description": "Unsere digitalen Co-Worker arbeiten mit dem Wissen, den Daten und den Abläufen Ihres Unternehmens und handeln, als wären sie Teil Ihres Teams. Sie erkennen Muster, lernen aus Erfahrung und unterstützen dort, wo Wissen in Wirkung übersetzt werden muss: im Tagesgeschäft."
     },
     "bottomBlock": {
       "title": "So zeigt sich das im Alltag",

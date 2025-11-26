@@ -1,14 +1,32 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 import SectionHeader from "../../ui/SectionHeader";
 import ChatButton from "../../ui/ChatButton";
 
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
+import { useCountUpOnView } from "@/hooks/useCountUpOnView";
 
 const AutoVSteamWork = () => {
   const openModal = useVoiceAgentModalStore((state) => state.openModal);
   const t = useTranslations();
+  
+  // Parse the translation value to a safe number for animation
+  const resultValue = useMemo(() => {
+    const value = t("autoVSteamWork.automation.example.resultValue");
+    const parsed = parseFloat(value);
+    return isNaN(parsed) ? 0 : parsed;
+  }, [t]);
+  // console.log('resultValue',resultValue)
+  // Set up count-up animation for the result value
+  const { ref: countUpRef, value: animatedValue } = useCountUpOnView({
+    target: resultValue,
+    start: 0,
+    duration: 500,
+    threshold: 0.5,
+    once: false,
+  });
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 flex flex-col gap-12 sm:gap-16 md:gap-20 lg:gap-[100px] px-4 sm:px-6 md:px-8">
       <div
@@ -165,7 +183,9 @@ const AutoVSteamWork = () => {
                 </div>
                 <div className="w-full flex flex-col sm:flex-row gap-3 sm:gap-0">
                   <span className="text-[#FFFFFF] flex font-semibold text-[60px] sm:text-[80px] md:text-[100.24px] leading-[120%]">
-                    {t("autoVSteamWork.automation.example.resultValue")}{" "}
+                    <span ref={countUpRef} aria-live="polite">
+                      {animatedValue}
+                    </span>{" "}
                     <span className="text-gradient">%</span>
                   </span>
                   <div className="sm:p-3">

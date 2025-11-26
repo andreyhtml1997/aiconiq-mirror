@@ -38,7 +38,7 @@ const MakeImpact = () => {
             className="hidden lg:block absolute left-[-120px] top-[60%] transform -translate-y-1/2 max-w-[300px] xl:max-w-full"
           />
 
-          <div className="bg-[#D8008D] py-3 sm:py-4 md:py-5 border border-[#D8008D] px-6 sm:px-8 md:px-10 lg:px-12 flex absolute z-10 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full  overflow-hidden group cursor-pointer">
+          {/* <div className="bg-[#D8008D] py-3 sm:py-4 md:py-5 border border-[#D8008D] px-6 sm:px-8 md:px-10 lg:px-12 flex absolute z-10 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full  overflow-hidden group cursor-pointer">
             <div
               className="absolute inset-0 bg-black transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out"
               style={{ transformOrigin: "left" }}
@@ -46,7 +46,7 @@ const MakeImpact = () => {
             <span className="text-white font-medium text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[100%] whitespace-nowrap relative z-10">
               {t("makeImpact.comingSoon")}
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
