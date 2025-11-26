@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import Navigation from "./navigation";
 import HeroHeadline from "./HeroHeadline";
 import ChatButton from "../../ui/ChatButton";
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
+import { useCountUpOnView } from "@/hooks/useCountUpOnView";
+import { extractNumericParts } from "@/utils/format/extractNumericParts";
 // import MediaControls from "../../ui/MediaControls";
 
 const Hero = () => {
@@ -18,6 +20,45 @@ const Hero = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMuted, setIsMuted] = useState(true);
   const openModal = useVoiceAgentModalStore((state) => state.openModal);
+
+  // Get raw stat values
+  const rawStats = useMemo(() => [
+    t('hero.stats.timeToMarket.value'),
+    t('hero.stats.implementation.value'),
+    t('hero.stats.projectCosts.value'),
+  ], [t]);
+
+  // Parse the numeric parts for each stat
+  const parsedStats = useMemo(() =>
+    rawStats.map(value => extractNumericParts(value)), [rawStats]
+  );
+
+  // Set up count-up animations for each stat
+  const timeToMarketAnimation = useCountUpOnView({
+    target: parsedStats[0].magnitude,
+    start: 0,
+    duration: 2900,
+    threshold: 0.2,
+    once: false,
+  });
+
+  const implementationAnimation = useCountUpOnView({
+    target: parsedStats[1].magnitude,
+    start: 0,
+    duration: 1900,
+    threshold: 0.2,
+    once: false,
+  });
+
+  const projectCostsAnimation = useCountUpOnView({
+    target: parsedStats[2].magnitude,
+    start: 0,
+    duration: 3900,
+    threshold: 0.2,
+    once: false,
+  });
+
+  const statAnimations = [timeToMarketAnimation, implementationAnimation, projectCostsAnimation];
 
   // const handlePlayPause = (playing: boolean) => {
   //   if (videoRef.current) {
@@ -128,8 +169,13 @@ const Hero = () => {
                     <span
                       className="text-[#FFFFFFD9] font-medium leading-[120%]"
                       style={{ fontSize: "clamp(18px, 2vw, 28px)" }}
+                      role="text"
+                      aria-live="polite"
+                      aria-label={parsedStats[0].ariaLabel}
                     >
-                      {t("hero.stats.timeToMarket.value")}
+                      <span aria-hidden="true"> {t("hero.stats.timeToMarket.preValue")} </span>
+                      <span ref={timeToMarketAnimation.ref} aria-hidden="true">{timeToMarketAnimation.value}</span>
+                      <span aria-hidden="true">{parsedStats[0].suffix}</span>
                     </span>
                     <p
                       className="text-[#FFFFFF8F] leading-[160%]"
@@ -142,8 +188,13 @@ const Hero = () => {
                     <span
                       className="text-[#FFFFFFD9] font-medium leading-[120%]"
                       style={{ fontSize: "clamp(18px, 2vw, 28px)" }}
+                      role="text"
+                      aria-live="polite"
+                      aria-label={parsedStats[1].ariaLabel}
                     >
-                      {t("hero.stats.implementation.value")}
+                      <span aria-hidden="true">{parsedStats[1].prefix}</span>
+                      <span ref={implementationAnimation.ref} aria-hidden="true">{implementationAnimation.value}</span>
+                      <span aria-hidden="true">{parsedStats[1].suffix}</span>
                     </span>
                     <p
                       className="text-[#FFFFFF8F] leading-[160%]"
@@ -156,8 +207,13 @@ const Hero = () => {
                     <span
                       className="text-[#FFFFFFD9] font-medium leading-[120%]"
                       style={{ fontSize: "clamp(18px, 2vw, 28px)" }}
+                      role="text"
+                      aria-live="polite"
+                      aria-label={parsedStats[2].ariaLabel}
                     >
-                      {t("hero.stats.projectCosts.value")}
+                      <span aria-hidden="true">{parsedStats[2].prefix}</span>
+                      <span ref={projectCostsAnimation.ref} aria-hidden="true">{projectCostsAnimation.value}</span>
+                      <span aria-hidden="true">{parsedStats[2].suffix}</span>
                     </span>
                     <p
                       className="text-[#FFFFFF8F] leading-[160%]"

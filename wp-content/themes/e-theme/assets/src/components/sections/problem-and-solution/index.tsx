@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import SectionHeader from "../../ui/SectionHeader";
 import ChatButton from "../../ui/ChatButton";
 import { AiConiqCard } from "./AiConiqCard";
+import { useCountUpOnView } from "@/hooks/useCountUpOnView";
 
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 const img1 = '/assets/problem/1.webp'
@@ -18,6 +19,30 @@ const ellipsisIconBottom = '/assets/problem/ellisepbottom.webp'
 const ProblemAndSolution = () => {
   const openModal = useVoiceAgentModalStore((state) => state.openModal);
   const t = useTranslations();
+
+  // Card configurations with percentage values
+  const percentageCards = [
+    { value: 54 },
+    { value: 59 }
+  ];
+
+  // Set up count-up animations for percentage values
+  const { ref: firstCardRef, value: firstAnimatedValue } = useCountUpOnView({
+    target: percentageCards[0].value,
+    start: 0,
+    duration: 1000,
+    threshold: 0.1,
+    once: false,
+  });
+
+  const { ref: secondCardRef, value: secondAnimatedValue } = useCountUpOnView({
+    target: percentageCards[1].value,
+    start: 0,
+    duration: 1500,
+    threshold: 0.1,
+    once: false,
+  });
+
   return (
     <section
       id="solutions"
@@ -96,8 +121,14 @@ const ProblemAndSolution = () => {
                   <span className="max-w-[100px] sm:max-w-[120px] md:max-w-[131px] w-full uppercase font-medium text-[12px] sm:text-[13px] md:text-[14px] leading-[120%] text-white">
                     QUALITY OF ADVICE / CONSULT
                   </span>
-                  <span className="text-white font-semibold text-[48px] sm:text-[56px] md:text-[64px] leading-[120%]">
-                    54%
+                  <span
+                    ref={firstCardRef}
+                    className="text-white font-semibold text-[48px] sm:text-[56px] md:text-[64px] leading-[120%]"
+                    role="text"
+                    aria-live="polite"
+                    aria-label={`${firstAnimatedValue}%`}
+                  >
+                    {firstAnimatedValue}%
                   </span>
 
                   <img
@@ -157,8 +188,14 @@ const ProblemAndSolution = () => {
                   <span className="max-w-[100px] sm:max-w-[120px] md:max-w-[131px] w-full uppercase font-medium text-[12px] sm:text-[13px] md:text-[14px] leading-[120%] text-white">
                     QUALITY OF ADVICE / CONSULT
                   </span>
-                  <span className="text-white font-semibold text-[48px] sm:text-[56px] md:text-[64px] leading-[120%]">
-                    59%
+                  <span
+                    ref={secondCardRef}
+                    className="text-white font-semibold text-[48px] sm:text-[56px] md:text-[64px] leading-[120%]"
+                    role="text"
+                    aria-live="polite"
+                    aria-label={`${secondAnimatedValue}%`}
+                  >
+                    {secondAnimatedValue}%
                   </span>
 
                   <img

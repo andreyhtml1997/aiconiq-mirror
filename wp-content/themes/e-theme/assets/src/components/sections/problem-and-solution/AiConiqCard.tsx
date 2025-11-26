@@ -1,11 +1,21 @@
 'use client'
 
+import { useCountUpOnView } from "@/hooks/useCountUpOnView";
+
 const img3 = '/assets/problem/3.webp'
 const checkIcon = '/assets/problem/check.svg'
 const linesIcon = '/assets/problem/lines.svg'
 const aiconiqIcon = '/assets/problem/aicoin1.webp'
 
 export const AiConiqCard = () => {
+  // Set up count-up animation for the 93% figure
+  const { ref: countUpRef, value: animatedValue } = useCountUpOnView({
+    target: 93,
+    start: 0,
+    duration: 1800,
+    threshold: 0.1,
+    once: false,
+  });
   return (
     <div className="border bg-[#200616] border-[#D8008D] rounded-2xl relative z-10">
       <div className="absolute -top-[20px] sm:-top-[26px] left-1/2 -translate-x-1/2 bg-[#692351] border border-[#FF21B254] rounded-full py-2 sm:py-3 px-6 sm:px-8 flex items-center justify-center gap-2">
@@ -76,8 +86,14 @@ export const AiConiqCard = () => {
         <span className="max-w-[100px] sm:max-w-[120px] md:max-w-[131px] w-full uppercase font-medium text-[12px] sm:text-[13px] md:text-[14px] leading-[120%] text-white">
           QUALITY OF ADVICE / CONSULT
         </span>
-        <span className="text-gradient font-semibold text-[60px] sm:text-[72px] md:text-[85px] leading-[120%]">
-          93%
+        <span
+          ref={countUpRef}
+          className="text-gradient font-semibold text-[60px] sm:text-[72px] md:text-[85px] leading-[120%]"
+          role="text"
+          aria-live="polite"
+          aria-label={`${animatedValue}%`}
+        >
+          {animatedValue}%
         </span>
 
         <img

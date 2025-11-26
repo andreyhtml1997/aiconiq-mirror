@@ -6,7 +6,8 @@
     "description": "Schluss mit isolierten Chatbots. Wir fusionieren Vektor-Spaces und Graph-Datenbanken zu einer zentralen Intelligenz. Das Ergebnis: Autonome 'Bodies' als digitale Workforce für komplexe Aufgaben.",
     "stats": {
       "timeToMarket": {
-        "value": "Bis zu 9x",
+        "preValue": "Bis zu",
+        "value": "9x",
         "label": "Schnellere Time-to-Market"
       },
       "implementation": {

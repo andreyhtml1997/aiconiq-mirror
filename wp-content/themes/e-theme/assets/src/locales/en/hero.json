@@ -6,7 +6,8 @@
     "description": "Digital colleagues who understand your company, think along and collaborate – for less routine, more innovation and real business value.",
     "stats": {
       "timeToMarket": {
-        "value": "Up to 9x",
+        "preValue": "Up to",
+        "value": "9x",
         "label": "Faster Time-to-Market"
       },
       "implementation": {
