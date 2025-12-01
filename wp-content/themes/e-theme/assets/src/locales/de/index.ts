@@ -43,6 +43,7 @@ export default {
     home: "Home",
     solutions: "Lösungen",
     about: "aiconiq Tech",
+    blog: "Blog",
     contact: "Kontakt",
   },
   chatButton: {

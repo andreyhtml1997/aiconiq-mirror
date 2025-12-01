@@ -14,6 +14,7 @@ const navItems: NavItem[] = [
   { id: "home", translationKey: "navigation.home" },
   { id: "solutions", translationKey: "navigation.solutions" },
   { id: "about", translationKey: "navigation.about" },
+  { id: "blog", translationKey: "navigation.blog" },
   { id: "contact", translationKey: "navigation.contact" },
 ];
 
@@ -29,9 +30,11 @@ const Navigation = () => {
     setActiveItem(itemId);
     
     // Check if the current page is a subpage (not just "/" or "/[lang]")
-    const isSubpage = pathname !== `/${lang}` && (pathname !== '/' || !lang);
+    const isSubpage = (pathname !== `/${lang}` && (pathname !== '/' || !lang));
     
-    if (isSubpage) {
+    if(itemId=='blog'){
+      router.push(`https://blog.aiconiq.io/${lang}/articles`);
+    }else if (isSubpage) {
       // Navigate to the homepage with the section ID as a hash
       router.push(`/${lang}#${itemId}`);
     } else {

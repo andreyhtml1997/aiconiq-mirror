@@ -33,18 +33,20 @@ add_action('wp_enqueue_scripts', function () {
 		|| is_post_type_archive('article')
 		|| is_singular('article');
 
-	if (!$should_load_react) {
-		return;
-	}
-
+	// if (!$should_load_react) {
+	// 	return;
+	// }
 	$theme_dir = get_template_directory();
 	$theme_uri = get_template_directory_uri();
 
-	$dist_path = $theme_dir . '/assets/dist';
-	$dist_uri = $theme_uri . '/assets/dist';
+	$dist_path = $theme_dir . '/blog_assets/dist';
+	$dist_uri = $theme_uri . '/blog_assets/dist';
 
 	// Ищем JS-файл вида assets/index-*.js
 	$js_files = glob($dist_path . '/assets/index-*.js');
+
+// print_r($dist_path . '/assets/index-*.js');
+// print_r($js_files);
 	if (!$js_files || !is_array($js_files)) {
 		// fallback: вдруг Vite выдал просто какой-то другой index-*.js
 		$js_files = glob($dist_path . '/assets/*.js');
@@ -58,6 +60,7 @@ add_action('wp_enqueue_scripts', function () {
 	$js_file = basename($js_files[0]); // index-XXXX.js
 	$js_url = $dist_uri . '/assets/' . $js_file;
 
+// print_r($js_url);
 	// Ищем CSS-файл вида assets/index-*.css
 	$css_files = glob($dist_path . '/assets/index-*.css');
 	if (!$css_files || !is_array($css_files)) {
@@ -69,6 +72,7 @@ add_action('wp_enqueue_scripts', function () {
 		$css_url = $dist_uri . '/assets/' . basename($css_files[0]); // index-XXXX.css
 	}
 
+// print_r($css_url);
 	// Стили React
 	if ($css_url) {
 		wp_enqueue_style(
