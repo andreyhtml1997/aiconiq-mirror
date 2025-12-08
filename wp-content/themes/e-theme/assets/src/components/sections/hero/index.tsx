@@ -95,7 +95,7 @@ const Hero = () => {
             autoPlay
             playsInline
           >
-            <source src="/assets/hero/f570a274.mp4" type="video/mp4" />
+            <source src="/assets/hero/f570a274-optimized.mp4" type="video/mp4" />
           </video>
 
           {/* Gradient overlay */}
