@@ -32,12 +32,14 @@ const ArticlesHero = () => {
           />
 
           <div className="flex flex-row p-3 xs:p-4 sm:p-5 md:p-6 lg:p-[28px] items-start sm:items-center w-full justify-between relative z-10 gap-3 xs:gap-4 sm:gap-0">
-            <img
+            
+            <a href="/" ><img
               src="/assets/logo.svg"
               className="w-full"
               style={{ maxWidth: "clamp(120px, 20vw, 193px)" }}
               alt=""
             />
+            </a>
             <LangSwitcher />
             <div className="hidden md:flex md:items-center md:gap-6">
               

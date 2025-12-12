@@ -114,12 +114,13 @@ const ArticlePageHero = ({
               )}
           {/* Header with logo and navigation */}
           <div className="flex flex-row p-2 xs:p-3 sm:p-4 md:p-5 lg:p-6 xl:p-[28px] items-start sm:items-center w-full justify-between relative z-20 gap-2 xs:gap-3 sm:gap-4 md:gap-0">
-            <img
+            <a href="/" ><img
               src={logo}
               className="w-full"
               style={{ maxWidth: "clamp(100px, 18vw, 193px)" }}
               alt=""
             />
+            </a>
             <LangSwitcher />
             <div className="hidden md:flex md:items-center md:gap-6">
               <Navigation />
