@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useState, useRef } from "react";
 
 import {
   type AgentState,
@@ -21,6 +21,7 @@ import { AgentControlBar } from "./livekit/agent-control-bar/agent-control-bar";
 import { ChatMessageView } from "./livekit/chat/chat-message-view";
 import { MediaTiles } from "./livekit/media-tiles";
 import { cn } from "@/lib/voice-agent/utils";
+import { useMixpanelTracking } from "@/hooks/analytics/useMixpanelTracking";
 
 function isAgentAvailable(agentState: AgentState) {
   return (
@@ -48,6 +49,8 @@ export const SessionView = ({
 }: React.ComponentProps<"div"> & SessionViewProps) => {
   const { state: agentState, videoTrack: agentVideoTrack } = useVoiceAssistant();
   const room = useRoomContext();
+  const { trackVoiceAgentConnected, trackVoiceAgentConnectionFailed } = useMixpanelTracking();
+  const isMixpanelEventSent = useRef<boolean>(false);
 
   const [chatOpen, setChatOpen] = useState(false);
   const [currentTipIndex, setCurrentTipIndex] = useState(0);
@@ -136,12 +139,22 @@ export const SessionView = ({
             description: <p className="w-full">{reason}.</p>,
           });
           room.disconnect();
+
+          trackVoiceAgentConnectionFailed({
+            error_name: "Session ended by timeout",
+            error_message: reason,
+          });
         }
       }, 30_000);
 
+      if (isAgentAvailable(agentState) && !isMixpanelEventSent.current) {
+        trackVoiceAgentConnected({});
+        isMixpanelEventSent.current = true;
+      }
+
       return () => clearTimeout(timeout);
     }
-  }, [agentState, sessionStarted, room]);
+  }, [agentState, sessionStarted, room, trackVoiceAgentConnected]);
   useEffect(() => {
     const currentUrl = new URL(window.location.href);
     const hasNoAvatarParam = currentUrl.searchParams.has("no_avatar");

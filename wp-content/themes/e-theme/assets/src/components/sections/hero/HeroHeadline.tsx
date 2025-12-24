@@ -2,10 +2,21 @@
 
 import { useTranslations } from "next-intl";
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
+import { useMixpanelTracking } from "@/hooks/analytics/useMixpanelTracking";
 
 const HeroHeadline = () => {
   const openModal = useVoiceAgentModalStore((state) => state.openModal);
   const t = useTranslations();
+  const { trackVoiceAgentButtonClicked } = useMixpanelTracking();
+
+  const handleButtonClick = () => {
+    trackVoiceAgentButtonClicked({
+      source: 'hero_headline',
+      page_path: window.location.pathname,
+      referrer: document.referrer,
+    });
+    openModal();
+  };
   return (
     <div className="flex flex-row items-center gap-2 xs:gap-3 sm:gap-1 w-full">
       {/* Avatars section */}
@@ -52,7 +63,7 @@ const HeroHeadline = () => {
         <button
           className="flex relative items-center btn-shadow justify-center rounded-full bg-[rgba(255,17,172,0.64)] border-[0.5px] border-[#d8008d] transition-all hover:bg-[rgba(255,17,172,0.8)] active:scale-95 flex-shrink-0"
           aria-label="Learn more"
-          onClick={openModal}
+          onClick={handleButtonClick}
           style={{
             width: "clamp(40px, 7vw, 56px)",
             height: "clamp(40px, 7vw, 56px)",

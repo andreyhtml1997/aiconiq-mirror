@@ -18,6 +18,7 @@ import { Toaster } from "@/components/voice-agent/ui/sonner";
 import { Welcome } from "@/components/voice-agent/welcome";
 import useConnectionDetails from "@/hooks/voice-agent/useConnectionDetails";
 import type { AppConfig } from "@/lib/voice-agent/types";
+import { useMixpanelTracking } from "@/hooks/analytics/useMixpanelTracking";
   
 
 
@@ -44,6 +45,7 @@ export function App({
   const [hasNoAvatarParam, setHasNoAvatarParam] = useState(false);
   const { refreshConnectionDetails, existingOrRefreshConnectionDetails } =
     useConnectionDetails(appConfig);
+  const { trackVoiceAgentConnectionFailed } = useMixpanelTracking();
 
   useEffect(() => {
     // setLogLevel("silent");
@@ -144,6 +146,13 @@ export function App({
           return;
         }
 
+        // Track connection failure
+        trackVoiceAgentConnectionFailed({
+          error_name: error.name || 'UnknownError',
+          error_message: error.message || 'Connection failed',
+          error_code: error.code
+        });
+
         toastAlert({
           title: "There was an error connecting to the agent",
           description: `${error.name}: ${error.message}`,
@@ -159,6 +168,7 @@ export function App({
     sessionStarted,
     appConfig.isPreConnectBufferEnabled,
     existingOrRefreshConnectionDetails,
+    trackVoiceAgentConnectionFailed,
   ]);
   const { startButtonText } = appConfig;
 

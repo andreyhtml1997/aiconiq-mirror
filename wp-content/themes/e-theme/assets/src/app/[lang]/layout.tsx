@@ -3,6 +3,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { locales } from '@/i18n/config'
 import { VoiceAgentModal } from '@/components/voice-agent-modal/VoiceAgentModal'
+import { MixpanelProvider } from '@/components/providers/MixpanelProvider'
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }))
@@ -31,10 +32,12 @@ export default async function LangLayout({
   return (
     <html lang={lang}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-          <VoiceAgentModal />
-        </NextIntlClientProvider>
+        <MixpanelProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+            <VoiceAgentModal />
+          </NextIntlClientProvider>
+        </MixpanelProvider>
       </body>
     </html>
   )

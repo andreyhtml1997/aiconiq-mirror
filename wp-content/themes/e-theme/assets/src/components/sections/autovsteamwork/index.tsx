@@ -7,10 +7,21 @@ import ChatButton from "../../ui/ChatButton";
 
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 import { useCountUpOnView } from "@/hooks/useCountUpOnView";
+import { useMixpanelTracking } from "@/hooks/analytics/useMixpanelTracking";
 
 const AutoVSteamWork = () => {
   const openModal = useVoiceAgentModalStore((state) => state.openModal);
   const t = useTranslations();
+  const { trackVoiceAgentButtonClicked } = useMixpanelTracking();
+
+  const handleChatButtonClick = () => {
+    trackVoiceAgentButtonClicked({
+      source: 'auto_vs_teamwork',
+      page_path: window.location.pathname,
+      referrer: document.referrer
+    });
+    openModal();
+  };
   
   // Parse the translation value to a safe number for animation
   const resultValue = useMemo(() => {
@@ -302,7 +313,7 @@ const AutoVSteamWork = () => {
                 <p className="text-[#FFFFFF8F] font-medium text-[14px] sm:text-[15px] md:text-[16px] leading-[160%]">
                   {t("autoVSteamWork.collaboration.example.conclusionText")}
                 </p>
-                <ChatButton onClick={openModal} />
+                <ChatButton onClick={handleChatButtonClick} />
               </div>
             </div>
           </div>

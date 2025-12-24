@@ -5,10 +5,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 import { VoiceAgentContent } from "./VoiceAgentContent";
 import { setLogLevel } from '@livekit/components-core';
+import { useMixpanelTracking } from "@/hooks/analytics/useMixpanelTracking";
+import { VoiceAgentDisconnectedProperties } from "@/lib/analytics/types"
 
 export const VoiceAgentModal = () => {
   const isOpen = useVoiceAgentModalStore((state) => state.isOpen);
   const closeModal = useVoiceAgentModalStore((state) => state.closeModal);
+
+  const { trackVoiceAgentDisconnected } = useMixpanelTracking();
+
+  const handleCloseModal = (source: VoiceAgentDisconnectedProperties['source']) => {
+    closeModal();
+    trackVoiceAgentDisconnected({ source });
+  };
 
   useEffect(() => {
     setLogLevel("silent");
@@ -45,13 +54,13 @@ export const VoiceAgentModal = () => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
-        closeModal();
+        handleCloseModal("voice_agent_modal_esc_key");
       }
     };
 
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, [isOpen, closeModal]);
+  }, [isOpen, handleCloseModal]);
 
   // Handle click on modal backdrop to trigger start
   const handleModalClick = (e: React.MouseEvent) => {
@@ -82,7 +91,7 @@ export const VoiceAgentModal = () => {
           >
             {/* Close Button */}
             <button
-              onClick={closeModal}
+              onClick={() => handleCloseModal("voice_agent_modal_close_button")}
               className="fixed right-4 top-20 z-[10000] flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-md transition-all duration-200 hover:bg-white/20 hover:scale-110"
               aria-label="Close modal"
             >

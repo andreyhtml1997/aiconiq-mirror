@@ -8,6 +8,7 @@ import ChatButton from "../../ui/ChatButton";
 import { useVoiceAgentModalStore } from "@/stores/useVoiceAgentModalStore";
 import { useCountUpOnView } from "@/hooks/useCountUpOnView";
 import { extractNumericParts } from "@/utils/format/extractNumericParts";
+import { useMixpanelTracking } from "@/hooks/analytics/useMixpanelTracking";
 // import MediaControls from "../../ui/MediaControls";
 
 const Hero = () => {
@@ -20,6 +21,16 @@ const Hero = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMuted, setIsMuted] = useState(true);
   const openModal = useVoiceAgentModalStore((state) => state.openModal);
+  const { trackVoiceAgentButtonClicked } = useMixpanelTracking();
+
+  const handleChatButtonClick = () => {    
+    trackVoiceAgentButtonClicked({
+      source: 'hero_section',
+      page_path: window.location.pathname,
+      referrer: document.referrer
+    });
+    openModal();
+  };
 
   // Get raw stat values
   const rawStats = useMemo(() => [
@@ -157,7 +168,7 @@ const Hero = () => {
 
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 xs:gap-6 sm:gap-7 lg:gap-8">
                 <div className="flex gap-2 xs:gap-3 sm:gap-4 ">
-                  <ChatButton onClick={openModal} />
+                  <ChatButton onClick={handleChatButtonClick} />
                   {/* <MediaControls
                     onPlayPause={handlePlayPause}
                     onVolumeToggle={handleVolumeToggle}

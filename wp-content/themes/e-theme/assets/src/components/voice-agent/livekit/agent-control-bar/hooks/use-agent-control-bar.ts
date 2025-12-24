@@ -8,6 +8,7 @@ import {
   useTrackToggle,
 } from '@livekit/components-react';
 import { usePublishPermissions } from './use-publish-permissions';
+import { useMixpanelTracking } from '@/hooks/analytics/useMixpanelTracking';
 
 export interface ControlBarControls {
   microphone?: boolean;
@@ -44,6 +45,7 @@ export function useAgentControlBar(props: UseAgentControlBarProps = {}): UseAgen
   const { microphoneTrack, localParticipant } = useLocalParticipant();
   const publishPermissions = usePublishPermissions();
   const room = useRoomContext();
+  const { trackVoiceAgentDisconnected } = useMixpanelTracking();
 
   const microphoneToggle = useTrackToggle({
     source: Track.Source.Microphone,
@@ -82,9 +84,10 @@ export function useAgentControlBar(props: UseAgentControlBarProps = {}): UseAgen
 
   const handleDisconnect = React.useCallback(async () => {
     if (room) {
+      trackVoiceAgentDisconnected({ source: "voice_agent_modal_end_call" });
       await room.disconnect();
     }
-  }, [room]);
+  }, [room, trackVoiceAgentDisconnected]);
 
   const handleAudioDeviceChange = React.useCallback(
     (deviceId: string) => {
