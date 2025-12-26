@@ -152,12 +152,16 @@ export function MediaTiles({ chatOpen, avatarConnectionFailed }: MediaTilesProps
                 if (avatarConnectionFailed) {
                   video.pause();
                 } else {
-                  video.play();
+                  video.play().catch((error) => {
+                    if (error.name !== 'AbortError') {
+                      console.warn('Video playback failed:', error);
+                    }
+                  });
                 }
               }
             }}
           >
-            <source src="/f570a274.mp4" type="video/mp4" />
+            <source src="/assets/hero/f570a274.mp4" type="video/mp4" />
           </video>
           {/* Dark overlay for better contrast */}
           <div className="absolute inset-0 bg-black/40"></div>

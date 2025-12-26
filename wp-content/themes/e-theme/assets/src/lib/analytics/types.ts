@@ -35,6 +35,15 @@ export interface VoiceAgentConnectedProperties {}
  * Triggered when LiveKit connection fails
  */
 export interface VoiceAgentConnectionFailedProperties {
+  source?:
+    | "room_connect_in_provider"
+    | "existingOrRefreshConnectionDetails_in_app"
+    | "fetch_connection_details"
+    | "startButtonRef_in_VoiceAgentContent"
+    | "setTimeout_in_SessionView"
+    | "setAvatarConnectionFailed_avatarState_in_app"
+    | "setAvatarConnectionFailed_hasNoAvatarParam_in_app"
+    | "room_disconnect_in_app";
   /** Error name/type */
   error_name: string;
   /** Error message */

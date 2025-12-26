@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { decodeJwt } from 'jose';
 import { ConnectionDetails } from '@/app/api/connection-details/route';
 import { AppConfig } from '@/lib/voice-agent/types';
+import { useMixpanelTracking } from '@/hooks/analytics/useMixpanelTracking';
 
 const ONE_MINUTE_IN_MILLISECONDS = 60 * 1000;
 
@@ -14,6 +15,8 @@ export default function useConnectionDetails(appConfig: AppConfig) {
   //
   // In real-world application, you would likely allow the user to specify their
   // own participant name, and possibly to choose from existing rooms to join.
+
+  const { trackVoiceAgentConnectionFailed } = useMixpanelTracking();
 
   const [connectionDetails, setConnectionDetails] = useState<ConnectionDetails | null>(null);
 
@@ -51,13 +54,26 @@ export default function useConnectionDetails(appConfig: AppConfig) {
       });
       data = await res.json();
     } catch (error) {
+      // Event error fetching connection details
+      const errorName = error instanceof Error ? error.name : 'UnknownError';
+      const errorMessage = error instanceof Error ? error.message : 'Error fetching connection details';
+      const errorCode = error && typeof error === 'object' && 'code' in error 
+        ? (error as { code?: string }).code 
+        : undefined;
+      
+      trackVoiceAgentConnectionFailed({
+        source: 'fetch_connection_details',
+        error_name: errorName,
+        error_message: errorMessage,
+        error_code: errorCode
+      });
       console.error('Error fetching connection details:', error);
       throw new Error('Error fetching connection details!');
     }
 
     setConnectionDetails(data);
     return data;
-  }, [appConfig]);
+  }, [appConfig, trackVoiceAgentConnectionFailed]);
 
   useEffect(() => {
     fetchConnectionDetails();
@@ -73,10 +89,10 @@ export default function useConnectionDetails(appConfig: AppConfig) {
     if (!jwtPayload.exp) {
       return true;
     }
-    const expiresAt = new Date(jwtPayload.exp - ONE_MINUTE_IN_MILLISECONDS);
+    const expiresAt = new Date((jwtPayload.exp * 1000) - ONE_MINUTE_IN_MILLISECONDS);
 
     const now = new Date();
-    return expiresAt >= now;
+    return now >= expiresAt;
   }, [connectionDetails?.participantToken]);
 
   const existingOrRefreshConnectionDetails = useCallback(async () => {

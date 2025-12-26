@@ -86,6 +86,11 @@ export function App({
           title: "Error",
           description: `Avatar connection is failed, please try later.`,
         });
+        trackVoiceAgentConnectionFailed({
+          source: 'setAvatarConnectionFailed_avatarState_in_app',
+          error_name: 'Error',
+          error_message: 'Avatar connection is failed, please try later.'
+        });
       } else if (data.type === "create_appointment") {
         console.log("Opening Calendly for appointment creation");
         setShowCalendly(true);
@@ -99,7 +104,7 @@ export function App({
       room.off(RoomEvent.MediaDevicesError, onMediaDevicesError);
       room.off(RoomEvent.DataReceived, onDataReceived);
     };
-  }, [room, refreshConnectionDetails, onCallEnd]);
+  }, [room, refreshConnectionDetails, onCallEnd, trackVoiceAgentConnectionFailed]);
   useEffect(() => {
     const currentUrl = new URL(window.location.href);
     const hasNoAvatarParam = currentUrl.searchParams.has("no_avatar");
@@ -110,11 +115,16 @@ export function App({
     if (sessionStarted) {
       if (hasNoAvatarParam) {
         setAvatarConnectionFailed(true);
+        trackVoiceAgentConnectionFailed({
+          source: 'setAvatarConnectionFailed_hasNoAvatarParam_in_app',
+          error_name: 'Error',
+          error_message: 'Avatar connection is failed, please try later.'
+        });
       } else {
         setAvatarConnectionFailed(false);
       }
     }
-  }, [sessionStarted, hasNoAvatarParam]);
+  }, [sessionStarted, hasNoAvatarParam, trackVoiceAgentConnectionFailed]);
 
   // Disable microphone when Calendly is shown, enable when hidden
   useEffect(() => {
@@ -137,6 +147,14 @@ export function App({
           )
         ),
       ]).catch((error) => {
+        // Track connection failure
+        trackVoiceAgentConnectionFailed({
+          source: 'existingOrRefreshConnectionDetails_in_app',
+          error_name: error.name || 'UnknownError',
+          error_message: (error.message || 'Connection failed') + (aborted ? ' -- aborted' : ''),
+          error_code: error.code
+        });
+
         if (aborted) {
           // Once the effect has cleaned up after itself, drop any errors
           //
@@ -146,13 +164,6 @@ export function App({
           return;
         }
 
-        // Track connection failure
-        trackVoiceAgentConnectionFailed({
-          error_name: error.name || 'UnknownError',
-          error_message: error.message || 'Connection failed',
-          error_code: error.code
-        });
-
         toastAlert({
           title: "There was an error connecting to the agent",
           description: `${error.name}: ${error.message}`,
@@ -161,7 +172,12 @@ export function App({
     }
     return () => {
       aborted = true;
-      room.disconnect();
+        room.disconnect();
+        trackVoiceAgentConnectionFailed({
+          source: 'room_disconnect_in_app',
+          error_name: 'Room disconnected',
+          error_message: 'Room disconnected on useEffect cleanup'
+        });
     };
   }, [
     room,

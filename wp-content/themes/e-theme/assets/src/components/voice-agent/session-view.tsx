@@ -141,6 +141,7 @@ export const SessionView = ({
           room.disconnect();
 
           trackVoiceAgentConnectionFailed({
+            source: 'setTimeout_in_SessionView',
             error_name: "Session ended by timeout",
             error_message: reason,
           });
