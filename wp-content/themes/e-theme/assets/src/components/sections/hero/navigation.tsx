@@ -14,6 +14,7 @@ const navItems: NavItem[] = [
   { id: "home", translationKey: "navigation.home" },
   { id: "solutions", translationKey: "navigation.solutions" },
   { id: "about", translationKey: "navigation.about" },
+  { id: "team", translationKey: "navigation.team" },
   { id: "blog", translationKey: "navigation.blog" },
   { id: "contact", translationKey: "navigation.contact" },
 ];
@@ -47,7 +48,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="flex items-center" data-name="Navigation">
+    <nav className="flex items-center w-full overflow-x-auto md:w-auto md:overflow-visible" data-name="Navigation">
       
       {navItems.map((item) => (
         <button

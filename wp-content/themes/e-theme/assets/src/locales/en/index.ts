@@ -43,6 +43,7 @@ export default {
     home: "Home",
     solutions: "Solutions",
     about: "aiconiq Tech",
+    team: "Team",
     blog: "Blog",
     contact: "Contact",
   },

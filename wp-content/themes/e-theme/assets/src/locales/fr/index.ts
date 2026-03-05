@@ -43,6 +43,7 @@ export default {
     home: "Home",
     solutions: "Lösungen",
     about: "Über AICONIQ",
+    team: "Team",
     contact: "Kontakt",
   },
   chatButton: {
