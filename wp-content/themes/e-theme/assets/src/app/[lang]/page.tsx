@@ -12,6 +12,7 @@ import Knowledge from '@/components/sections/knowledge'
 import ProblemAndSolution from '@/components/sections/problem-and-solution'
 import AutoVSteamWork from '@/components/sections/autovsteamwork'
 import Positioning from '@/components/sections/positioning'
+import Testimonials from '@/components/sections/testimonials'
 
 export default async function HomePage({
   params,
@@ -31,6 +32,7 @@ export default async function HomePage({
       <LeadCapture />
       <SolutionsOverview />
       <Stats />
+      <Testimonials />
       <Security />
       <MakeImpact />
       <CompetitiveAdvantageHero />

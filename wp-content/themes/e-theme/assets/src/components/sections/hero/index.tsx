@@ -2,6 +2,7 @@
 
 import { useRef, useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
+import { Menu, X } from "lucide-react";
 import Navigation from "./navigation";
 import HeroHeadline from "./HeroHeadline";
 import ChatButton from "../../ui/ChatButton";
@@ -20,6 +21,7 @@ const Hero = () => {
   //@ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMuted, setIsMuted] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const openModal = useVoiceAgentModalStore((state) => state.openModal);
   const { trackVoiceAgentButtonClicked } = useMixpanelTracking();
 
@@ -126,10 +128,48 @@ const Hero = () => {
               alt=""
             />
             </a>
+            {/* Desktop Navigation */}
             <div className="hidden md:block">
               <Navigation />
             </div>
+            {/* Mobile Burger Menu Button */}
+            <button
+              className="md:hidden fixed top-[20px] right-[20px] p-2 text-white z-50"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? (
+                <X size={24} strokeWidth={2} />
+              ) : (
+                <Menu size={24} strokeWidth={2} />
+              )}
+            </button>
           </div>
+
+          {/* Mobile Navigation Overlay */}
+          {isMobileMenuOpen && (
+            <div className="fixed inset-0 z-40 md:hidden">
+              {/* Backdrop */}
+              <div 
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                onClick={() => setIsMobileMenuOpen(false)}
+              />
+              {/* Navigation Panel */}
+              <div className="absolute top-0 right-0 w-full h-full bg-black/95 backdrop-blur-md border-l border-white/10 shadow-2xl">
+                <button
+                  className="absolute top-[20px] right-[20px] p-2 text-white z-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <X size={24} strokeWidth={2} />
+                </button>
+                <div className="flex flex-col h-full pt-20 pb-6 px-4">
+                  <Navigation variant="mobile" onNavClick={() => setIsMobileMenuOpen(false)} />
+                </div>
+              </div>
+            </div>
+          )}
 
           <div
             className="flex flex-col relative z-10 px-3 xs:px-4 sm:px-6 md:px-8 lg:px-12 pb-4 xs:pb-6 sm:pb-8 md:pb-10 lg:pb-12"

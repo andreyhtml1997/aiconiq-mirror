@@ -56,6 +56,17 @@ const Knowledge = () => {
           title={t("knowledge.title")}
         />
 
+        
+        <video
+          src="/assets/aiconiq-explainer_x264.mp4"
+          className="w-full relative z-10"
+          style={{ maxWidth: "100%", height: "auto" }}
+          autoPlay
+          muted
+          playsInline
+          controls
+        />
+
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full">
           {knowledgeSteps.map((step, index) => (
             <KnowledgeCard

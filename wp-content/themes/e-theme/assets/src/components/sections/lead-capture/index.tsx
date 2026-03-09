@@ -35,6 +35,15 @@ const LeadCapture = () => {
             alt=""
             className="absolute top-[-10px] mix-blend-lighten right-0 max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[800px] opacity-50 sm:opacity-70 md:opacity-100"
           />
+            
+          <video
+            src="/assets/interview-101.mp4"
+            className="relative lg:absolute lg:right-0 lg:top-16 w-full lg:max-w-[50%] h-auto z-10 mb-6 lg:mb-0"
+            autoPlay
+            muted
+            playsInline
+            controls
+          />
           <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 relative">
             <h2 className="font-semibold max-w-full sm:max-w-[500px] md:max-w-[552px] w-full gradient-text text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] leading-[120%]">
               {t("leadCapture.topSection.title.part1")}{" "}
@@ -48,10 +57,10 @@ const LeadCapture = () => {
                 {t("leadCapture.topSection.description")}
               </p>
 
-              <ChatButton
+              {/* <ChatButton
                 label={t("leadCapture.topSection.button")}
                 onClick={() => setShowCalendly(true)}
-              />
+              /> */}
             </div>
           </div>
         </div>

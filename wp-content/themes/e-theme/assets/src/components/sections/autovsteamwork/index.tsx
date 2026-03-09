@@ -44,17 +44,14 @@ const AutoVSteamWork = () => {
         className="flex items-center justify-center flex-col relative w-full"
         style={{ minHeight: "clamp(120px, 20vw, 250px)" }}
       >
-        <img
-          src="/assets/hero/hero-lines.svg"
-          alt=""
-          className="absolute top-1/2 w-full left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          style={{ maxWidth: "clamp(250px, 40vw, 450px)" }}
-        />
-        <img
-          src="/assets/hero/hero-ellipse.webp"
-          alt=""
+        <video
+          src="/assets/INVENTIVE_AICONIQ_Hero-Video_20260127_16x9_1080p_FINAL_x264.mp4"
           className="w-full relative z-10"
-          style={{ maxWidth: "clamp(150px, 25vw, 250px)" }}
+          style={{ maxWidth: "100%", height: "auto" }}
+          autoPlay
+          muted
+          playsInline
+          controls
         />
         <HrLine />
       </div>

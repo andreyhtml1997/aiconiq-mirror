@@ -19,7 +19,12 @@ const navItems: NavItem[] = [
   { id: "contact", translationKey: "navigation.contact" },
 ];
 
-const Navigation = () => {
+interface NavigationProps {
+  variant?: 'desktop' | 'mobile';
+  onNavClick?: () => void;
+}
+
+const Navigation = ({ variant = 'desktop', onNavClick }: NavigationProps) => {
   const t = useTranslations();
   const [activeItem, setActiveItem] = useState("home");
   const pathname = usePathname();
@@ -29,6 +34,7 @@ const Navigation = () => {
 
   const handleNavClick = (itemId: string) => {
     setActiveItem(itemId);
+    onNavClick?.();
     
     // Check if the current page is a subpage (not just "/" or "/[lang]")
     const isSubpage = (pathname !== `/${lang}` && (pathname !== '/' || !lang));
@@ -47,16 +53,20 @@ const Navigation = () => {
     }
   };
 
+  const isMobile = variant === 'mobile';
+
   return (
-    <nav className="flex items-center w-full overflow-x-auto md:w-auto md:overflow-visible" data-name="Navigation">
-      
+    <nav 
+      className={`flex w-full ${isMobile ? 'flex-col items-start gap-2' : 'items-center overflow-x-auto md:w-auto md:overflow-visible'}`} 
+      data-name="Navigation"
+    >
       {navItems.map((item) => (
         <button
           key={item.id}
           onClick={() => handleNavClick(item.id)}
           className={`
             flex items-center justify-center
-            px-2 py-1.5 md:px-4 md:py-1.5
+            ${isMobile ? 'w-full px-4 py-3 text-left' : 'px-2 py-1.5 md:px-4 md:py-1.5'}
             transition-all duration-200
             ${
               activeItem === item.id
@@ -67,16 +77,19 @@ const Navigation = () => {
           data-name={`nav-${item.id}`}
         >
           <p
-            className="
-              font-medium text-[14px] md:text-base text-white whitespace-nowrap
+            className={`
+              font-medium text-white whitespace-nowrap
               leading-normal
-            "
+              ${isMobile ? 'text-lg' : 'text-[14px] md:text-base'}
+            `}
           >
             {t(item.translationKey)}
           </p>
         </button>
       ))}
-      <LangSwitcher />
+      <div className={isMobile ? 'mt-4 px-4 w-full ' : ''}>
+        <LangSwitcher />
+      </div>
     </nav>
   );
 };

@@ -34,7 +34,7 @@ const MakeImpact = () => {
               className="relative left-[20px] bottom-[-30px]"
             />
           </div>
-          <img src={teamImg} alt="" style={{'max-width': '800px','margin': '0 auto'}} className="relative z-10 w-full h-auto " />
+          <img src={teamImg} alt="" style={{ maxWidth: '800px', margin: '0 auto' }} className="relative z-10 w-full h-auto " />
           <img
             src={viewBehindImg}
             alt=""
