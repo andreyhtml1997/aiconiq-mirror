@@ -58,7 +58,7 @@ const Knowledge = () => {
 
         
         <video
-          src="/assets/aiconiq-explainer_x264.mp4"
+          src="/assets/main_video_new.mp4"
           className="w-full relative z-10"
           style={{ maxWidth: "100%", height: "auto" }}
           autoPlay
