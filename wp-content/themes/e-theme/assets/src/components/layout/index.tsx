@@ -1,17 +1,29 @@
 import { ReactNode } from "react";
 import Footer from "./footer";
+import SiteHeader from "./site-header";
 import Script from 'next/script'
+import { fetchSiteFooter } from "@/lib/wp";
 
 interface LayoutProps {
   children: ReactNode;
   className?: string;
+  lang?: string;
+  withHeader?: boolean;
 }
 
-const Layout = ({ children, className = "" }: LayoutProps): JSX.Element => {
+const Layout = async ({
+  children,
+  className = "",
+  lang,
+  withHeader = true,
+}: LayoutProps): Promise<JSX.Element> => {
+  const footerData = lang ? await fetchSiteFooter(lang) : null;
+
   return (
     <div className={`min-h-screen  ${className}`}>
+      {withHeader && lang && <SiteHeader lang={lang} />}
       <main className="flex-grow overflow-clip">{children}</main>
-      
+
       <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-3FM57F1CE3"
           strategy="afterInteractive"
@@ -25,7 +37,7 @@ const Layout = ({ children, className = "" }: LayoutProps): JSX.Element => {
             gtag('config', 'G-3FM57F1CE3');
           `}
         </Script>
-      <Footer />
+      <Footer data={footerData} />
     </div>
   );
 };

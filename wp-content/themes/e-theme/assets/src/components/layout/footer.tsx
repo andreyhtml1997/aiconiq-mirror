@@ -5,8 +5,16 @@ import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Navigation from '../sections/hero/navigation'
+import type { FooterData } from '@/types/blocks'
 
-const Footer = () => {
+const FALLBACK_LOGO = '/assets/footer/aiconiq-logo-purple.svg'
+const FALLBACK_BIG_LOGO = '/assets/footer/AICONIQ.svg'
+
+interface FooterProps {
+  data?: FooterData | null
+}
+
+const Footer = ({ data }: FooterProps = {}) => {
   const t = useTranslations()
   const params = useParams()
   const lang = params.lang as string
@@ -15,16 +23,23 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const socialLinks = [
-    { name: 'Linkedin', url: 'https://www.linkedin.com/company/aiconiq-group/posts/' },
-    // { name: 'X', url: 'https://x.com' },
-  ]
+  const logoSrc = data?.logo?.url || FALLBACK_LOGO
+  const bigLogoSrc = data?.big_logo?.url || FALLBACK_BIG_LOGO
+  const description = data?.description || t('footer.description')
+  const email = data?.email || 'contact@aiconiq.io'
+  const socialLabel = data?.social_label || t('footer.social')
+  const linksLabel = data?.links_label || t('footer.links')
 
-  const footerLinks = [
-    { name: t('footer.footerLinks.impressum'), url: `/${lang}/imprint` },
-    { name: t('footer.footerLinks.terms'), url: 'https://aiconiq.io/ds.pdf' },
-    // { name: t('footer.footerLinks.status'), url: '/systemstatus' },
-  ]
+  const socialLinks = data?.socials?.length
+    ? data.socials
+    : [{ name: 'Linkedin', url: 'https://www.linkedin.com/company/aiconiq-group/posts/' }]
+
+  const footerLinks = data?.links?.length
+    ? data.links
+    : [
+        { name: t('footer.footerLinks.impressum'), url: `/${lang}/imprint` },
+        { name: t('footer.footerLinks.terms'), url: 'https://aiconiq.io/ds.pdf' },
+      ]
 
   return (
     <footer className="w-full pt-12 sm:pt-16 md:pt-20 lg:pt-[96px] px-4 sm:px-6 md:px-8 pb-8 sm:pb-10 md:pb-12">
@@ -32,7 +47,7 @@ const Footer = () => {
         <div className="flex flex-col gap-12 sm:gap-16 md:gap-20 lg:gap-[163px] w-full">
           <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8">
             <img
-              src="/assets/footer/aiconiq-logo-purple.svg"
+              src={logoSrc}
               className="w-full"
               style={{ maxWidth: 'clamp(180px, 30vw, 263px)' }}
               alt=""
@@ -70,17 +85,17 @@ const Footer = () => {
             <div className="max-w-full lg:max-w-[628px] w-full flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-[75px]">
               <div className="w-full flex flex-col sm:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8">
                 <a
-                  href="mailto:contact@aiconiq.io"
+                  href={`mailto:${email}`}
                   className="text-[#FFFFFF8F] leading-[160%] transition-colors duration-300 hover:text-[#D8008D]"
                   style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
-                  contact@aiconiq.io
+                  {email}
                 </a>
                 <p
                   className="max-w-full sm:max-w-[328px] w-full text-[#FFFFFF8F] leading-[160%]"
                   style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
-                  {t('footer.description')}
+                  {description}
                 </p>
               </div>
 
@@ -89,7 +104,7 @@ const Footer = () => {
                   className="text-[#D8008D] leading-[160%]"
                   style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
-                  {t('footer.social')}
+                  {socialLabel}
                 </span>
                 <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-[28px]">
                   {socialLinks.map((link, index) => (
@@ -120,7 +135,7 @@ const Footer = () => {
                   className="text-[#D8008D] leading-[160%]"
                   style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}
                 >
-                  {t('footer.links')}
+                  {linksLabel}
                 </span>
                 <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-[28px]">
                   {footerLinks.map((link, index) => (
@@ -159,7 +174,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <img src="/assets/footer/AICONIQ.svg" className="w-full" alt="" />
+        <img src={bigLogoSrc} className="w-full" alt="" />
       </div>
     </footer>
   )

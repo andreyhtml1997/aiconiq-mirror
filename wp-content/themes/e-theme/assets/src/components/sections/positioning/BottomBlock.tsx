@@ -1,27 +1,40 @@
 'use client';
 
 import { useTranslations } from "next-intl";
+import type { PositioningBottomData } from "@/types/blocks";
 
 const lines = '/assets/lines.svg'
 const bottomEllipse = '/assets/bottom-ellipse.webp'
 
-const BottomBlock = () => {
+interface BottomBlockProps {
+  data?: PositioningBottomData
+}
+
+const BottomBlock = ({ data }: BottomBlockProps = {}) => {
   const t = useTranslations();
+
+  const title = data?.title || t("positioning.bottomBlock.title");
+  const badge = data?.badge || t("positioning.bottomBlock.badge");
+  const description = data?.description || t("positioning.bottomBlock.description");
+  const resultLabel = data?.result_label || t("positioning.bottomBlock.resultLabel");
+  const resultTitle = data?.result_title || t("positioning.bottomBlock.resultTitle");
+  const resultDescription = data?.result_description || t("positioning.bottomBlock.resultDescription");
+
   return (
     <div className="bg-[#160B12] rounded-[12px] p-2 flex flex-col gap-3 sm:gap-4">
       <div className="p-3 sm:p-4 md:p-5 lg:p-4 flex flex-col gap-3 sm:gap-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
           <h3 className="text-[#FFFFFF] font-semibold text-[20px] sm:text-[24px] lg:text-[28px] leading-[100%]">
-            {t("positioning.bottomBlock.title")}
+            {title}
           </h3>
           <div className="py-1 !flex px-3 sm:px-4 rounded-full gradient-border-mask22 bg-[#EB3CAE52]">
             <span className="gradient-text text-[13px] sm:text-[14px] lg:text-[16px] leading-[160%] whitespace-nowrap">
-              {t("positioning.bottomBlock.badge")}
+              {badge}
             </span>
           </div>
         </div>
         <p className="text-[#FFFFFF8F] font-medium text-[13px] sm:text-[14px] md:text-[15px] lg:text-[15.5px] leading-[160%]">
-          {t("positioning.bottomBlock.description")}
+          {description}
         </p>
       </div>
 
@@ -43,7 +56,7 @@ const BottomBlock = () => {
           className="absolute top-0 right-10 z-[1] w-auto max-w-[40%] sm:max-w-[50%] lg:max-w-full opacity-50 sm:opacity-100"
         />
         <span className="text-white font-medium text-[12px] sm:text-[13px] lg:text-[14px] leading-[120%] relative z-10">
-          {t("positioning.bottomBlock.resultLabel")}
+          {resultLabel}
         </span>
         <h3
           className="text-[#320F25] font-semibold text-[24px] sm:text-[36px] lg:text-[48px] leading-[120%] relative z-10"
@@ -54,10 +67,10 @@ const BottomBlock = () => {
             WebkitTextFillColor: "transparent",
           }}
         >
-          {t("positioning.bottomBlock.resultTitle")}
+          {resultTitle}
         </h3>
         <p className="text-[#FFFFFF8F] font-medium text-[14px] sm:text-[16px] lg:text-[18px] leading-[160%] relative z-10">
-          {t("positioning.bottomBlock.resultDescription")}
+          {resultDescription}
         </p>
       </div>
     </div>

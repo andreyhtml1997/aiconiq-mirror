@@ -2,9 +2,10 @@
 
 import { useTranslations } from "next-intl";
 import BadgeIcon from "../../ui/BadgeIcon";
+import type { PositioningIntroData } from "@/types/blocks";
 
-const aiBlured = '/assets/ai-blured.webp'
-const avatar = '/assets/positioning-img/avatar.webp'
+const FALLBACK_AI_BLURED = '/assets/ai-blured.webp'
+const FALLBACK_AVATAR = '/assets/positioning-img/avatar.webp'
 const lines = '/assets/lines.svg'
 const stars = '/assets/icons/stars.svg'
 
@@ -13,8 +14,17 @@ const rightBlockStyles = {
     "linear-gradient(94.67deg, rgba(74, 30, 58, 0.24) -4.88%, rgba(177, 62, 137, 0.24) 74.86%, rgba(162, 70, 130, 0.24) 94.48%)",
 };
 
-const RightBlock = () => {
+interface RightBlockProps {
+  data?: PositioningIntroData['right_block']
+}
+
+const RightBlock = ({ data }: RightBlockProps = {}) => {
   const t = useTranslations();
+
+  const overlayText = data?.overlay_text || t("positioning.rightBlock.overlayText");
+  const description = data?.description || t("positioning.rightBlock.description");
+  const avatar = data?.image?.url || FALLBACK_AVATAR;
+
   return (
     <div
       style={rightBlockStyles}
@@ -32,10 +42,10 @@ const RightBlock = () => {
       <div className="relative">
         <div className="absolute top-1/2 left-4 sm:left-8 lg:left-12 transform -translate-y-1/2 z-10">
           <p className="max-w-[180px] sm:max-w-[200px] lg:max-w-[228px] w-full text-white font-bold text-[20px] sm:text-[26px] lg:text-[32px] leading-[120%]">
-            {t("positioning.rightBlock.overlayText")}
+            {overlayText}
           </p>
         </div>
-        <img src={aiBlured} alt="" className=" " />
+        <img src={FALLBACK_AI_BLURED} alt="" className=" " />
       </div>
       <div className="p-1 sm:p-2 absolute bottom-1 sm:bottom-2 left-1 sm:left-2 right-1 sm:right-2 z-10">
         <div
@@ -46,7 +56,7 @@ const RightBlock = () => {
           }}
         >
           <p className="text-white font-medium text-[12px] sm:text-[14px] lg:text-[16px] leading-[160%]">
-            {t("positioning.rightBlock.description")}
+            {description}
           </p>
         </div>
       </div>

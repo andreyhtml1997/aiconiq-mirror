@@ -85,7 +85,7 @@ export default async function ArticlesPage({
   const articles = await getArticles(lang)
 
   return (
-    <Layout>
+    <Layout lang={lang}>
       <ArticlesHero />
       <ArticlesList articles={articles} />
       <ConsultantSection />

@@ -5,6 +5,7 @@ import ConsultantSection from '@/components/sections/consultant-section'
 import ArticlePageHero from '@/components/sections/article-page-hero'
 import ArticleCardsCarousel from '@/components/sections/article-cards-carousel'
 import ArticleListSteps from '@/components/sections/article-list-steps'
+import BlockRenderer from '@/components/blocks/block-renderer'
 import { WPArticle, stripHtml } from '@/types/article'
 
 // Revalidate every hour (ISR)
@@ -154,7 +155,7 @@ export default async function ArticlePage({
   }))
 
   return (
-    <Layout>
+    <Layout lang={lang}>
       <ArticlePageHero
         title={heroTitle}
         excerpt={heroExcerpt}
@@ -166,6 +167,8 @@ export default async function ArticlePage({
       />
 
       <ArticleListSteps tabs={heroTabs} />
+
+      <BlockRenderer blocks={article.body_blocks} />
 
       <div className="sm:px-4">
         <ArticleCardsCarousel articles={carouselArticles} />

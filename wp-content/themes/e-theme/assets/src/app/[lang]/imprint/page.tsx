@@ -15,7 +15,7 @@ export default async function ImprintPage({
   const t = await getTranslations();
 
   return (
-    <Layout>
+    <Layout lang={lang}>
       <ImprintHero
         title={t('imprint.title')}
         content={<ImprintContent />}

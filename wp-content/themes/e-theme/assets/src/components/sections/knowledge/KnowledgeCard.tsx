@@ -1,54 +1,35 @@
 import BadgeIcon from "../../ui/BadgeIcon";
-
 import Card2 from "./knowledge-cards/card2";
 import Card3 from "./knowledge-cards/card3";
 import Card4 from "./knowledge-cards/card4";
 import { Card1 } from "./knowledge-cards/card1";
+import type { KnowledgeAnimationType } from "@/types/blocks";
 
 interface KnowledgeCardProps {
   icon: string;
   title: string;
   description: string;
-  index: number;
+  /** Per-card animation choice — moves with the card when reordered. */
+  animationType?: KnowledgeAnimationType;
+  /** Layout direction. */
   reverse?: boolean;
+  /** Optional custom video (only used when animationType === 'video'). */
   videoPath?: string;
 }
-
-/**
- * Resolves asset paths for production build compatibility.
- * Handles paths like "/assets/video.mp4" to work correctly with assetPrefix.
- * - Already valid URLs (http/https) are returned as-is.
- * - Absolute paths starting with "/" are returned as-is (Next.js public folder assets).
- */
-const resolveAssetPath = (path: string | undefined): string | undefined => {
-  if (!path) return undefined;
-
-  // Already a full URL - return as-is
-  if (path.startsWith("http://") || path.startsWith("https://")) {
-    return path;
-  }
-
-  // For paths starting with "/", they reference public folder assets
-  // Next.js serves these at root, so they work as-is
-  // The assetPrefix in next.config.ts handles the domain prefixing automatically
-  return path;
-};
 
 const KnowledgeCard = ({
   icon,
   title,
   description,
-  index,
+  animationType = 'card1',
   reverse = false,
   videoPath,
 }: KnowledgeCardProps) => {
-  const resolvedVideoPath = resolveAssetPath(videoPath);
-
   const renderCardContent = () => {
-    if (resolvedVideoPath) {
+    if (animationType === 'video' && videoPath) {
       return (
         <video
-          src={resolvedVideoPath}
+          src={videoPath}
           autoPlay
           muted
           playsInline
@@ -58,15 +39,16 @@ const KnowledgeCard = ({
       );
     }
 
-    return (
-      <>
-        {index === 0 && <Card1 />}
-        {index === 1 && <Card2 />}
-        {index === 2 && <Card3 />}
-        {index === 3 && <Card4 />}
-      </>
-    );
+    switch (animationType) {
+      case 'card1': return <Card1 />;
+      case 'card2': return <Card2 />;
+      case 'card3': return <Card3 />;
+      case 'card4': return <Card4 />;
+      default: return <Card1 />;
+    }
   };
+
+  const isVideo = animationType === 'video' && videoPath;
 
   return (
     <div
@@ -75,8 +57,7 @@ const KnowledgeCard = ({
       } gap-0 lg:gap-4 overflow-hidden`}
     >
       <div className="flex flex-col gap-4 justify-between w-full p-4 sm:p-5 md:p-6 lg:p-8">
-        {/* For video cards, render icon directly without BadgeIcon wrapper */}
-        {resolvedVideoPath ? (
+        {isVideo ? (
           <img src={icon} alt="" className="h-[75px] w-auto object-contain" />
         ) : (
           <BadgeIcon icon={icon} />

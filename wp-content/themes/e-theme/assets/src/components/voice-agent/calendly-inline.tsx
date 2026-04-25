@@ -22,7 +22,7 @@ interface CalendlyInlineProps {
 export function CalendlyInline({
   isOpen,
   onClose,
-  calendlyUrl = 'https://calendly.com/your-calendly-url',
+  calendlyUrl = 'https://calendly.com/pg-aiconiq/30min',
   onEventScheduled,
 }: CalendlyInlineProps) {
   // Слушаем события Calendly
@@ -45,7 +45,7 @@ export function CalendlyInline({
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

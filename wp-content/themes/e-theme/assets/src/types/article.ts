@@ -41,6 +41,9 @@ export type WPArticle = {
   }
 
   article_tags?: WPArticleTag[]
+
+  // Body blocks from register_rest_field (functions/rest-blocks.php)
+  body_blocks?: import('./blocks').Block[]
 }
 
 export type Article = {

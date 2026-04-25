@@ -3,19 +3,21 @@
 import { useEffect, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
+import type { SecurityCardData } from '@/types/blocks'
 
 interface SecurityCardProps {
   index: number
   setActiveIndex: (index: number) => void
   images: string[]
   isMobile: boolean
+  card?: SecurityCardData
 }
 
-export const SecurityCard = ({ index, setActiveIndex }: SecurityCardProps) => {
+export const SecurityCard = ({ index, setActiveIndex, card }: SecurityCardProps) => {
   const t = useTranslations()
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, {
-    margin: '-50% 0px -50% 0px', // Trigger when card is in the middle of viewport
+    margin: '-50% 0px -50% 0px',
   })
 
   useEffect(() => {
@@ -24,16 +26,14 @@ export const SecurityCard = ({ index, setActiveIndex }: SecurityCardProps) => {
     }
   }, [isInView, index, setActiveIndex])
 
-  // Access translation keys directly using index
-  const title = t(`security.cards.${index}.title`)
-  const description = t(`security.cards.${index}.description`)
-
-  // Optional fields - use t.has() to check if key exists before accessing
-  const hasBadge = t.has(`security.cards.${index}.badge`)
-  const hasHighlight = t.has(`security.cards.${index}.highlight`)
-
-  const badge = hasBadge ? t(`security.cards.${index}.badge`) : undefined
-  const highlight = hasHighlight ? t(`security.cards.${index}.highlight`) : undefined
+  const title = card?.title || t(`security.cards.${index}.title`)
+  const description = card?.description || t(`security.cards.${index}.description`)
+  const badge = card
+    ? (card.badge || undefined)
+    : (t.has(`security.cards.${index}.badge`) ? t(`security.cards.${index}.badge`) : undefined)
+  const highlight = card
+    ? (card.highlight || undefined)
+    : (t.has(`security.cards.${index}.highlight`) ? t(`security.cards.${index}.highlight`) : undefined)
 
   return (
     <motion.div

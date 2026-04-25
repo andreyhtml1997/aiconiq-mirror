@@ -244,7 +244,7 @@ export function App({
           onClose={() => setShowCalendly(false)}
           calendlyUrl={
             process.env.NEXT_PUBLIC_CALENDLY_URL ||
-            "https://calendly.com/your-calendly-url"
+            "https://calendly.com/pg-aiconiq/30min"
           }
           onEventScheduled={(eventData) => {
             console.log("Встреча успешно забронирована!", eventData);

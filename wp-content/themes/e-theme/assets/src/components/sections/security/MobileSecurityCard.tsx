@@ -1,25 +1,25 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import type { SecurityCardData } from '@/types/blocks'
 
 interface MobileSecurityCardProps {
   index: number
-  images: string[]
+  imageUrl: string
+  card?: SecurityCardData
 }
 
-export const MobileSecurityCard = ({ index, images }: MobileSecurityCardProps) => {
+export const MobileSecurityCard = ({ index, imageUrl, card }: MobileSecurityCardProps) => {
   const t = useTranslations()
 
-  // Access translation keys directly using index
-  const title = t(`security.cards.${index}.title`)
-  const description = t(`security.cards.${index}.description`)
-
-  // Optional fields - use t.has() to check if key exists before accessing
-  const hasBadge = t.has(`security.cards.${index}.badge`)
-  const hasHighlight = t.has(`security.cards.${index}.highlight`)
-
-  const badge = hasBadge ? t(`security.cards.${index}.badge`) : undefined
-  const highlight = hasHighlight ? t(`security.cards.${index}.highlight`) : undefined
+  const title = card?.title || t(`security.cards.${index}.title`)
+  const description = card?.description || t(`security.cards.${index}.description`)
+  const badge = card
+    ? (card.badge || undefined)
+    : (t.has(`security.cards.${index}.badge`) ? t(`security.cards.${index}.badge`) : undefined)
+  const highlight = card
+    ? (card.highlight || undefined)
+    : (t.has(`security.cards.${index}.highlight`) ? t(`security.cards.${index}.highlight`) : undefined)
 
   return (
     <div className="flex flex-col gap-6 sm:gap-8 w-full">
@@ -46,7 +46,7 @@ export const MobileSecurityCard = ({ index, images }: MobileSecurityCardProps) =
       </div>
 
       <div className="max-w-full sm:max-w-[600px] mx-auto w-full border border-[#D8008D] rounded-[12px] sm:rounded-[16px] overflow-hidden">
-        <img src={images[index]} alt="" className="w-full h-auto" />
+        <img src={imageUrl} alt="" className="w-full h-auto" />
       </div>
     </div>
   )
