@@ -1,3 +1,17 @@
+/*
+Theme Name: e-theme
+Theme URI: https://aiconiq.io/
+Author: AICONIQ
+Description: Headless WordPress theme for AICONIQ — content is managed via ACF Flexible Content (body_blocks) and rendered by the Next.js front-end living in assets/. See SETUP.md for the full workflow.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: e-theme
+*/
+
 .wysiwyg-step h1,
 .wysiwyg-step h2,
 .wysiwyg-step h3,
