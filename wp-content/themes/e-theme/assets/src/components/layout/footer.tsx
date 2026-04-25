@@ -6,15 +6,19 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import Navigation from '../sections/hero/navigation'
 import type { FooterData } from '@/types/blocks'
+import type { MenuItem } from '@/lib/wp'
 
 const FALLBACK_LOGO = '/assets/footer/aiconiq-logo-purple.svg'
 const FALLBACK_BIG_LOGO = '/assets/footer/AICONIQ.svg'
 
 interface FooterProps {
   data?: FooterData | null
+  /** Items for the top nav strip — usually the WP `primary` menu so the
+   *  footer mirrors the header. Passed in by the server-side Layout. */
+  navItems?: MenuItem[]
 }
 
-const Footer = ({ data }: FooterProps = {}) => {
+const Footer = ({ data, navItems }: FooterProps = {}) => {
   const t = useTranslations()
   const params = useParams()
   const lang = params.lang as string
@@ -52,7 +56,7 @@ const Footer = ({ data }: FooterProps = {}) => {
               style={{ maxWidth: 'clamp(180px, 30vw, 263px)' }}
               alt=""
             />
-            <Navigation />
+            <Navigation items={navItems} />
           </div>
 
           <div className="w-full flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 sm:gap-10 md:gap-12 lg:gap-0">

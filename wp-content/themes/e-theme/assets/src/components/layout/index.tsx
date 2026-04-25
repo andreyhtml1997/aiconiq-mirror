@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Footer from "./footer";
 import SiteHeader from "./site-header";
 import Script from 'next/script'
-import { fetchSiteFooter } from "@/lib/wp";
+import { fetchSiteFooter, fetchMenu } from "@/lib/wp";
 
 interface LayoutProps {
   children: ReactNode;
@@ -17,7 +17,10 @@ const Layout = async ({
   lang,
   withHeader = true,
 }: LayoutProps): Promise<JSX.Element> => {
-  const footerData = lang ? await fetchSiteFooter(lang) : null;
+  const [footerData, primaryItems] = await Promise.all([
+    lang ? fetchSiteFooter(lang) : Promise.resolve(null),
+    lang ? fetchMenu('primary', lang) : Promise.resolve([]),
+  ]);
 
   return (
     <div className={`min-h-screen  ${className}`}>
@@ -37,7 +40,7 @@ const Layout = async ({
             gtag('config', 'G-3FM57F1CE3');
           `}
         </Script>
-      <Footer data={footerData} />
+      <Footer data={footerData} navItems={primaryItems} />
     </div>
   );
 };

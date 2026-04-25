@@ -4,13 +4,19 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import LangSwitcher from "../../ui/LangSwitcher";
+import type { MenuItem } from "@/lib/wp";
 
 interface NavItem {
   id: string;
-  translationKey: string;
+  label: string;
+  url?: string;
+  target?: string;
+  external?: boolean;
 }
 
-const navItems: NavItem[] = [
+// Hardcoded fallback used when no WP `items` prop is passed (e.g. the
+// hero header before WP REST data is wired in).
+const DEFAULT_NAV_KEYS: { id: string; translationKey: string }[] = [
   { id: "home", translationKey: "navigation.home" },
   { id: "solutions", translationKey: "navigation.solutions" },
   { id: "about", translationKey: "navigation.about" },
@@ -22,9 +28,11 @@ const navItems: NavItem[] = [
 interface NavigationProps {
   variant?: 'desktop' | 'mobile';
   onNavClick?: () => void;
+  /** When set, render these WP menu items instead of the hardcoded fallback. */
+  items?: MenuItem[];
 }
 
-const Navigation = ({ variant = 'desktop', onNavClick }: NavigationProps) => {
+const Navigation = ({ variant = 'desktop', onNavClick, items }: NavigationProps) => {
   const t = useTranslations();
   const [activeItem, setActiveItem] = useState("home");
   const pathname = usePathname();
@@ -32,21 +40,41 @@ const Navigation = ({ variant = 'desktop', onNavClick }: NavigationProps) => {
   const params = useParams();
   const lang = params.lang as string;
 
-  const handleNavClick = (itemId: string) => {
-    setActiveItem(itemId);
+  const navItems: NavItem[] = items?.length
+    ? items.map((it) => {
+        const hashAnchor = it.url.includes('#') ? it.url.slice(it.url.indexOf('#') + 1) : '';
+        const isExternal = it.target === '_blank' || /^https?:\/\//.test(it.url);
+        return {
+          id: hashAnchor || `wp-${it.id}`,
+          label: it.label,
+          url: it.url,
+          target: it.target,
+          external: isExternal && !hashAnchor,
+        };
+      })
+    : DEFAULT_NAV_KEYS.map((d) => ({ id: d.id, label: t(d.translationKey) }));
+
+  const handleNavClick = (item: NavItem) => {
+    setActiveItem(item.id);
     onNavClick?.();
-    
+
+    // External / WP-driven absolute URL: just navigate.
+    if (item.external && item.url) {
+      router.push(item.url);
+      return;
+    }
+
     // Check if the current page is a subpage (not just "/" or "/[lang]")
     const isSubpage = (pathname !== `/${lang}` && (pathname !== '/' || !lang));
-    
-    if(itemId=='blog'){
+
+    if (item.id === 'blog') {
       router.push(`https://blog.aiconiq.io/${lang}/articles`);
-    }else if (isSubpage) {
+    } else if (isSubpage) {
       // Navigate to the homepage with the section ID as a hash
-      router.push(`/${lang}#${itemId}`);
+      router.push(`/${lang}#${item.id}`);
     } else {
       // On the homepage, use smooth scrolling
-      const element = document.getElementById(itemId);
+      const element = document.getElementById(item.id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
@@ -63,7 +91,7 @@ const Navigation = ({ variant = 'desktop', onNavClick }: NavigationProps) => {
       {navItems.map((item) => (
         <button
           key={item.id}
-          onClick={() => handleNavClick(item.id)}
+          onClick={() => handleNavClick(item)}
           className={`
             flex items-center justify-center
             ${isMobile ? 'w-full px-4 py-3 text-left' : 'px-2 py-1.5 md:px-4 md:py-1.5'}
@@ -83,7 +111,7 @@ const Navigation = ({ variant = 'desktop', onNavClick }: NavigationProps) => {
               ${isMobile ? 'text-lg' : 'text-[14px] md:text-base'}
             `}
           >
-            {t(item.translationKey)}
+            {item.label}
           </p>
         </button>
       ))}

@@ -24,9 +24,25 @@ function aiconiq_seed_log(array &$log, string $msg): void
     $log[] = $msg;
 }
 
+/**
+ * Imports one media file into the WP Media Library.
+ *
+ * Order of attempts:
+ *   1. Reuse existing attachment (matched by `_aiconiq_source_url` meta).
+ *   2. Local file in `assets/public/{rel_path}` — the Next.js front-end
+ *      ships these as static assets, so we get an offline-capable seeder
+ *      for everything bundled with the repo.
+ *   3. Network fallback: download from https://aiconiq.io{rel_path}.
+ *      Only needed for heavy media (~5 videos) that are not committed to
+ *      the repo.
+ */
 function aiconiq_seed_sideload(string $rel_path, string $title, array &$log): ?int
 {
     $url = 'https://aiconiq.io' . $rel_path;
+    $local_path = get_template_directory() . '/assets/public' . $rel_path;
+    $basename = basename(parse_url($url, PHP_URL_PATH));
+
+    // 1. Existing attachment?
     $existing = get_posts([
         'post_type' => 'attachment',
         'meta_key' => '_aiconiq_source_url',
@@ -38,13 +54,34 @@ function aiconiq_seed_sideload(string $rel_path, string $title, array &$log): ?i
         aiconiq_seed_log($log, "↻ reused {$title} (#{$existing[0]->ID})");
         return (int) $existing[0]->ID;
     }
+
+    // 2. Try a local copy from the front-end bundle first.
+    if (file_exists($local_path) && is_readable($local_path)) {
+        $tmp = wp_tempnam($basename);
+        if ($tmp && @copy($local_path, $tmp)) {
+            $att_id = media_handle_sideload(
+                ['name' => $basename, 'tmp_name' => $tmp],
+                0,
+                $title
+            );
+            if (!is_wp_error($att_id)) {
+                update_post_meta($att_id, '_aiconiq_source_url', $url);
+                aiconiq_seed_log($log, "✓ imported {$title} from local bundle (#{$att_id})");
+                return (int) $att_id;
+            }
+            @unlink($tmp);
+            aiconiq_seed_log($log, "⚠ local sideload failed for {$title}: " . $att_id->get_error_message() . " — falling back to network");
+        }
+    }
+
+    // 3. Network fallback.
     $tmp = download_url($url, 600);
     if (is_wp_error($tmp)) {
-        aiconiq_seed_log($log, "✗ download failed: {$url} — " . $tmp->get_error_message());
+        aiconiq_seed_log($log, "✗ {$title}: no local copy in assets/public{$rel_path} AND network download failed — " . $tmp->get_error_message());
         return null;
     }
     $att_id = media_handle_sideload(
-        ['name' => basename(parse_url($url, PHP_URL_PATH)), 'tmp_name' => $tmp],
+        ['name' => $basename, 'tmp_name' => $tmp],
         0,
         $title
     );
@@ -54,8 +91,8 @@ function aiconiq_seed_sideload(string $rel_path, string $title, array &$log): ?i
         return null;
     }
     update_post_meta($att_id, '_aiconiq_source_url', $url);
-    aiconiq_seed_log($log, "✓ downloaded {$title} (#{$att_id})");
-    return $att_id;
+    aiconiq_seed_log($log, "✓ downloaded {$title} from network (#{$att_id})");
+    return (int) $att_id;
 }
 
 /**
