@@ -797,14 +797,24 @@ function aiconiq_seed_upsert_menu(string $name, string $lang, array $items, arra
     $had_polylang_filter = remove_action('wp_update_nav_menu_item', 'pll_save_nav_menu_item', 10);
 
     foreach ($items as $idx => $item) {
-        wp_update_nav_menu_item($menu_id, 0, [
+        $type = $item['object'] ?? 'custom';
+        $args = [
             'menu-item-title' => $item['label'],
-            'menu-item-url' => $item['url'],
             'menu-item-status' => 'publish',
-            'menu-item-type' => 'custom',
             'menu-item-position' => $idx + 1,
             'menu-item-target' => $item['target'] ?? '',
-        ]);
+        ];
+        if ($type === 'custom') {
+            $args['menu-item-type'] = 'custom';
+            $args['menu-item-url'] = $item['url'];
+        } else {
+            // object='page' / 'post' etc. — link to a real WP object so the
+            // REST endpoint can rewrite to a Next.js path on the fly.
+            $args['menu-item-type'] = 'post_type';
+            $args['menu-item-object'] = $type;
+            $args['menu-item-object-id'] = (int) ($item['object_id'] ?? 0);
+        }
+        wp_update_nav_menu_item($menu_id, 0, $args);
     }
 
     if ($had_polylang_filter) {
@@ -832,18 +842,128 @@ function aiconiq_seed_assign_menu_locations(string $location, int $en_menu_id, i
     aiconiq_seed_log($log, "✓ assigned menus to '{$location}' location (EN #{$en_menu_id}, DE #{$de_menu_id})");
 }
 
-function aiconiq_seed_footer_menu_items(string $lang): array
+/**
+ * Footer top-nav defaults — same items as the primary menu by default,
+ * but lives as a SEPARATE menu (`Footer Nav EN/DE`) on the `footer`
+ * theme location so editors can diverge them later.
+ *
+ * The legal links (Impressum / Terms of Use) are NOT a WP nav menu —
+ * they live on the Footer Options page (Footer → Footer (EN/DE) →
+ * Footer links repeater). One source of truth, no duplication.
+ */
+function aiconiq_seed_footer_nav_items(string $lang): array
 {
-    if ($lang === 'de') {
-        return [
-            ['label' => 'Impressum', 'url' => '/de/imprint'],
-            ['label' => 'Nutzungsbedingungen', 'url' => 'https://aiconiq.io/ds.pdf', 'target' => '_blank'],
-        ];
+    return aiconiq_seed_menu_items($lang);
+}
+
+/**
+ * Creates a minimal demo "Test Page" in EN and DE, both opted into the
+ * Blocks (Next.js) template, with a couple of body_blocks so the front-end
+ * has something to render. Returns [en_id, de_id].
+ *
+ * Demonstrates the editor flow: create a Page in admin, fill blocks,
+ * link to a menu — clicking the menu navigates inside the Next.js app.
+ */
+function aiconiq_seed_upsert_test_pages(array &$log, array $ids): array
+{
+    $en_slug = 'test-page';
+    $find = function (string $slug, string $lang): ?int {
+        global $wpdb;
+        $candidates = $wpdb->get_col($wpdb->prepare(
+            "SELECT ID FROM {$wpdb->posts} WHERE post_type='page' AND post_name=%s",
+            $slug
+        ));
+        foreach ($candidates as $cid) {
+            $cid = (int) $cid;
+            if (!function_exists('pll_get_post_language')) return $cid;
+            if (pll_get_post_language($cid) === $lang) return $cid;
+        }
+        return null;
+    };
+
+    $en_id = $find($en_slug, 'en');
+    if (!$en_id) {
+        $en_id = (int) wp_insert_post([
+            'post_type' => 'page', 'post_status' => 'publish',
+            'post_title' => 'Test Page (EN)', 'post_name' => $en_slug,
+        ]);
+        if (function_exists('pll_set_post_language')) {
+            pll_set_post_language($en_id, 'en');
+        }
+        aiconiq_seed_log($log, "✓ created Test Page (EN) (#{$en_id})");
+    } else {
+        aiconiq_seed_log($log, "↻ reused Test Page (EN) (#{$en_id})");
     }
-    return [
-        ['label' => 'Legal Notice', 'url' => '/en/imprint'],
-        ['label' => 'Terms of Use', 'url' => 'https://aiconiq.io/ds.pdf', 'target' => '_blank'],
+    update_post_meta($en_id, '_wp_page_template', 'page-templates/blocks.php');
+
+    $de_id = null;
+    if (function_exists('pll_get_post')) {
+        $maybe = pll_get_post($en_id, 'de');
+        if ($maybe) $de_id = (int) $maybe;
+    }
+    if (!$de_id) {
+        $de_id = (int) wp_insert_post([
+            'post_type' => 'page', 'post_status' => 'publish',
+            'post_title' => 'Test Page (DE)',
+        ]);
+        if (function_exists('pll_set_post_language')) {
+            pll_set_post_language($de_id, 'de');
+        }
+        if (function_exists('pll_save_post_translations')) {
+            pll_save_post_translations(['en' => $en_id, 'de' => $de_id]);
+        }
+        global $wpdb;
+        $wpdb->update($wpdb->posts, ['post_name' => $en_slug], ['ID' => $de_id]);
+        clean_post_cache($de_id);
+        aiconiq_seed_log($log, "✓ created Test Page (DE) (#{$de_id})");
+    } else {
+        aiconiq_seed_log($log, "↻ reused Test Page (DE) (#{$de_id})");
+    }
+    update_post_meta($de_id, '_wp_page_template', 'page-templates/blocks.php');
+
+    // Minimal blocks so the page actually renders something.
+    $en_blocks = [
+        [
+            'acf_fc_layout' => 'text',
+            'eyebrow' => 'Demo',
+            'title' => 'Test Page',
+            'body' => '<p>This is a demo page created by the seeder. It proves that creating a Page in WP and linking it to the menu works end-to-end on the Next.js front-end.</p><p>Edit blocks via <strong>Pages → Test Page (EN) → Blocks</strong>.</p>',
+            'anchor' => '', 'divider_below' => false,
+        ],
     ];
+    $de_blocks = [
+        [
+            'acf_fc_layout' => 'text',
+            'eyebrow' => 'Demo',
+            'title' => 'Test-Seite',
+            'body' => '<p>Dies ist eine vom Seeder erstellte Demo-Seite. Sie zeigt, dass das Erstellen einer Seite im WP und die Verlinkung im Menü auf dem Next.js Front-End funktioniert.</p><p>Blöcke bearbeiten über <strong>Seiten → Test Page (DE) → Blocks</strong>.</p>',
+            'anchor' => '', 'divider_below' => false,
+        ],
+    ];
+    update_field('body_blocks', $en_blocks, $en_id);
+    update_field('body_blocks', $de_blocks, $de_id);
+    aiconiq_seed_log($log, "✓ wrote demo body_blocks to Test Pages");
+
+    return [$en_id, $de_id];
+}
+
+/**
+ * Same as the primary menu items, but with the demo Test Page appended
+ * as a real WP page (object='page'), so menu-driven navigation through
+ * the Next.js app is exercised end-to-end.
+ */
+function aiconiq_seed_menu_items_with_test(string $lang, int $test_page_id): array
+{
+    $items = aiconiq_seed_menu_items($lang);
+    // The url is a placeholder — the REST endpoint rewrites object='page'
+    // items to the correct Next.js path (/{lang}/page/{slug}/) on the fly.
+    $items[] = [
+        'label' => $lang === 'de' ? 'Test-Seite' : 'Test Page',
+        'url' => get_permalink($test_page_id) ?: '#',
+        'object' => 'page',
+        'object_id' => $test_page_id,
+    ];
+    return $items;
 }
 
 // -----------------------------------------------------------------------------
@@ -880,13 +1000,26 @@ function aiconiq_run_seed(): array
     aiconiq_seed_footer_options('en', $ids, $log);
     aiconiq_seed_footer_options('de', $ids, $log);
 
-    // 5. Primary + Footer menus
-    $primary_en = aiconiq_seed_upsert_menu('Primary EN', 'en', aiconiq_seed_menu_items('en'), $log);
-    $primary_de = aiconiq_seed_upsert_menu('Primary DE', 'de', aiconiq_seed_menu_items('de'), $log);
+    // 5. Demo "Test Page" — shows that creating a Page in admin and adding
+    //    it to a menu Just Works. Has a few simple blocks so it actually
+    //    renders something.
+    [$test_en, $test_de] = aiconiq_seed_upsert_test_pages($log, $ids);
+
+    // 6. Primary + Footer menus (now also include the Test Page item)
+    $primary_en = aiconiq_seed_upsert_menu(
+        'Primary EN', 'en',
+        aiconiq_seed_menu_items_with_test('en', $test_en),
+        $log
+    );
+    $primary_de = aiconiq_seed_upsert_menu(
+        'Primary DE', 'de',
+        aiconiq_seed_menu_items_with_test('de', $test_de),
+        $log
+    );
     aiconiq_seed_assign_menu_locations('primary', $primary_en, $primary_de, $log);
 
-    $footer_en = aiconiq_seed_upsert_menu('Footer EN', 'en', aiconiq_seed_footer_menu_items('en'), $log);
-    $footer_de = aiconiq_seed_upsert_menu('Footer DE', 'de', aiconiq_seed_footer_menu_items('de'), $log);
+    $footer_en = aiconiq_seed_upsert_menu('Footer Nav EN', 'en', aiconiq_seed_footer_nav_items('en'), $log);
+    $footer_de = aiconiq_seed_upsert_menu('Footer Nav DE', 'de', aiconiq_seed_footer_nav_items('de'), $log);
     aiconiq_seed_assign_menu_locations('footer', $footer_en, $footer_de, $log);
 
     return $log;

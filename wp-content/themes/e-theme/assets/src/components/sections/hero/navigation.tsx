@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter, usePathname, useParams } from "next/navigation";
 import LangSwitcher from "../../ui/LangSwitcher";
+import { usePrimaryMenu } from "../../layout/PrimaryMenuProvider";
 import type { MenuItem } from "@/lib/wp";
 
 interface NavItem {
@@ -40,8 +41,15 @@ const Navigation = ({ variant = 'desktop', onNavClick, items }: NavigationProps)
   const params = useParams();
   const lang = params.lang as string;
 
-  const navItems: NavItem[] = items?.length
-    ? items.map((it) => {
+  // Items resolution priority:
+  //   1. explicit `items` prop (used by Footer with its own menu)
+  //   2. primary menu from React Context (Hero embedded nav)
+  //   3. hardcoded i18n fallback (build-time / no WP)
+  const ctxItems = usePrimaryMenu();
+  const sourceItems: MenuItem[] = items?.length ? items : ctxItems;
+
+  const navItems: NavItem[] = sourceItems.length
+    ? sourceItems.map((it) => {
         const hashAnchor = it.url.includes('#') ? it.url.slice(it.url.indexOf('#') + 1) : '';
         const isExternal = it.target === '_blank' || /^https?:\/\//.test(it.url);
         return {
@@ -58,26 +66,35 @@ const Navigation = ({ variant = 'desktop', onNavClick, items }: NavigationProps)
     setActiveItem(item.id);
     onNavClick?.();
 
-    // External / WP-driven absolute URL: just navigate.
-    if (item.external && item.url) {
+    if (!item.url) return;
+
+    // 1. Anchor (#solutions etc.) — smooth-scroll if on home, otherwise
+    //    navigate to home with the hash so Next.js can scroll after mount.
+    if (item.url.includes('#')) {
+      const hash = item.url.slice(item.url.indexOf('#') + 1);
+      const isOnHome = pathname === `/${lang}` || pathname === '/' || pathname === `/${lang}/`;
+      if (isOnHome) {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+      }
+      router.push(`/${lang}#${hash}`);
+      return;
+    }
+
+    // 2. Internal Next.js path — /en/page/foo/, /de/articles/, ...
+    if (item.url.startsWith('/')) {
       router.push(item.url);
       return;
     }
 
-    // Check if the current page is a subpage (not just "/" or "/[lang]")
-    const isSubpage = (pathname !== `/${lang}` && (pathname !== '/' || !lang));
-
-    if (item.id === 'blog') {
-      router.push(`https://blog.aiconiq.io/${lang}/articles`);
-    } else if (isSubpage) {
-      // Navigate to the homepage with the section ID as a hash
-      router.push(`/${lang}#${item.id}`);
+    // 3. Absolute / external URL
+    if (item.target === '_blank') {
+      window.open(item.url, '_blank', 'noopener,noreferrer');
     } else {
-      // On the homepage, use smooth scrolling
-      const element = document.getElementById(item.id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      router.push(item.url);
     }
   };
 

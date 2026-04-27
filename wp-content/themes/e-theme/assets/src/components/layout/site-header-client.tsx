@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import LangSwitcher from '../ui/LangSwitcher'
 import type { MenuItem } from '@/lib/wp'
 
@@ -21,6 +22,8 @@ const FALLBACK_THRESHOLD_PX = 80
 
 const SiteHeaderClient = ({ items, lang }: SiteHeaderClientProps) => {
   const [visible, setVisible] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const trigger = document.querySelector<HTMLElement>('[data-sticky-trigger="hero-nav"]')
@@ -49,16 +52,31 @@ const SiteHeaderClient = ({ items, lang }: SiteHeaderClientProps) => {
   const handleClick =
     (item: MenuItem) =>
     (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (item.kind !== 'anchor') return
-      const hashIndex = item.url.indexOf('#')
-      if (hashIndex === -1) return
-      const id = item.url.slice(hashIndex + 1)
-      const target = document.getElementById(id)
-      if (target) {
+      // Anchor on the home page — smooth-scroll if we're already on home.
+      if (item.url.includes('#')) {
+        const hash = item.url.slice(item.url.indexOf('#') + 1)
+        const isOnHome = pathname === `/${lang}` || pathname === '/' || pathname === `/${lang}/`
+        if (isOnHome) {
+          const target = document.getElementById(hash)
+          if (target) {
+            e.preventDefault()
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            history.replaceState(null, '', `#${hash}`)
+            return
+          }
+        }
         e.preventDefault()
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        history.replaceState(null, '', `#${id}`)
+        router.push(`/${lang}#${hash}`)
+        return
       }
+
+      // Internal Next.js path (e.g. /en/page/foo/). Use the router to avoid
+      // a full reload that a plain <a href> would trigger.
+      if (item.url.startsWith('/')) {
+        e.preventDefault()
+        router.push(item.url)
+      }
+      // Absolute URLs fall through to the default <a> behaviour.
     }
 
   return (
@@ -69,7 +87,9 @@ const SiteHeaderClient = ({ items, lang }: SiteHeaderClientProps) => {
       data-name="SiteHeader"
       aria-hidden={!visible}
     >
-      <div className="max-w-[1280px] mx-auto px-3 xs:px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center justify-between gap-4">
+      {/* Match the hero header layout: full-width row, logo on the left,
+          nav + lang switcher grouped on the right, no internal max-width. */}
+      <div className="px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-4 flex items-center justify-between gap-4">
         <Link href={`/${lang}`} className="flex-shrink-0">
           <img
             src={logo}
@@ -78,25 +98,27 @@ const SiteHeaderClient = ({ items, lang }: SiteHeaderClientProps) => {
           />
         </Link>
 
-        {items.length > 0 && (
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2 overflow-x-auto">
-            {items.map((item) => (
-              <a
-                key={item.id}
-                href={item.url}
-                target={item.target || '_self'}
-                onClick={handleClick(item)}
-                rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-                className="px-2 lg:px-4 py-1.5 text-[14px] lg:text-base font-medium text-white whitespace-nowrap border-b border-transparent hover:border-white/30 transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        )}
+        <div className="flex items-center gap-2 lg:gap-4">
+          {items.length > 0 && (
+            <nav className="hidden md:flex items-center gap-1 lg:gap-2 overflow-x-auto">
+              {items.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.url}
+                  target={item.target || '_self'}
+                  onClick={handleClick(item)}
+                  rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+                  className="px-2 lg:px-4 py-1.5 text-[14px] lg:text-base font-medium text-white whitespace-nowrap border-b border-transparent hover:border-white/30 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          )}
 
-        <div className="hidden md:block">
-          <LangSwitcher />
+          <div className="hidden md:block">
+            <LangSwitcher />
+          </div>
         </div>
       </div>
     </header>

@@ -1,0 +1,136 @@
+{
+    "key": "group_aiconiq_footer",
+    "title": "Footer settings",
+    "fields": [
+        {
+            "key": "f_fopt_logo",
+            "label": "Top logo",
+            "name": "logo",
+            "type": "image",
+            "return_format": "array",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "f_fopt_big_logo",
+            "label": "Big bottom logo",
+            "name": "big_logo",
+            "type": "image",
+            "return_format": "array",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "f_fopt_desc",
+            "label": "Description",
+            "name": "description",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "f_fopt_email",
+            "label": "Contact email",
+            "name": "email",
+            "type": "email"
+        },
+        {
+            "key": "f_fopt_social_label",
+            "label": "Social label",
+            "name": "social_label",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "f_fopt_links_label",
+            "label": "Links label",
+            "name": "links_label",
+            "type": "text",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "f_fopt_socials",
+            "label": "Social links",
+            "name": "socials",
+            "type": "repeater",
+            "min": 0,
+            "button_label": "Add social",
+            "sub_fields": [
+                {
+                    "key": "f_fopt_s_name",
+                    "label": "Name",
+                    "name": "name",
+                    "type": "text",
+                    "wrapper": {
+                        "width": "40"
+                    }
+                },
+                {
+                    "key": "f_fopt_s_url",
+                    "label": "URL",
+                    "name": "url",
+                    "type": "url",
+                    "wrapper": {
+                        "width": "60"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "f_fopt_links",
+            "label": "Footer links",
+            "name": "links",
+            "type": "repeater",
+            "min": 0,
+            "button_label": "Add link",
+            "sub_fields": [
+                {
+                    "key": "f_fopt_l_name",
+                    "label": "Name",
+                    "name": "name",
+                    "type": "text",
+                    "wrapper": {
+                        "width": "40"
+                    }
+                },
+                {
+                    "key": "f_fopt_l_url",
+                    "label": "URL (path or full URL)",
+                    "name": "url",
+                    "type": "text",
+                    "wrapper": {
+                        "width": "60"
+                    }
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "aiconiq-footer-en"
+            }
+        ],
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "aiconiq-footer-de"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "modified": 1777330733
+}

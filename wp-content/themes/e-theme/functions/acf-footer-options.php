@@ -39,7 +39,15 @@ add_action('acf/init', function () {
         'post_id' => 'aiconiq_footer_de',
     ]);
 
-    acf_add_local_field_group([
+    $key = 'group_aiconiq_footer';
+    $json = get_template_directory() . '/acf-json/' . $key . '.json';
+    if (file_exists($json)) return; // JSON wins
+    acf_add_local_field_group(aiconiq_footer_field_group_definition());
+});
+
+function aiconiq_footer_field_group_definition(): array
+{
+    return [
         'key' => 'group_aiconiq_footer',
         'title' => 'Footer settings',
         'fields' => [
@@ -68,8 +76,8 @@ add_action('acf/init', function () {
         'label_placement' => 'top',
         'instruction_placement' => 'label',
         'active' => true,
-    ]);
-});
+    ];
+}
 
 /**
  * REST: GET /wp-json/aiconiq/v1/footer?lang=en|de

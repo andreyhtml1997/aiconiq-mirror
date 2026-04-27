@@ -76,8 +76,9 @@ function aiconiq_button_subfields(string $prefix): array
     ];
 }
 
-add_action('acf/init', function () {
-    acf_add_local_field_group([
+function aiconiq_body_blocks_field_group_definition(): array
+{
+    return [
         'key' => 'group_aiconiq_body_blocks',
         'title' => 'Body blocks',
         'fields' => [[
@@ -455,10 +456,11 @@ add_action('acf/init', function () {
 
             ],
         ]],
-        // Body blocks only show on pages that opted in via the "Blocks (Next.js)"
-        // page template. Articles and ordinary pages keep their default UI.
+        // Body blocks show on every Page so editors can fill any new page
+        // they create from the admin. Articles stay on their own ACF schema
+        // (defined in functions/acf.php).
         'location' => [
-            [['param' => 'page_template', 'operator' => '==', 'value' => 'page-templates/blocks.php']],
+            [['param' => 'post_type', 'operator' => '==', 'value' => 'page']],
         ],
         'menu_order' => 5,
         'position' => 'normal',
@@ -466,5 +468,27 @@ add_action('acf/init', function () {
         'label_placement' => 'top',
         'instruction_placement' => 'label',
         'active' => true,
-    ]);
+    ];
+}
+
+add_action('acf/init', function () {
+    // Register from PHP only if no JSON copy exists yet — once the bootstrap
+    // helper has dumped the JSON, ACF Pro's Local JSON loader takes over and
+    // the field group becomes editable in admin.
+    $key = 'group_aiconiq_body_blocks';
+    $json = get_template_directory() . '/acf-json/' . $key . '.json';
+    if (file_exists($json)) return;
+    acf_add_local_field_group(aiconiq_body_blocks_field_group_definition());
 });
+
+/**
+ * Default new pages to the "Blocks (Next.js)" template so editors don't
+ * have to switch the template manually after creating a page. Existing
+ * pages keep whatever they already chose.
+ */
+add_action('save_post_page', function ($post_id, $post, $update) {
+    if ($update) return; // only on first save
+    if (wp_is_post_revision($post_id) || wp_is_post_autosave($post_id)) return;
+    if (get_post_meta($post_id, '_wp_page_template', true)) return; // already set
+    update_post_meta($post_id, '_wp_page_template', 'page-templates/blocks.php');
+}, 10, 3);

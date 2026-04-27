@@ -67,6 +67,27 @@ function aiconiq_menu_items(string $location): array
         $out = [];
         foreach ($nodes as $node) {
             $url = $node->url;
+
+            // Rewrite WP page URLs to Next.js routes so clicks on the
+            // headless front-end navigate inside the Next.js app instead of
+            // hitting the WP host (which would render only the PHP fallback).
+            //   slug 'home' -> /{lang}/
+            //   any other slug -> /{lang}/page/{slug}/
+            // Custom links and articles are left untouched.
+            if ($node->object === 'page') {
+                $page = get_post((int) $node->object_id);
+                if ($page) {
+                    $page_lang = function_exists('pll_get_post_language')
+                        ? pll_get_post_language($page->ID, 'slug')
+                        : 'en';
+                    $page_lang = $page_lang ?: 'en';
+                    $slug = $page->post_name;
+                    $url = ($slug === 'home')
+                        ? '/' . $page_lang . '/'
+                        : '/' . $page_lang . '/page/' . $slug . '/';
+                }
+            }
+
             $is_anchor = strpos($url, '#') !== false && (strpos($url, 'http') !== 0 || strpos($url, $_SERVER['HTTP_HOST'] ?? '') !== false);
 
             $out[] = [
