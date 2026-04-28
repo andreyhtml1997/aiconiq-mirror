@@ -14,6 +14,13 @@
   # Pin Node to a known-good major. Next.js 16 requires Node 18.18+.
   NODE_VERSION = "20"
 
+  # Where the front-end fetches WP REST. Build runs Server Components, so
+  # this MUST be reachable from Netlify's build machines (CDN-cached pages
+  # otherwise fall back to bundled i18n placeholders, no menu, no media).
+  NEXT_PUBLIC_WP_REST_URL = "https://aiconiq.vesta-beauty.com.ua/wp-json/"
+  NEXT_PUBLIC_WP_HOST     = "https://aiconiq.vesta-beauty.com.ua"
+  NEXT_PUBLIC_CALENDLY_URL = "https://calendly.com/pg-aiconiq/30min"
+
 # Mounts the official Next.js runtime: handles SSR/RSC/middleware,
 # dynamic routes, ISR, image optimisation, etc. Required for App Router.
 [[plugins]]
