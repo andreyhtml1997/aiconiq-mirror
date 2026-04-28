@@ -10,6 +10,7 @@ require get_template_directory() . '/functions/menu.php';
 require get_template_directory() . '/functions/sync-blocks-order.php';
 require get_template_directory() . '/functions/acf-json-bootstrap.php';
 require get_template_directory() . '/functions/cors.php';
+require get_template_directory() . '/functions/site-rebuild.php';
 if (is_admin()) {
     require get_template_directory() . '/functions/admin-setup.php';
 }
