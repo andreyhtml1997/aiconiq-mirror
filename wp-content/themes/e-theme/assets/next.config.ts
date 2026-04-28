@@ -4,12 +4,11 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 const nextConfig: NextConfig = {
-  // Output to 'dist' directory to match Vite setup
-  distDir: 'dist',
+  // Note: removed `distDir: 'dist'` (Vite-era leftover). Netlify's
+  // @netlify/plugin-nextjs only auto-detects the standard `.next/` output.
 
-  // assetPrefix: 'https://anni.bestfewo.de' ,
-  // Only use prod CDN prefix in production builds — local dev needs assets from localhost.
-  ...(process.env.NODE_ENV === 'production' ? { assetPrefix: 'https://aiconiq.io' } : {}),
+  // assetPrefix is intentionally NOT set — same-origin serving on Vercel/
+  // Netlify avoids CORS and lets `/wp-content/uploads/*` rewrites work.
   // Use App Router with SSR/ISR capabilities
   // Remove 'output: export' to enable server-side features
   // If you need static export only, uncomment the line below:

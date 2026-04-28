@@ -1,0 +1,20 @@
+# Netlify configuration for the AICONIQ Next.js front-end.
+# Pinned in repo so a fresh Netlify project picks the right settings
+# without having to fiddle with the UI on every site recreation.
+
+[build]
+  base    = "wp-content/themes/e-theme/assets"
+  command = "npm run build"
+  # Default Next.js output. The Netlify plugin auto-discovers .next/
+  # only at the standard location — don't override `distDir` in
+  # next.config.ts.
+  publish = ".next"
+
+[build.environment]
+  # Pin Node to a known-good major. Next.js 16 requires Node 18.18+.
+  NODE_VERSION = "20"
+
+# Mounts the official Next.js runtime: handles SSR/RSC/middleware,
+# dynamic routes, ISR, image optimisation, etc. Required for App Router.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
