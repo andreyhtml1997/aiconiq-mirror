@@ -34,11 +34,13 @@ const nextConfig: NextConfig = {
     return config
   },
 
-  // Dev-only proxy for WP media so the browser sees same-origin URLs.
-  // Production should serve uploads from the same host as the frontend.
+  // Proxy WP media so the browser hits same-origin paths in both dev and
+  // prod. The PHP normalizer strips the host from upload URLs (returning
+  // `/wp-content/uploads/...`), and this rewrite forwards them to the
+  // actual WordPress host transparently.
   async rewrites() {
-    if (process.env.NODE_ENV === 'production') return []
-    const wpHost = process.env.NEXT_PUBLIC_WP_HOST || 'http://dental'
+    const wpHost = process.env.NEXT_PUBLIC_WP_HOST
+    if (!wpHost) return []
     return [
       { source: '/wp-content/uploads/:path*', destination: `${wpHost}/wp-content/uploads/:path*` },
     ]
