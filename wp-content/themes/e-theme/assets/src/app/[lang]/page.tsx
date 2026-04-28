@@ -1,7 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
 import Layout from '@/components/layout'
 import BlockRenderer from '@/components/blocks/block-renderer'
-import { fetchPageBySlug, REVALIDATE } from '@/lib/wp'
+import { fetchPageBySlug } from '@/lib/wp'
 
 // Fallback section components for when WP has no `home` page yet
 import Hero from '@/components/sections/hero'
@@ -22,7 +22,9 @@ import Positioning from '@/components/sections/positioning'
 import PositioningBottomSection from '@/components/sections/positioning-bottom'
 import Testimonials from '@/components/sections/testimonials'
 
-export const revalidate = REVALIDATE
+// Next.js requires this to be a literal value — Netlify's stricter
+// build refuses imported constants ("Invalid segment configuration").
+export const revalidate = 3600
 
 export default async function HomePage({
   params,

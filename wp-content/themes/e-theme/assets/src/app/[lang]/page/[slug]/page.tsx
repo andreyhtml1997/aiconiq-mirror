@@ -7,10 +7,10 @@ import {
   fetchPageBySlug,
   fetchAllPageSlugs,
   isBackendReachable,
-  REVALIDATE,
 } from '@/lib/wp'
 
-export const revalidate = REVALIDATE
+// Next.js requires this to be a literal value (no imported constants).
+export const revalidate = 3600
 
 export async function generateStaticParams() {
   if (!isBackendReachable()) return []
