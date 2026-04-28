@@ -24,7 +24,7 @@ const LeadCaptureBottom = ({ data }: Props = {}) => {
   return (
     <section
       id="contact"
-      className="flex flex-col max-w-[1920px] w-full mx-auto px-4 sm:px-6 md:px-8 lg:p-4"
+      className="flex flex-col max-w-[1920px] w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-4 lg:pb-4 mt-4 sm:mt-3 md:mt-2"
     >
       <CalendlyInline
         isOpen={showCalendly}

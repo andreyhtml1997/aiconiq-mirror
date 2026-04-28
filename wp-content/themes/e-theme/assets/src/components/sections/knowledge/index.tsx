@@ -50,7 +50,7 @@ const Knowledge = ({ data }: Props = {}) => {
   return (
     <section
       id="knowledge-steps"
-      className="py-8 sm:py-10 md:py-12"
+      className="pt-10 sm:pt-12 md:pt-14 lg:pt-[58px] pb-12 sm:pb-16 md:pb-20 lg:pb-24 xl:pb-[110px]"
     >
       <CalendlyInline
         isOpen={showCalendly}

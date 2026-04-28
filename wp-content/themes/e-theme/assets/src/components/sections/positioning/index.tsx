@@ -18,7 +18,7 @@ const Positioning = ({ data }: Props = {}) => {
   const badge = data?.badge || t("positioning.badge");
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-[126px] w-full flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-[50px] items-center justify-center px-4 sm:px-6 md:px-8">
+    <section className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-[126px] pb-12 sm:pb-16 md:pb-20 lg:pb-[104px] w-full flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-[50px] items-center justify-center px-4 sm:px-6 md:px-8">
       <div className="min-h-[250px] relative mt-[-100px]">
         <img src="/assets/gradientline.svg" alt="" />
         <img src="/assets/blured-bg-pink.webp" alt="" className="absolute top-0 left-0" />

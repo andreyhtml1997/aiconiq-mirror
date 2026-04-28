@@ -10,7 +10,7 @@ const AutoVsIntroVideo = ({ data }: Props = {}) => {
   const videoUrl = data?.video?.url || FALLBACK_VIDEO;
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
+    <section className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 px-4 sm:px-6 md:px-8">
       <div
         className="flex items-center justify-center flex-col relative w-full"
         style={{ minHeight: "clamp(120px, 20vw, 250px)" }}

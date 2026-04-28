@@ -26,7 +26,7 @@ const LeadCaptureTop = ({ data }: Props = {}) => {
   const buttonTarget = data?.button?.mode === 'url' ? (data.button.url?.target || '_self') : '_self';
 
   return (
-    <section className="flex flex-col max-w-[1920px] w-full mx-auto px-4 sm:px-6 md:px-8 lg:p-4">
+    <section className="flex flex-col max-w-[1920px] w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-4 lg:pt-4">
       <CalendlyInline
         isOpen={showCalendly}
         onClose={() => setShowCalendly(false)}
@@ -37,7 +37,7 @@ const LeadCaptureTop = ({ data }: Props = {}) => {
         onEventScheduled={() => setShowCalendly(false)}
       />
       <div className="w-full relative bg-[#1A1317] rounded-[8px] overflow-hidden">
-        <div className="relative max-w-[1250px] w-full mx-auto py-8 sm:py-10 md:py-12 lg:pt-16 lg:pb-10 px-4 sm:px-6 md:px-8 lg:px-0">
+        <div className="relative max-w-[1250px] w-full mx-auto py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-0">
           <img
             src={banner}
             alt=""
