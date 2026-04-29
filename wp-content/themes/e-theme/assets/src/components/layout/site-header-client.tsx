@@ -28,17 +28,20 @@ const SiteHeaderClient = ({ items, lang }: SiteHeaderClientProps) => {
   useEffect(() => {
     const trigger = document.querySelector<HTMLElement>('[data-sticky-trigger="hero-nav"]')
 
-    // Show the sticky as soon as the actual nav text in the hero scrolls past
-    // the viewport top. The trigger element wraps the logo+nav with extra
-    // padding, so we fire when its center crosses the top edge — that's roughly
-    // when the menu items themselves disappear.
+    // No Hero on this page — there's no inline nav, so the sticky must be
+    // permanently visible (otherwise the page has no menu at all until the
+    // user happens to scroll past 80px). This covers /page/[slug], articles,
+    // imprint, etc.
+    if (!trigger) {
+      setVisible(true)
+      return
+    }
+
+    // Pages WITH Hero: keep the original sticky behaviour — hidden until the
+    // hero's own nav scrolls past the viewport top, then slide in.
     const onScroll = () => {
-      if (trigger) {
-        const rect = trigger.getBoundingClientRect()
-        setVisible(rect.top + rect.height / 2 < 0)
-      } else {
-        setVisible(window.scrollY > FALLBACK_THRESHOLD_PX)
-      }
+      const rect = trigger.getBoundingClientRect()
+      setVisible(rect.top + rect.height / 2 < 0)
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
