@@ -101,18 +101,41 @@ const SiteHeaderClient = ({ items, lang }: SiteHeaderClientProps) => {
         <div className="flex items-center gap-2 lg:gap-4">
           {items.length > 0 && (
             <nav className="hidden md:flex items-center gap-1 lg:gap-2 overflow-x-auto">
-              {items.map((item) => (
-                <a
-                  key={item.id}
-                  href={item.url}
-                  target={item.target || '_self'}
-                  onClick={handleClick(item)}
-                  rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-                  className="px-2 lg:px-4 py-1.5 text-[14px] lg:text-base font-medium text-white whitespace-nowrap border-b border-transparent hover:border-white/30 transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {items.map((item) => {
+                const cleanPath = pathname.replace(/\/+$/, '')
+                const itemPath = item.url.split('#')[0].replace(/\/+$/, '')
+                const matchesPath = itemPath && itemPath === cleanPath
+                const isOnHome =
+                  pathname === `/${lang}` ||
+                  pathname === `/${lang}/` ||
+                  pathname === '/'
+                // The "Home" entry usually comes back from WP as `#home` or
+                // `/en/#home`. Light it up on the home route itself; other
+                // section anchors (#solutions, #about) stay inactive — the
+                // user might be scrolled past them but isn't on a different
+                // page, and we don't want the whole bar to glow at once.
+                const isHomeAnchor =
+                  item.url === '#home' || item.url.endsWith('#home')
+                // Catches an entry whose URL is just "/" or "/en/" (no hash).
+                const isRootHomeUrl =
+                  !itemPath && !item.url.startsWith('#') && !item.url.includes('#')
+                const isActive =
+                  matchesPath || (isOnHome && (isHomeAnchor || isRootHomeUrl))
+                return (
+                  <a
+                    key={item.id}
+                    href={item.url}
+                    target={item.target || '_self'}
+                    onClick={handleClick(item)}
+                    rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+                    className={`px-2 lg:px-4 py-1.5 text-[14px] lg:text-base font-medium text-white whitespace-nowrap border-b transition-colors ${
+                      isActive ? 'border-[#d8008d]' : 'border-transparent hover:border-white/30'
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                )
+              })}
             </nav>
           )}
 
