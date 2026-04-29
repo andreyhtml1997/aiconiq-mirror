@@ -45,6 +45,7 @@ export default {
     about: "Über AICONIQ",
     team: "Team",
     contact: "Kontakt",
+	blog: "Blog",
   },
   chatButton: {
     label: "Sprich mit mir",
