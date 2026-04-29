@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import Layout from '@/components/layout'
+import InlineNavBar from '@/components/layout/inline-nav-bar'
 import BlockRenderer from '@/components/blocks/block-renderer'
 import ConsultantSection from '@/components/sections/consultant-section'
 import {
@@ -38,8 +39,10 @@ export default async function GenericPage({
 
   return (
     <Layout lang={lang}>
+      <InlineNavBar />
+
       {title && (
-        <section className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32">
+        <section className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 md:px-8 pt-8 sm:pt-12 md:pt-16">
           <h1
             className="text-white font-semibold leading-[110%]"
             style={{ fontSize: 'clamp(32px, 7vw, 56px)' }}
