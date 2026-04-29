@@ -2,7 +2,7 @@
 // Skips remote calls during build when restUrl is relative — keeps
 // `next build` from failing without a backend.
 
-export const REVALIDATE = 3600
+export const REVALIDATE = 5
 
 export function wpBaseUrl(): string {
   return process.env.NEXT_PUBLIC_WP_REST_URL || '/wp-json/'
