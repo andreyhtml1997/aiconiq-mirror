@@ -11,6 +11,8 @@ require get_template_directory() . '/functions/sync-blocks-order.php';
 require get_template_directory() . '/functions/acf-json-bootstrap.php';
 require get_template_directory() . '/functions/cors.php';
 require get_template_directory() . '/functions/site-rebuild.php';
+require get_template_directory() . '/functions/php-render-helpers.php';
+require get_template_directory() . '/functions/enqueue-theme-blocks.php';
 if (is_admin()) {
     require get_template_directory() . '/functions/admin-setup.php';
 }

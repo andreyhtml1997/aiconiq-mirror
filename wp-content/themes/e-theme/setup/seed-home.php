@@ -921,28 +921,14 @@ function aiconiq_seed_upsert_test_pages(array &$log, array $ids): array
     }
     update_post_meta($de_id, '_wp_page_template', 'page-templates/blocks.php');
 
-    // Minimal blocks so the page actually renders something.
-    $en_blocks = [
-        [
-            'acf_fc_layout' => 'text',
-            'eyebrow' => 'Demo',
-            'title' => 'Test Page',
-            'body' => '<p>This is a demo page created by the seeder. It proves that creating a Page in WP and linking it to the menu works end-to-end on the Next.js front-end.</p><p>Edit blocks via <strong>Pages → Test Page (EN) → Blocks</strong>.</p>',
-            'anchor' => '', 'divider_below' => false,
-        ],
-    ];
-    $de_blocks = [
-        [
-            'acf_fc_layout' => 'text',
-            'eyebrow' => 'Demo',
-            'title' => 'Test-Seite',
-            'body' => '<p>Dies ist eine vom Seeder erstellte Demo-Seite. Sie zeigt, dass das Erstellen einer Seite im WP und die Verlinkung im Menü auf dem Next.js Front-End funktioniert.</p><p>Blöcke bearbeiten über <strong>Seiten → Test Page (DE) → Blocks</strong>.</p>',
-            'anchor' => '', 'divider_below' => false,
-        ],
-    ];
+    // Use the same body_blocks as the home pages so the test pages render
+    // the full set of sections — needed for verifying the PHP-rendered side
+    // (page-templates/blocks.php dispatcher) at parity with home.
+    $en_blocks = aiconiq_seed_blocks_en($ids);
+    $de_blocks = aiconiq_seed_blocks_de($ids);
     update_field('body_blocks', $en_blocks, $en_id);
     update_field('body_blocks', $de_blocks, $de_id);
-    aiconiq_seed_log($log, "✓ wrote demo body_blocks to Test Pages");
+    aiconiq_seed_log($log, "✓ wrote " . count($en_blocks) . " body_blocks (full home set) to Test Pages");
 
     return [$en_id, $de_id];
 }

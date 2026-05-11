@@ -3,6 +3,11 @@ export default {
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
+    // PHP block templates (Phase 2 of headless→hybrid: pages opting into
+    // page-templates/blocks.php render server-side, classes must be present.)
+    "../page-templates/**/*.php",
+    "../template-parts/**/*.php",
+    "../*.php",
   ],
   theme: {
     extend: {

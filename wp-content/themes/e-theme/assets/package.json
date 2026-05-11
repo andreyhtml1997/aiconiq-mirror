@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fetch-media": "node scripts/fetch-media.mjs"
+    "fetch-media": "node scripts/fetch-media.mjs",
+    "build:theme-css": "tailwindcss -c tailwind.config.js -i src/theme.css -o dist-php/theme.css --minify",
+    "watch:theme-css": "tailwindcss -c tailwind.config.js -i src/theme.css -o dist-php/theme.css --watch"
   },
   "dependencies": {
     "@livekit/components-react": "^2.9.14",
